@@ -1,0 +1,511 @@
+/* ==========================================================================
+   Armina Stone - Explore Products Section Styles
+   Editorial Architectural 5-Card Natural Stone Gallery
+   ========================================================================== */
+
+.explore-materials-section {
+  position: relative;
+  background-color: #F8F1EB;
+  color: #181614;
+  padding-top: clamp(64px, 7.5vh, 96px);
+  padding-bottom: clamp(64px, 7.5vh, 96px);
+  padding-left: var(--site-grid-margin);
+  padding-right: var(--site-grid-margin);
+  width: 100%;
+  box-sizing: border-box;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Inner Container */
+.explore-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  position: relative;
+  z-index: 3;
+}
+
+/* Modern 12-Column Responsive Architectural Grid */
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Introduction Block (Left column on Row 1) */
+.explore-intro {
+  grid-column: 1 / 5;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-right: clamp(16px, 2.5vw, 36px);
+  min-height: 310px;
+}
+
+.explore-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #6B6259;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.explore-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 3.8vw, 56px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: #181614;
+  margin: 0 0 16px 0;
+}
+
+.explore-heading-line {
+  display: block;
+}
+
+.explore-heading .serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.explore-description {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 1.05vw, 16px);
+  font-weight: 400;
+  line-height: 1.55;
+  color: #5E5750;
+  margin: 0 0 26px 0;
+  max-width: 340px;
+}
+
+.explore-cta-wrap {
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.btn-explore-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background-color: #231F1C;
+  color: #FAF7F2;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  transition: background-color var(--transition-fast),
+              transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(35, 31, 28, 0.16);
+}
+
+.btn-explore-all:hover {
+  background-color: #0E0C0B;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(35, 31, 28, 0.28);
+}
+
+.btn-explore-arrow {
+  display: inline-block;
+  font-size: 16px;
+  transition: transform var(--transition-fast);
+}
+
+.btn-explore-all:hover .btn-explore-arrow {
+  transform: translateX(4px);
+}
+
+.btn-explore-all:focus-visible {
+  outline: 2px solid #181614;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Material Cards (5 Stone Surfaces)
+   ========================================================================== */
+.material-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+  background-color: #E6DFD5;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 380ms cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  min-height: 310px;
+  height: 100%;
+}
+
+.material-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.13);
+}
+
+.material-card:focus-visible {
+  outline: 2px solid #181614;
+  outline-offset: 4px;
+}
+
+/* Desktop Grid Assignments */
+/* Row 1: Intro (cols 1-4) + Marble (cols 5-9) + Quartzite (cols 10-12) */
+.card-marble {
+  grid-column: 5 / 10;
+  grid-row: 1;
+}
+
+.card-quartzite {
+  grid-column: 10 / 13;
+  grid-row: 1;
+}
+
+/* Row 2: Granite (cols 1-4) + Quartz (cols 5-8) + Porcelain (cols 9-12) */
+.card-granite {
+  grid-column: 1 / 5;
+  grid-row: 2;
+}
+
+.card-quartz {
+  grid-column: 5 / 9;
+  grid-row: 2;
+}
+
+.card-porcelain {
+  grid-column: 9 / 13;
+  grid-row: 2;
+}
+
+/* Card Media & Clean Stone Image */
+.material-card-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.material-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.material-card:hover .material-card-img {
+  transform: scale(1.04);
+}
+
+/* Card Scrim Gradient Overlay for Superior Text Contrast */
+.material-card-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.theme-light .material-card-scrim {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 35%, rgba(248, 241, 235, 0.25) 65%, rgba(235, 224, 212, 0.6) 100%);
+}
+
+.theme-dark .material-card-scrim {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0.25) 60%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+/* Card Content Overlay: Text at Bottom-Left, Arrow at Bottom-Right */
+.material-card-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: clamp(18px, 2.2vw, 26px);
+  box-sizing: border-box;
+}
+
+.material-card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.material-card-title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 2.3vw, 36px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.01em;
+  transition: color 250ms ease;
+}
+
+.material-card-sub {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Arrow Icon Button */
+.material-card-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.material-card-arrow {
+  width: 17px;
+  height: 17px;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.material-card:hover .material-card-arrow {
+  transform: translateX(3px);
+}
+
+/* Light Card Theme (Marble, Quartz, Porcelain) */
+.theme-light .material-card-title {
+  color: #181614;
+}
+
+.theme-light .material-card-sub {
+  color: #5E5750;
+}
+
+.theme-light .material-card-btn {
+  border: 1px solid rgba(24, 22, 20, 0.18);
+  background-color: rgba(255, 255, 255, 0.55);
+  color: #181614;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.theme-light:hover .material-card-btn {
+  background-color: #181614;
+  color: #FAF7F2;
+  border-color: #181614;
+  box-shadow: 0 4px 14px rgba(24, 22, 20, 0.25);
+}
+
+/* Dark Card Theme (Quartzite, Granite) */
+.theme-dark .material-card-title {
+  color: #FAF7F2;
+}
+
+.theme-dark .material-card-sub {
+  color: rgba(250, 247, 242, 0.78);
+}
+
+.theme-dark .material-card-btn {
+  border: 1px solid rgba(250, 247, 242, 0.35);
+  background-color: rgba(24, 22, 20, 0.45);
+  color: #FAF7F2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-dark:hover .material-card-btn {
+  background-color: #FAF7F2;
+  color: #181614;
+  border-color: #FAF7F2;
+  box-shadow: 0 4px 14px rgba(250, 247, 242, 0.3);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/* Laptop / Compact Desktop (1024px - 1200px) */
+@media (max-width: 1200px) {
+  .explore-grid {
+    gap: 16px;
+  }
+  .explore-intro {
+    min-height: 280px;
+    padding-right: 14px;
+  }
+  .material-card {
+    min-height: 280px;
+  }
+}
+
+/* Tablet Landscape & Portrait (769px - 1024px) */
+@media (max-width: 1024px) {
+  .explore-materials-section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  .explore-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+  /* Intro spans full top width with horizontal editorial layout */
+  .explore-intro {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    max-width: 100%;
+    min-height: auto;
+    padding-right: 0;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .explore-intro-text {
+    max-width: 580px;
+  }
+  .explore-cta-wrap {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  /* Row 1 of cards: Marble & Quartzite (50% each) */
+  .card-marble {
+    grid-column: span 3;
+    grid-row: auto;
+    min-height: 270px;
+  }
+  .card-quartzite {
+    grid-column: span 3;
+    grid-row: auto;
+    min-height: 270px;
+  }
+  /* Row 2 of cards: Granite, Quartz, Porcelain (33.3% each) */
+  .card-granite {
+    grid-column: span 2;
+    grid-row: auto;
+    min-height: 260px;
+  }
+  .card-quartz {
+    grid-column: span 2;
+    grid-row: auto;
+    min-height: 260px;
+  }
+  .card-porcelain {
+    grid-column: span 2;
+    grid-row: auto;
+    min-height: 260px;
+  }
+}
+
+/* Small Tablet (541px - 768px) */
+@media (max-width: 768px) {
+  .explore-materials-section {
+    padding-top: 60px;
+    padding-bottom: 68px;
+  }
+  .explore-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .explore-intro {
+    grid-column: 1 / -1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    margin-bottom: 8px;
+  }
+  .explore-description {
+    margin-bottom: 22px;
+  }
+  .card-marble {
+    grid-column: 1 / -1; /* Marble featured full width */
+    min-height: 240px;
+  }
+  .card-quartzite,
+  .card-granite,
+  .card-quartz,
+  .card-porcelain {
+    grid-column: span 1;
+    min-height: 220px;
+  }
+}
+
+/* Mobile Phones (<= 540px) */
+@media (max-width: 540px) {
+  .explore-materials-section {
+    padding-top: 52px;
+    padding-bottom: 60px;
+  }
+  .explore-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .explore-intro {
+    grid-column: 1;
+    margin-bottom: 6px;
+  }
+  .explore-heading {
+    font-size: clamp(32px, 8.8vw, 42px);
+    line-height: 1.08;
+    margin-bottom: 14px;
+  }
+  .explore-description {
+    font-size: 14.5px;
+    margin-bottom: 20px;
+  }
+  .card-marble,
+  .card-quartzite,
+  .card-granite,
+  .card-quartz,
+  .card-porcelain {
+    grid-column: 1;
+    min-height: 215px;
+    height: 215px;
+  }
+  .material-card-content {
+    padding: 18px 20px;
+  }
+  .material-card-title {
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+  .material-card-sub {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+  .material-card-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .material-card-arrow {
+    width: 15px;
+    height: 15px;
+  }
+}

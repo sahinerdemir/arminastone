@@ -1,0 +1,15 @@
+{
+  "name": "armina-stone-hero",
+  "version": "1.0.0",
+  "description": "Armina Stone homepage hero implementation with pixel fidelity",
+  "scripts": {
+    "start": "python3 -m http.server 3838"
+  },
+  "keywords": [
+    "armina-stone",
+    "hero",
+    "luxury-architecture"
+  ],
+  "author": "Armina Stone",
+  "license": "ISC"
+}

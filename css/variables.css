@@ -1,0 +1,38 @@
+:root {
+  /* Colors */
+  --color-ivory: #F8F3EB;
+  --color-warm-white: #FAF7F2;
+  --color-pure-white: #FFFFFF;
+  --color-dark-charcoal: #181614;
+  --color-dark-surface: #1C1917;
+  --color-text-muted: rgba(250, 245, 238, 0.82);
+  --color-glass-bg: rgba(28, 25, 22, 0.42);
+  --color-glass-border: rgba(255, 255, 255, 0.16);
+  --color-glass-scrolled-bg: rgba(25, 23, 20, 0.82);
+  --color-glass-scrolled-border: rgba(255, 255, 255, 0.12);
+
+  /* Typography */
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Unified Grid System
+     Aligns the Header Logo, Hero Slider Text, and Section 2 Text to the exact same vertical guide.
+     Right-side spaces are symmetrically matched. */
+  --site-grid-margin: max(clamp(24px, 7vw, 116px), calc((100vw - 1600px) / 2));
+  --hero-content-padding-left: var(--site-grid-margin);
+  --hero-content-padding-right: var(--site-grid-margin);
+
+  /* Glass pill inner padding & header outer padding formula to lock Logo X to --site-grid-margin */
+  --glass-nav-pad-left: 40px;
+  --header-padding-x: max(16px, calc(var(--site-grid-margin) - var(--glass-nav-pad-left)));
+
+  --grid-gutter: 24px;
+  --nav-height: 80px;
+  --nav-top: 40px;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 200ms ease;
+  --transition-smooth: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}

@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Armina Stone - Temporary Sticky Verification Spacer
+   Isolated 120vh section solely for testing and verifying sticky header scrolling
+   ========================================================================== */
+
+.sticky-verification-spacer {
+  position: relative;
+  z-index: 10;
+  min-height: 120vh;
+  width: 100%;
+  background: radial-gradient(circle at 50% 30%, #1f1b18 0%, #13110f 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 32px;
+}
+
+.spacer-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.spacer-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(248, 243, 235, 0.08);
+  border: 1px solid rgba(248, 243, 235, 0.2);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.spacer-title {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4vw, 54px);
+  font-weight: 400;
+  color: var(--color-warm-white);
+  line-height: 1.15;
+}
+
+.spacer-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(250, 245, 238, 0.72);
+  line-height: 1.6;
+  max-width: 680px;
+}
+
+.spacer-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+  width: 100%;
+  text-align: left;
+}
+
+.spacer-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.spacer-card-icon {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--color-ivory);
+  opacity: 0.8;
+}
+
+.spacer-card h3 {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.spacer-card p {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: rgba(250, 245, 238, 0.65);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .spacer-features {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

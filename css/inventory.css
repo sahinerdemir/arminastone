@@ -1,0 +1,452 @@
+/* ==========================================================================
+   Armina Stone - Section 3: Featured Inventory
+   Luxury Live Slabs Gallery with Interactive Filters & Refined Typography
+   ========================================================================== */
+
+.featured-inventory-section {
+  position: relative;
+  background-color: #F8F1EB; /* Exact match with Section 2 */
+  color: #181614;
+  padding-top: clamp(48px, 6vh, 80px);
+  padding-bottom: clamp(64px, 8vh, 100px);
+  padding-left: var(--site-grid-margin);
+  padding-right: var(--site-grid-margin);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Inner Container - Follows Unified Site Grid */
+.inventory-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  position: relative;
+  z-index: 3;
+}
+
+/* Header Area */
+.inventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: clamp(28px, 4vh, 44px);
+}
+
+.inventory-header-left {
+  max-width: 680px;
+}
+
+.inventory-eyebrow {
+  display: inline-block;
+  font-family: var(--font-primary, 'DM Sans', sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #766E65;
+  margin-bottom: 12px;
+}
+
+.inventory-heading {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: #181614;
+  margin: 0 0 16px 0;
+}
+
+.inventory-heading .serif-italic {
+  font-style: italic;
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+}
+
+.inventory-desc {
+  font-family: var(--font-primary, 'DM Sans', sans-serif);
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.6;
+  color: #6B645E;
+  margin: 0;
+  max-width: 580px;
+}
+
+/* Header Right CTA Button */
+.inventory-header-right {
+  flex-shrink: 0;
+  padding-bottom: 4px;
+}
+
+.btn-inventory-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #181614;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-family: var(--font-primary, 'DM Sans', sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(24, 22, 20, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.btn-inventory-cta .cta-arrow {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-inventory-cta:hover {
+  background-color: #2D2926;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(24, 22, 20, 0.16);
+}
+
+.btn-inventory-cta:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Filter Bar Row */
+.inventory-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: clamp(24px, 3.5vh, 36px);
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  padding-bottom: 4px;
+}
+
+.inventory-filter-bar::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.inventory-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.inventory-filter-btn {
+  background: #FFFFFF;
+  color: #181614;
+  border: 1px solid rgba(24, 22, 20, 0.12);
+  font-family: var(--font-primary, 'DM Sans', sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 9px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.inventory-filter-btn:hover:not(.active) {
+  background-color: #FAF7F4;
+  border-color: rgba(24, 22, 20, 0.35);
+  transform: translateY(-1px);
+}
+
+.inventory-filter-btn.active {
+  background-color: #181614;
+  color: #FFFFFF;
+  border-color: #181614;
+  box-shadow: 0 2px 10px rgba(24, 22, 20, 0.12);
+}
+
+/* ==========================================================================
+   Interactive Luxury Slider Architecture
+   ========================================================================== */
+
+.inventory-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.inventory-slider.is-dragging {
+  cursor: grabbing;
+}
+
+.inventory-track {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.inventory-track.no-transition {
+  transition: none !important;
+}
+
+/* Inventory Card */
+.inventory-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #EDE6DF; /* Smooth match with gallery floor tone */
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(24, 22, 20, 0.06);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  text-decoration: none;
+  color: inherit;
+  aspect-ratio: 370 / 416;
+  flex: 0 0 calc((100% - 60px) / 4);
+  min-width: calc((100% - 60px) / 4);
+  max-width: calc((100% - 60px) / 4);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease;
+}
+
+.inventory-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+
+/* Card Media (Slab in Gallery) */
+.inventory-card-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.inventory-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inventory-card:hover .inventory-card-img {
+  transform: scale(1.035);
+}
+
+/* Card Info - Clean HTML on Gallery Floor, Strictly NO Arrow Icons */
+.inventory-card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 22px 24px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(237, 230, 223, 0.96) 0%,
+    rgba(237, 230, 223, 0.8) 55%,
+    rgba(237, 230, 223, 0.0) 100%
+  );
+}
+
+.inventory-card-title {
+  font-family: var(--font-serif, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(20px, 1.6vw, 24px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #181614;
+  margin: 0;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inventory-card-cat {
+  font-family: var(--font-primary, 'DM Sans', sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #766E65;
+  line-height: 1.2;
+}
+
+/* Bottom Controls: Pagination Track & Navigation Arrows */
+.inventory-bottom-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: clamp(28px, 4vh, 40px);
+  padding-top: 4px;
+}
+
+/* Left: Minimalist Luxury Pagination Indicator */
+.inventory-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.inventory-pagination-track {
+  width: 90px;
+  height: 3px;
+  background-color: rgba(24, 22, 20, 0.14);
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+}
+
+.inventory-pagination-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  background-color: #181614;
+  border-radius: 999px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), width 0.4s ease;
+}
+
+.inventory-pagination-text {
+  font-family: var(--font-primary, 'DM Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #766E65;
+}
+
+/* Right: Circular Navigation Buttons */
+.inventory-nav-arrows {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.inventory-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #181614;
+  border: 1px solid rgba(24, 22, 20, 0.14);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  padding: 0;
+}
+
+.inventory-arrow-icon {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inventory-nav-btn:hover:not(:disabled) {
+  background-color: #181614;
+  color: #FFFFFF;
+  border-color: #181614;
+  transform: scale(1.05);
+  box-shadow: 0 4px 14px rgba(24, 22, 20, 0.12);
+}
+
+.inventory-nav-btn.prev:hover:not(:disabled) .inventory-arrow-icon {
+  transform: translateX(-2px);
+}
+
+.inventory-nav-btn.next:hover:not(:disabled) .inventory-arrow-icon {
+  transform: translateX(2px);
+}
+
+.inventory-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-color: rgba(24, 22, 20, 0.08);
+}
+
+/* Filter Hide State */
+.inventory-card.is-hidden {
+  display: none !important;
+}
+
+/* Responsive Adaptations */
+@media (max-width: 1180px) {
+  .inventory-track {
+    gap: 16px;
+  }
+
+  .inventory-card {
+    flex: 0 0 calc((100% - 16px) / 2);
+    min-width: calc((100% - 16px) / 2);
+    max-width: calc((100% - 16px) / 2);
+  }
+  
+  .inventory-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-inventory-section {
+    padding-top: clamp(36px, 5vh, 56px);
+    padding-bottom: clamp(48px, 6vh, 72px);
+  }
+  
+  .inventory-card-info {
+    padding: 16px 18px;
+  }
+  
+  .inventory-card-title {
+    font-size: 19px;
+  }
+  
+  .inventory-card-cat {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .inventory-track {
+    gap: 14px;
+  }
+
+  .inventory-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+    max-width: 100%;
+    aspect-ratio: 370 / 390;
+  }
+  
+  .inventory-filter-bar {
+    margin-left: calc(-1 * var(--site-grid-margin));
+    margin-right: calc(-1 * var(--site-grid-margin));
+    padding-left: var(--site-grid-margin);
+    padding-right: var(--site-grid-margin);
+  }
+}

@@ -6,10 +6,10 @@
   --color-dark-charcoal: #181614;
   --color-dark-surface: #1C1917;
   --color-text-muted: rgba(250, 245, 238, 0.82);
-  --color-glass-bg: rgba(28, 25, 22, 0.42);
-  --color-glass-border: rgba(255, 255, 255, 0.16);
-  --color-glass-scrolled-bg: rgba(25, 23, 20, 0.82);
-  --color-glass-scrolled-border: rgba(255, 255, 255, 0.12);
+  --color-glass-bg: rgba(0, 0, 0, 0.55);
+  --color-glass-border: rgba(255, 255, 255, 0.15);
+  --color-glass-scrolled-bg: rgba(0, 0, 0, 0.68);
+  --color-glass-scrolled-border: rgba(255, 255, 255, 0.18);
 
   /* Typography */
   --font-serif: 'Instrument Serif', Georgia, serif;

@@ -90,11 +90,12 @@
       }
 
       if (paginationThumb) {
-        const thumbPct = Math.max(25, 100 / totalPages);
+        const thumbPct = Math.max(16, Math.min(30, 100 / totalPages));
         paginationThumb.style.width = `${thumbPct}%`;
-        const maxThumbMove = 100 - thumbPct;
-        const currentThumbMove = totalPages > 1 ? (currentPage / (totalPages - 1)) * maxThumbMove : 0;
-        paginationThumb.style.transform = `translateX(${currentThumbMove}%)`;
+        const maxLeft = 100 - thumbPct;
+        const currentLeft = totalPages > 1 ? (currentPage / (totalPages - 1)) * maxLeft : 0;
+        paginationThumb.style.left = `${currentLeft}%`;
+        paginationThumb.style.transform = 'none';
       }
 
       // Update Prev / Next Buttons State
@@ -178,33 +179,66 @@
       }
     });
 
-    // Touch Swipe Support
+    // Touch Swipe Support (Gesture Aware)
     let startX = 0;
+    let startY = 0;
     let currentX = 0;
+    let currentY = 0;
     let isTouching = false;
 
     slider.addEventListener('touchstart', (e) => {
       if (e.touches.length !== 1) return;
       startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
       currentX = startX;
+      currentY = startY;
       isTouching = true;
     }, { passive: true });
 
     slider.addEventListener('touchmove', (e) => {
       if (!isTouching || e.touches.length !== 1) return;
       currentX = e.touches[0].clientX;
+      currentY = e.touches[0].clientY;
     }, { passive: true });
 
     slider.addEventListener('touchend', () => {
       if (!isTouching) return;
       isTouching = false;
       const diffX = startX - currentX;
-      const threshold = 40; // min swipe distance in px
+      const diffY = startY - currentY;
 
-      if (diffX > threshold && currentPage < totalPages - 1) {
-        goToPage(currentPage + 1);
-      } else if (diffX < -threshold && currentPage > 0) {
-        goToPage(currentPage - 1);
+      // Only change slides if horizontal intent is clear
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+        if (diffX > 0 && currentPage < totalPages - 1) {
+          goToPage(currentPage + 1);
+        } else if (diffX < 0 && currentPage > 0) {
+          goToPage(currentPage - 1);
+        }
+      }
+    });
+
+    // Desktop Mouse Drag Support
+    let isMouseDown = false;
+    let mouseStartX = 0;
+
+    slider.addEventListener('mousedown', (e) => {
+      if (e.target.closest('button, a')) return;
+      isMouseDown = true;
+      mouseStartX = e.clientX;
+      slider.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      slider.classList.remove('is-dragging');
+      const diffX = mouseStartX - e.clientX;
+      if (Math.abs(diffX) > 40) {
+        if (diffX > 0 && currentPage < totalPages - 1) {
+          goToPage(currentPage + 1);
+        } else if (diffX < 0 && currentPage > 0) {
+          goToPage(currentPage - 1);
+        }
       }
     });
 

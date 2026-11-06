@@ -7,7 +7,7 @@
   z-index: 1000;
   padding: 40px var(--header-padding-x);
   pointer-events: none;
-  transition: padding var(--transition-smooth), transform var(--transition-slow), opacity var(--transition-slow);
+  transition: padding var(--transition-smooth);
 }
 
 .site-header.is-scrolled {
@@ -24,26 +24,37 @@
   margin: 0;
   height: 80px;
   border-radius: 999px;
-  background: var(--color-glass-bg);
-  backdrop-filter: blur(20px) saturate(135%);
-  -webkit-backdrop-filter: blur(20px) saturate(135%);
-  border: 1px solid var(--color-glass-border);
-  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.38),
-              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 12px 0 var(--glass-nav-pad-left);
+  isolation: isolate;
+}
+
+.glass-nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.35),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+  z-index: -1;
   transition: background var(--transition-smooth),
               border-color var(--transition-smooth),
               box-shadow var(--transition-smooth);
 }
 
-.site-header.is-scrolled .glass-nav {
+.site-header.is-scrolled .glass-nav::before {
   background: var(--color-glass-scrolled-bg);
   border-color: var(--color-glass-scrolled-border);
-  box-shadow: 0 20px 44px -6px rgba(0, 0, 0, 0.5),
-              0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  box-shadow: 0 14px 36px 0 rgba(0, 0, 0, 0.45),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 0.20);
 }
 
 /* Nav Logo */
@@ -123,9 +134,7 @@
   transform: translateX(-50%) translateY(8px);
   padding-top: 16px;
   min-width: 220px;
-  background: rgba(22, 19, 17, 0.92);
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  background: rgba(22, 19, 17, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 18px;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;

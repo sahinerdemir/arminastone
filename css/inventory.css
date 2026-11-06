@@ -175,7 +175,10 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 18px;
+  padding-top: 14px;
+  padding-bottom: 40px;
+  margin-top: -14px;
+  margin-bottom: -40px;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
@@ -222,7 +225,8 @@
 
 .inventory-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 36px -4px rgba(24, 22, 20, 0.12),
+              0 8px 16px -2px rgba(24, 22, 20, 0.06);
 }
 
 /* Card Media (Slab in Gallery) */
@@ -292,17 +296,18 @@
   line-height: 1.2;
 }
 
-/* Bottom Controls: Pagination Track & Navigation Arrows */
+/* Bottom Controls: Pagination Track (Left), Centered Nav Arrows, View Full Inventory (Right) */
 .inventory-bottom-controls {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   margin-top: clamp(28px, 4vh, 40px);
   padding-top: 4px;
 }
 
 /* Left: Minimalist Luxury Pagination Indicator */
 .inventory-pagination {
+  justify-self: start;
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -325,7 +330,7 @@
   height: 100%;
   background-color: #181614;
   border-radius: 999px;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), width 0.4s ease;
+  transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1), width 0.4s ease;
 }
 
 .inventory-pagination-text {
@@ -336,11 +341,19 @@
   color: #766E65;
 }
 
-/* Right: Circular Navigation Buttons */
+/* Center: Circular Navigation Buttons */
 .inventory-nav-arrows {
+  justify-self: center;
   display: inline-flex;
   align-items: center;
   gap: 12px;
+}
+
+/* Right: View Full Inventory Action */
+.inventory-bottom-action {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
 }
 
 .inventory-nav-btn {
@@ -444,6 +457,27 @@
   
   .inventory-card-cat {
     font-size: 10px;
+  }
+
+  .inventory-bottom-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+
+  /* Mobilde sağ/sol okları kaldırıldı */
+  .inventory-nav-arrows {
+    display: none !important;
+  }
+
+  .inventory-bottom-action {
+    display: inline-flex;
+  }
+
+  .inventory-bottom-action .btn-inventory-cta {
+    padding: 11px 20px;
+    font-size: 13px;
   }
 }
 

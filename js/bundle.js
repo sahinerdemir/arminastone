@@ -196,7 +196,6 @@ function initSearch() {
       resultsPanel.innerHTML = `
         <div class="search-results-header">
           <span class="search-results-count">${matches.length} matching result${matches.length > 1 ? 's' : ''} found</span>
-          <span class="search-results-count">Press Enter to select</span>
         </div>
         <ul class="search-results-list">
           ${matches.slice(0, 6).map((item) => `

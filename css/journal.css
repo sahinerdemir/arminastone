@@ -28,25 +28,27 @@
 }
 
 /* 12-Column Responsive Architectural Grid
-   - Left Intro: 3 cols (span 3 / 1..4)
-   - Center Featured Card: 5 cols (span 5 / 4..9)
+   - Left Intro: 4 cols (span 4 / 1..5) - perfectly matches Testimonials
+   - Center Featured Card: 4 cols (span 4 / 5..9)
    - Right Stacked Cards: 4 cols (span 4 / 9..13)
+   - Total cards area: 8 cols (5..13) - identical to Testimonials showcase
 */
 .journal-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: clamp(20px, 2.2vw, 32px);
+  gap: 32px;
   align-items: stretch;
 }
 
 /* Left Column: Intro & CTA */
 .journal-intro-col {
-  grid-column: 1 / 4;
+  grid-column: 1 / 5;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding-top: 4px;
   padding-bottom: 8px;
+  padding-right: clamp(12px, 2vw, 32px);
 }
 
 .journal-intro-content {
@@ -221,7 +223,7 @@
 
 /* Featured Large Card (Middle Column) */
 .journal-card-featured {
-  grid-column: 4 / 9;
+  grid-column: 5 / 9;
 }
 
 .journal-card-featured .journal-card-media {
@@ -235,7 +237,7 @@
 
 .journal-card-featured .journal-card-title {
   font-family: var(--font-serif);
-  font-size: clamp(24px, 2vw, 31px);
+  font-size: clamp(24px, 2vw, 30px);
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -279,9 +281,9 @@
 
 .journal-card-compact .journal-card-title {
   font-family: var(--font-serif);
-  font-size: clamp(18px, 1.4vw, 21.5px);
+  font-size: clamp(24px, 2vw, 30px);
   font-weight: 500;
-  line-height: 1.24;
+  line-height: 1.2;
   letter-spacing: -0.01em;
   color: #14100D;
   margin: 0 0 14px 0;
@@ -427,10 +429,8 @@
   .journal-heading {
     font-size: 33px;
   }
-  .journal-card-featured .journal-card-title {
-    font-size: 22px;
-  }
+  .journal-card-featured .journal-card-title,
   .journal-card-compact .journal-card-title {
-    font-size: 19px;
+    font-size: 22px;
   }
 }

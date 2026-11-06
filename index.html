@@ -21,11 +21,12 @@
   <script defer src="./js/bundle.js"></script>
   <script defer src="./js/inventory.js"></script>
   <script defer src="./js/testimonials.js"></script>
+  <script defer src="./js/footer.js"></script>
 </head>
 <body>
 
   <!-- Floating Glass Navigation (Fixed & Genuinely Sticky) -->
-  <header class="site-header anim-header">
+  <header class="site-header">
     <nav class="glass-nav" aria-label="Primary Navigation">
       <!-- Mobile Menu Toggle Button (Animated hamburger morphing to X) -->
       <button class="nav-mobile-toggle" aria-label="Toggle mobile navigation" aria-expanded="false">
@@ -948,9 +949,8 @@
             <div class="explore-intro-text">
               <span class="explore-eyebrow">OUR MATERIALS</span>
               <h2 class="explore-heading">
-                <span class="explore-heading-line">Explore Our</span>
-                <span class="explore-heading-line"><em class="serif-italic">Natural Stone</em></span>
-                <span class="explore-heading-line">Collections.</span>
+                <span class="explore-heading-line">Explore Our <em class="serif-italic">Natural</em></span>
+                <span class="explore-heading-line"><em class="serif-italic">Stone</em> Collections.</span>
               </h2>
               <p class="explore-description">
                 A curated range of premium surfaces for timeless, sophisticated spaces.
@@ -1082,12 +1082,6 @@
             <p class="inventory-desc">
               A handpicked range of premium slabs, available now at our showrooms. Discover unique colors, patterns and character in natural stone.
             </p>
-          </div>
-          <div class="inventory-header-right">
-            <a href="#inventory" class="btn-inventory-cta">
-              <span>View Full Inventory</span>
-              <span class="cta-arrow" aria-hidden="true">&rarr;</span>
-            </a>
           </div>
         </div>
 
@@ -1285,7 +1279,7 @@
           </div>
         </div>
 
-        <!-- Bottom Controls: Pagination Track & Nav Arrows -->
+        <!-- Bottom Controls: Pagination Track (Left), Centered Nav Arrows, View Full Inventory (Right) -->
         <div class="inventory-bottom-controls">
           <div class="inventory-pagination" aria-label="Inventory carousel pagination">
             <div class="inventory-pagination-track" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
@@ -1293,6 +1287,7 @@
             </div>
             <span class="inventory-pagination-text" id="inventory-pagination-text">01 / 04</span>
           </div>
+
           <div class="inventory-nav-arrows">
             <button type="button" class="inventory-nav-btn prev" id="inventory-prev-btn" aria-label="Previous slabs" disabled>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="inventory-arrow-icon" aria-hidden="true">
@@ -1304,6 +1299,13 @@
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
             </button>
+          </div>
+
+          <div class="inventory-bottom-action">
+            <a href="#inventory" class="btn-inventory-cta" aria-label="View full live slabs inventory">
+              <span>View Full Inventory</span>
+              <span class="cta-arrow" aria-hidden="true">&rarr;</span>
+            </a>
           </div>
         </div>
       </div>
@@ -1539,11 +1541,11 @@
                     <!-- Divider -->
                     <div class="testimonial-divider" aria-hidden="true"></div>
 
-                    <!-- Author Profile with Residence Thumbnail -->
+                    <!-- Author Profile with Portrait -->
                     <div class="testimonial-author">
                       <img
-                        src="./assets/images/testimonials-michael-project.jpg"
-                        alt="Coral Gables Residential Project"
+                        src="./assets/images/testimonials-michael.jpg"
+                        alt="Michael Rivera"
                         class="testimonial-author-avatar"
                         width="52"
                         height="52"
@@ -1587,8 +1589,8 @@
 
                     <div class="testimonial-author">
                       <img
-                        src="./assets/images/testimonials-david-project.jpg"
-                        alt="Corporate Headquarters Development"
+                        src="./assets/images/testimonials-david.jpg"
+                        alt="David Sterling"
                         class="testimonial-author-avatar"
                         width="52"
                         height="52"
@@ -1790,7 +1792,23 @@
           </a>
           <ul class="footer-social-list" aria-label="Social media channels">
             <li>
-              <a href="https://instagram.com" class="footer-social-btn" aria-label="Armina Stone on Instagram" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/company/armina-stone" class="footer-social-btn" aria-label="Armina Stone on LinkedIn" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/arminastone/" class="footer-social-btn" aria-label="Armina Stone on Facebook" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/arminastone/" class="footer-social-btn" aria-label="Armina Stone on Instagram" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -1799,35 +1817,10 @@
               </a>
             </li>
             <li>
-              <a href="https://facebook.com" class="footer-social-btn" aria-label="Armina Stone on Facebook" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.youtube.com/@arminastone" class="footer-social-btn" aria-label="Armina Stone on YouTube" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="https://pinterest.com" class="footer-social-btn" aria-label="Armina Stone on Pinterest" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="12" y1="8" x2="12" y2="16"></line>
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M8 12c1.5-2 4-2.5 5.5-1 1.5 1.5 1 3.5-.5 5-1.5 1.5-3.5 1-4-.5"></path>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="https://youtube.com" class="footer-social-btn" aria-label="Armina Stone on YouTube" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
                   <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="https://linkedin.com" class="footer-social-btn" aria-label="Armina Stone on LinkedIn" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
                 </svg>
               </a>
             </li>
@@ -1835,113 +1828,141 @@
         </div>
 
         <!-- Column 2: Products -->
-        <div class="footer-products-col">
-          <h3 class="footer-col-title">PRODUCTS</h3>
-          <ul class="footer-nav-list">
-            <li><a href="#products">Marble</a></li>
-            <li><a href="#products">Quartzite</a></li>
-            <li><a href="#products">Granite</a></li>
-            <li><a href="#products">Quartz</a></li>
-            <li><a href="#products">Onyx</a></li>
-            <li><a href="#products">Porcelain</a></li>
-            <li>
-              <a href="./inventory.html" class="footer-link-highlight">
-                <span>Slabs Inventory</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </a>
-            </li>
-          </ul>
+        <div class="footer-products-col footer-accordion-item">
+          <button type="button" class="footer-col-title footer-accordion-btn" aria-expanded="false">
+            <span>PRODUCTS</span>
+            <svg class="footer-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="footer-accordion-panel">
+            <ul class="footer-nav-list">
+              <li><a href="#products">Marble</a></li>
+              <li><a href="#products">Quartzite</a></li>
+              <li><a href="#products">Granite</a></li>
+              <li><a href="#products">Quartz</a></li>
+              <li><a href="#products">Onyx</a></li>
+              <li><a href="#products">Porcelain</a></li>
+              <li>
+                <a href="./inventory.html" class="footer-link-highlight">
+                  <span>Slabs Inventory</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <!-- Column 3: Company -->
-        <div class="footer-company-col">
-          <h3 class="footer-col-title">COMPANY</h3>
-          <ul class="footer-nav-list">
-            <li><a href="#about">About Armina</a></li>
-            <li><a href="#process">Our Process</a></li>
-            <li><a href="#craftsmanship">Craftsmanship</a></li>
-            <li><a href="#sustainability">Sustainability</a></li>
-            <li><a href="#careers">Careers</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+        <div class="footer-company-col footer-accordion-item">
+          <button type="button" class="footer-col-title footer-accordion-btn" aria-expanded="false">
+            <span>COMPANY</span>
+            <svg class="footer-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="footer-accordion-panel">
+            <ul class="footer-nav-list">
+              <li><a href="#about">About Armina</a></li>
+              <li><a href="#process">Our Process</a></li>
+              <li><a href="#craftsmanship">Craftsmanship</a></li>
+              <li><a href="#sustainability">Sustainability</a></li>
+              <li><a href="#careers">Careers</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
         </div>
 
         <!-- Column 4: Resources -->
-        <div class="footer-resources-col">
-          <h3 class="footer-col-title">RESOURCES</h3>
-          <ul class="footer-nav-list">
-            <li><a href="#selected-projects">Projects</a></li>
-            <li><a href="#inspiration">Inspiration</a></li>
-            <li><a href="#guides">Design Guides</a></li>
-            <li><a href="#care">Stone Care &amp; Maintenance</a></li>
-            <li><a href="#journal">Blog / Journal</a></li>
-            <li><a href="#faqs">FAQs</a></li>
-          </ul>
+        <div class="footer-resources-col footer-accordion-item">
+          <button type="button" class="footer-col-title footer-accordion-btn" aria-expanded="false">
+            <span>RESOURCES</span>
+            <svg class="footer-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="footer-accordion-panel">
+            <ul class="footer-nav-list">
+              <li><a href="#selected-projects">Projects</a></li>
+              <li><a href="#inspiration">Inspiration</a></li>
+              <li><a href="#guides">Design Guides</a></li>
+              <li><a href="#care">Stone Care &amp; Maintenance</a></li>
+              <li><a href="#journal">Blog / Journal</a></li>
+              <li><a href="#faqs">FAQs</a></li>
+            </ul>
+          </div>
         </div>
 
         <!-- Column 5: Showrooms -->
-        <div class="footer-showrooms-col">
-          <h3 class="footer-col-title">OUR SHOWROOMS</h3>
-          <div class="footer-showrooms-list">
-            <a href="https://maps.google.com/?q=1136+Freeport+Rd,+Cheswick,+PA+15024" target="_blank" rel="noopener noreferrer" class="footer-showroom-item" aria-label="Cheswick Showroom directions">
-              <div class="footer-showroom-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              <div class="footer-showroom-content">
-                <div class="footer-showroom-name">Cheswick, PA</div>
-                <div class="footer-showroom-addr">1136 Freeport Rd, Cheswick, PA 15024</div>
-              </div>
-              <div class="footer-showroom-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </div>
-            </a>
+        <div class="footer-showrooms-col footer-accordion-item">
+          <button type="button" class="footer-col-title footer-accordion-btn" aria-expanded="false">
+            <span>OUR SHOWROOMS</span>
+            <svg class="footer-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="footer-accordion-panel">
+            <div class="footer-showrooms-list">
+              <a href="https://maps.google.com/?q=1136+Freeport+Rd,+Cheswick,+PA+15024" target="_blank" rel="noopener noreferrer" class="footer-showroom-item" aria-label="Cheswick Showroom directions">
+                <div class="footer-showroom-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="footer-showroom-content">
+                  <div class="footer-showroom-name">Cheswick, PA</div>
+                  <div class="footer-showroom-addr">1136 Freeport Rd, Cheswick, PA 15024</div>
+                </div>
+                <div class="footer-showroom-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </a>
 
-            <a href="https://maps.google.com/?q=1000+Park+Manor+Blvd,+Robinson+Twp,+PA+15205" target="_blank" rel="noopener noreferrer" class="footer-showroom-item" aria-label="Robinson Twp Showroom directions">
-              <div class="footer-showroom-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              <div class="footer-showroom-content">
-                <div class="footer-showroom-name">Robinson Twp, PA</div>
-                <div class="footer-showroom-addr">1000 Park Manor Blvd, Robinson Twp, PA 15205</div>
-              </div>
-              <div class="footer-showroom-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </div>
-            </a>
+              <a href="https://maps.google.com/?q=1000+Park+Manor+Blvd,+Robinson+Twp,+PA+15205" target="_blank" rel="noopener noreferrer" class="footer-showroom-item" aria-label="Robinson Twp Showroom directions">
+                <div class="footer-showroom-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="footer-showroom-content">
+                  <div class="footer-showroom-name">Robinson Twp, PA</div>
+                  <div class="footer-showroom-addr">1000 Park Manor Blvd, Robinson Twp, PA 15205</div>
+                </div>
+                <div class="footer-showroom-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </a>
 
-            <a href="https://maps.google.com/?q=20400+Route+19,+Cranberry+Twp,+PA+16066" target="_blank" rel="noopener noreferrer" class="footer-showroom-item" aria-label="Cranberry Twp Showroom directions">
-              <div class="footer-showroom-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              <div class="footer-showroom-content">
-                <div class="footer-showroom-name">Cranberry Twp, PA</div>
-                <div class="footer-showroom-addr">20400 Route 19, Cranberry Twp, PA 16066</div>
-              </div>
-              <div class="footer-showroom-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </div>
-            </a>
+              <a href="https://maps.google.com/?q=20400+Route+19,+Cranberry+Twp,+PA+16066" target="_blank" rel="noopener noreferrer" class="footer-showroom-item" aria-label="Cranberry Twp Showroom directions">
+                <div class="footer-showroom-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="footer-showroom-content">
+                  <div class="footer-showroom-name">Cranberry Twp, PA</div>
+                  <div class="footer-showroom-addr">20400 Route 19, Cranberry Twp, PA 16066</div>
+                </div>
+                <div class="footer-showroom-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
 

@@ -131,43 +131,47 @@
   transform: translateX(3px);
 }
 
-/* Social Outline Icons */
+/* Social Outline Icons - Matched with Mobile Menu */
 .footer-social-list {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .footer-social-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #FAF5EE;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #FAF7F2;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
 }
 
 .footer-social-btn svg {
-  width: 15px;
-  height: 15px;
-  fill: currentColor;
+  width: 19px;
+  height: 19px;
+  display: block;
 }
 
-.footer-social-btn:hover {
-  border-color: rgba(255, 255, 255, 0.65);
-  background-color: rgba(255, 255, 255, 0.12);
+.footer-social-btn:hover,
+.footer-social-btn:focus-visible {
+  border-color: rgba(255, 255, 255, 0.36);
+  background-color: rgba(255, 255, 255, 0.18);
   color: #FFFFFF;
   transform: translateY(-2px);
 }
 
-/* Navigation Columns Shared Styles */
+/* ==========================================================================
+   Desktop Navigation Columns & Accordion Defaults
+   ========================================================================== */
 .footer-col-title {
   font-family: var(--font-sans);
   font-size: 12px;
@@ -176,6 +180,27 @@
   text-transform: uppercase;
   color: #FAF5EE;
   margin: 0 0 24px 0;
+}
+
+/* Accordion Trigger Button (Static on desktop, interactive on mobile) */
+.footer-accordion-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-accordion-icon {
+  display: none; /* hidden on desktop */
+}
+
+.footer-accordion-panel {
+  display: block;
 }
 
 .footer-nav-list {
@@ -346,7 +371,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   padding: 24px 0;
   margin-top: clamp(44px, 5vw, 64px);
-  margin-bottom: clamp(32px, 3.5vw, 44px);
+  margin-bottom: 0; /* Symmetrical spacing controlled by brand bar padding */
 }
 
 .footer-contact-item {
@@ -424,12 +449,14 @@ a.footer-contact-item:hover .footer-contact-icon {
 /* ==========================================================================
    TIER 3: Brand Family Bar
    3 Brands with vertical dividers: ARMINA | ARMINASTONE | ARMINALUXE
+   Padding top and bottom are strictly identical for balanced visual height
    ========================================================================== */
 .footer-brands-bar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  padding: clamp(26px, 3.2vw, 46px) 0;
+  padding-top: clamp(26px, 3.2vw, 40px);
+  padding-bottom: clamp(26px, 3.2vw, 40px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   margin-bottom: clamp(24px, 2.6vw, 36px);
 }
@@ -439,7 +466,7 @@ a.footer-contact-item:hover .footer-contact-icon {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 12px clamp(16px, 2.5vw, 44px);
+  padding: 8px clamp(16px, 2.5vw, 44px);
 }
 
 .footer-brand-cell:not(:last-child) {
@@ -501,35 +528,31 @@ a.footer-contact-item:hover .footer-contact-icon {
    RESPONSIVE BREAKPOINTS
    ========================================================================== */
 
-/* Large Tablets & Small Desktops (max-width: 1120px) */
-@media (max-width: 1120px) {
+/* Tablets & Mobile Screens (max-width: 860px)
+   - Collapses PRODUCTS, COMPANY, RESOURCES, OUR SHOWROOMS into elegant accordions
+   - Mobile contact bar with clean equidistant borders & paddings
+   - Brand logos left-aligned
+   ========================================================================== */
+@media (max-width: 860px) {
   .footer-main-grid {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
   .footer-brand-col {
-    grid-column: 1 / 7;
+    width: 100%;
     padding-right: 0;
     padding-bottom: 28px;
-    margin-bottom: 8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    margin-bottom: 0;
+    border-bottom: none;
   }
 
   .footer-brand-col::after {
     display: none;
   }
 
-  .footer-products-col {
-    grid-column: 1 / 3;
-  }
-
-  .footer-company-col {
-    grid-column: 3 / 5;
-  }
-
   .footer-resources-col {
-    grid-column: 5 / 7;
     padding-right: 0;
   }
 
@@ -537,111 +560,202 @@ a.footer-contact-item:hover .footer-contact-icon {
     display: none;
   }
 
+  /* Accordion Item Styling on Mobile */
+  .footer-accordion-item {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  .footer-accordion-item:last-child,
   .footer-showrooms-col {
-    grid-column: 1 / 7;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .footer-showrooms-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .footer-showroom-item {
     border-bottom: none;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    padding-right: 16px;
   }
 
-  .footer-showroom-item:last-child {
-    border-right: none;
-  }
-}
-
-/* Tablets (max-width: 820px) */
-@media (max-width: 820px) {
-  .footer-contact-bar {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 20px 0;
-  }
-
-  .footer-contact-item {
-    padding: 10px 0;
+  .footer-accordion-btn {
+    cursor: pointer;
+    padding: 18px 0;
+    margin: 0;
+    color: #FAF5EE;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .footer-contact-item:not(:last-child) {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .footer-showrooms-list {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .footer-showroom-item {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding-right: 0;
-    padding: 12px 0;
-  }
-
-  .footer-brands-bar {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 26px 0;
-  }
-
-  .footer-brand-cell {
-    padding: 10px 0;
+  .footer-accordion-icon {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    text-align: center;
+    width: 20px;
+    height: 20px;
+    color: rgba(250, 245, 238, 0.60);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
   }
 
-  .footer-brand-cell:not(:last-child) {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  .footer-accordion-item.is-expanded .footer-accordion-icon {
+    transform: rotate(180deg);
+    color: #FAF5EE;
+  }
+
+  /* Accordion Panel with Smooth Grid Row Animation */
+  .footer-accordion-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+  }
+
+  .footer-accordion-panel > * {
+    overflow: hidden;
+    min-height: 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .footer-accordion-item.is-expanded .footer-accordion-panel {
+    grid-template-rows: 1fr;
     padding-bottom: 22px;
   }
 
-  .footer-brand-img {
+  .footer-accordion-item.is-expanded .footer-accordion-panel > * {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
+  }
+
+  /* Showrooms inside Accordion */
+  .footer-showrooms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 4px;
+  }
+
+  .footer-showroom-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 12px 0;
+  }
+
+  .footer-showroom-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Contact Bar on Mobile: Balanced Spacing & Borders */
+  .footer-contact-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0;
+    margin-top: 36px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    width: 100%;
+    border-right: none !important;
+  }
+
+  .footer-contact-item:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-contact-icon {
+    width: 44px;
     height: 44px;
-  }
-}
-
-/* Mobile Screens (max-width: 580px) */
-@media (max-width: 580px) {
-  .footer-main-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
+    flex-shrink: 0;
   }
 
-  .footer-brand-col {
-    grid-column: 1 / -1;
+  .footer-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
   }
 
-  .footer-products-col,
-  .footer-company-col,
-  .footer-resources-col {
-    grid-column: 1 / -1;
+  .footer-contact-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(250, 245, 238, 0.55);
   }
 
-  .footer-showrooms-col {
-    grid-column: 1 / -1;
+  .footer-contact-val {
+    font-size: 15px;
+    color: #FAF5EE;
+    line-height: 1.35;
   }
 
+  /* Brand Logos on Mobile: Flush Left-Aligned & Symmetrical */
+  .footer-brands-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    margin-bottom: 24px;
+  }
+
+  .footer-brand-cell {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    padding: 14px 0;
+    border-right: none !important;
+  }
+
+  .footer-brand-cell:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-brand-img {
+    height: 38px;
+    margin: 0;
+    display: block;
+    object-position: left center;
+  }
+
+  /* Bottom Legal Bar on Mobile: Left-Aligned */
   .footer-bottom-bar {
     flex-direction: column;
-    text-align: center;
-    gap: 14px;
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
+    padding-top: 8px;
+    width: 100%;
+  }
+
+  .footer-copyright {
+    text-align: left;
+    margin: 0;
+    width: 100%;
   }
 
   .footer-legal-nav {
+    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px 14px;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    gap: 8px 14px;
+    margin: 0;
+    width: 100%;
+  }
+
+  .footer-legal-nav a {
+    text-align: left;
   }
 }

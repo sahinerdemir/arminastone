@@ -125,18 +125,28 @@ export function initHeader() {
   // 3. Mobile Navigation Drawer & Accordion Tap Behavior
   if (mobileToggle && mobilePanel) {
     function openMobileMenu() {
+      // If search is active, close search first
+      const searchCloseBtn = document.querySelector('#search-close-btn');
+      if (header && header.classList.contains('is-search-active') && searchCloseBtn) {
+        searchCloseBtn.click();
+      }
       mobilePanel.classList.add('is-open');
+      mobileToggle.classList.add('is-active');
+      if (header) header.classList.add('mobile-nav-active');
       mobileToggle.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
 
     function closeMobileMenu() {
       mobilePanel.classList.remove('is-open');
+      mobileToggle.classList.remove('is-active');
+      if (header) header.classList.remove('mobile-nav-active');
       mobileToggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
 
-    mobileToggle.addEventListener('click', () => {
+    mobileToggle.addEventListener('click', (e) => {
+      e.preventDefault();
       const isOpen = mobilePanel.classList.contains('is-open');
       if (isOpen) {
         closeMobileMenu();

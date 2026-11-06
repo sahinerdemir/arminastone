@@ -97,7 +97,8 @@
 
 .site-header.is-search-active .nav-brand,
 .site-header.is-search-active .nav-menu,
-.site-header.is-search-active .nav-actions {
+.site-header.is-search-active .nav-actions,
+.site-header.is-search-active .nav-mobile-toggle {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

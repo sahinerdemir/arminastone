@@ -26,6 +26,15 @@
   <!-- Floating Glass Navigation (Fixed & Genuinely Sticky) -->
   <header class="site-header anim-header">
     <nav class="glass-nav" aria-label="Primary Navigation">
+      <!-- Mobile Menu Toggle Button (Animated hamburger morphing to X) -->
+      <button class="nav-mobile-toggle" aria-label="Toggle mobile navigation" aria-expanded="false">
+        <span class="hamburger-box">
+          <span class="hamburger-line line-1"></span>
+          <span class="hamburger-line line-2"></span>
+          <span class="hamburger-line line-3"></span>
+        </span>
+      </button>
+
       <!-- Standard Navigation Brand: Official Logo -->
       <a href="#" class="nav-brand" aria-label="Armina Stone Homepage">
         <img src="./logo.png" alt="Armina Stone" class="nav-logo" width="220" height="35">
@@ -341,15 +350,6 @@
             <polyline points="10 5 15 10 10 15"></polyline>
           </svg>
         </a>
-
-        <!-- Mobile Menu Toggle Button -->
-        <button class="nav-mobile-toggle" aria-label="Toggle mobile navigation" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
       </div>
 
       <!-- Search Transformation Interface (Morphs entire header into white search input) -->
@@ -383,12 +383,6 @@
 
   <!-- Mobile Navigation Drawer with Accordion Tap Behavior & Square Thumbnails -->
   <div class="mobile-nav-panel" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
-    <button class="mobile-close-btn" style="align-self: flex-end; padding: 8px; color: #FAF7F2; margin-bottom: 20px;" aria-label="Close navigation menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
     <ul class="mobile-menu">
       <li class="mobile-menu-item">
         <button class="mobile-link" aria-expanded="false">
@@ -611,6 +605,35 @@
           <polyline points="10 5 15 10 10 15"></polyline>
         </svg>
       </a>
+
+      <!-- Mobile Menu Social Media Channels -->
+      <div class="mobile-socials" aria-label="Armina Stone Social Media">
+        <a href="https://www.linkedin.com/company/armina-stone" target="_blank" rel="noopener noreferrer" class="mobile-social-link" aria-label="Armina Stone on LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/arminastone/" target="_blank" rel="noopener noreferrer" class="mobile-social-link" aria-label="Armina Stone on Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/arminastone/" target="_blank" rel="noopener noreferrer" class="mobile-social-link" aria-label="Armina Stone on Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@arminastone" target="_blank" rel="noopener noreferrer" class="mobile-social-link" aria-label="Armina Stone on YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -1321,27 +1344,61 @@
     </section>
   </main>
 
-  <!-- Watch Our Story Video Dialog -->
-  <dialog id="story-dialog" class="story-dialog" aria-labelledby="story-dialog-title">
-    <div class="story-dialog-content">
-      <div class="story-dialog-header">
-        <h2 id="story-dialog-title" class="story-dialog-title">Armina Stone &mdash; Expert Craftsmanship Story</h2>
-        <button id="story-dialog-close" class="story-dialog-close" aria-label="Close story dialog">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-      <div class="story-dialog-video-wrapper">
-        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(250, 245, 238, 0.7); font-family: var(--font-sans); font-size: 15px; background: #0c0a09; flex-direction: column; gap: 12px;">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F8F3EB" stroke-width="1.5">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polygon points="10 8 16 12 10 16 10 8" fill="#F8F3EB"></polygon>
-          </svg>
-          <span>Armina Stone Brand Story Reel</span>
-        </div>
-      </div>
+  <!-- Watch Our Story Video Fullscreen Modal -->
+  <dialog id="story-dialog" class="story-dialog" aria-label="Armina Stone Story Video">
+    <!-- Top-Right Close Button -->
+    <button type="button" id="story-dialog-close" class="story-dialog-close" aria-label="Close video player">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Fullscreen Video Element -->
+    <div class="story-dialog-video-wrapper">
+      <video id="story-video-player" class="story-dialog-video" playsinline preload="auto">
+        <source src="./armina-video.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Bottom Center Custom Playback Controls -->
+    <div class="story-controls-bar" role="toolbar" aria-label="Video Controls">
+      <!-- 1. En Başa Sar (Restart) -->
+      <button type="button" id="story-restart-btn" class="story-ctrl-btn" aria-label="Restart video" title="En başa sar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="19 20 9 12 19 4 19 20" fill="currentColor"></polygon>
+          <line x1="5" y1="19" x2="5" y2="5"></line>
+        </svg>
+      </button>
+
+      <!-- 2. 10sn Geri (Rewind 10s) -->
+      <button type="button" id="story-rewind-10-btn" class="story-ctrl-btn story-ctrl-btn-step" aria-label="Rewind 10 seconds" title="10sn geri">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+          <path d="M3 3v5h5"></path>
+        </svg>
+        <span class="ctrl-step-text">10</span>
+      </button>
+
+      <!-- 3. Play / Pause -->
+      <button type="button" id="story-play-btn" class="story-ctrl-btn story-play-btn" aria-label="Play / Pause" title="Oynat / Duraklat">
+        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <polygon points="6 4 20 12 6 20 6 4"></polygon>
+        </svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display: none;">
+          <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+          <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+        </svg>
+      </button>
+
+      <!-- 4. 10sn İleri (Forward 10s) -->
+      <button type="button" id="story-forward-10-btn" class="story-ctrl-btn story-ctrl-btn-step" aria-label="Forward 10 seconds" title="10sn ileri">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+          <path d="M21 3v5h-5"></path>
+        </svg>
+        <span class="ctrl-step-text">10</span>
+      </button>
     </div>
   </dialog>
 

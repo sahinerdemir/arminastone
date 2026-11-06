@@ -115,6 +115,17 @@ export function initSearch() {
   if (!header || !searchTrigger || !searchInput || !searchCloseBtn) return;
 
   function openSearch() {
+    const mobilePanel = document.querySelector('.mobile-nav-panel');
+    const mobileToggle = document.querySelector('.nav-mobile-toggle');
+    if (mobilePanel && mobilePanel.classList.contains('is-open')) {
+      mobilePanel.classList.remove('is-open');
+      if (mobileToggle) {
+        mobileToggle.classList.remove('is-active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      }
+      header.classList.remove('mobile-nav-active');
+      document.body.style.overflow = '';
+    }
     header.classList.add('is-search-active');
     searchTrigger.setAttribute('aria-expanded', 'true');
     // Autofocus input

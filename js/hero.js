@@ -325,52 +325,146 @@ export function initHero() {
     });
   }
 
-  // 8. Watch Our Story Modal (Handles all Story CTA triggers across slides)
+  // 8. Watch Our Story Fullscreen Video Modal & Controls
+  const storyVideo = document.getElementById('story-video-player');
+  const storyPlayBtn = document.getElementById('story-play-btn');
+  const storyRestartBtn = document.getElementById('story-restart-btn');
+  const storyRewind10Btn = document.getElementById('story-rewind-10-btn');
+  const storyForward10Btn = document.getElementById('story-forward-10-btn');
+
+  function updateStoryPlayIcons() {
+    if (!storyVideo || !storyPlayBtn) return;
+    const isPlaying = !storyVideo.paused && !storyVideo.ended;
+    const playIcon = storyPlayBtn.querySelector('.icon-play');
+    const pauseIcon = storyPlayBtn.querySelector('.icon-pause');
+    if (playIcon) playIcon.style.display = isPlaying ? 'none' : 'block';
+    if (pauseIcon) pauseIcon.style.display = isPlaying ? 'block' : 'none';
+  }
+
+  function openStoryModal() {
+    if (bgVideo) bgVideo.pause();
+    isPaused = true;
+    slideBars[currentSlide]?.classList.remove('is-animating');
+    if (autoplayTimer) {
+      clearTimeout(autoplayTimer);
+      autoplayTimer = null;
+    }
+    if (storyDialog) {
+      storyDialog.showModal();
+      document.body.style.overflow = 'hidden';
+      if (storyVideo) {
+        storyVideo.currentTime = 0;
+        storyVideo.muted = false;
+        const playPromise = storyVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Autoplay with sound restricted, retry muted
+            storyVideo.muted = true;
+            storyVideo.play().catch(() => {});
+          });
+        }
+      }
+      updateStoryPlayIcons();
+    }
+  }
+
+  function closeStoryModal() {
+    if (storyVideo) {
+      storyVideo.pause();
+      storyVideo.currentTime = 0;
+    }
+    if (storyDialog && storyDialog.open) {
+      storyDialog.close();
+    }
+    document.body.style.overflow = '';
+    if (currentSlide === 0 && bgVideo) {
+      bgVideo.play().catch(() => {});
+    }
+    startAutoplay();
+  }
+
   document.querySelectorAll('.btn-watch-story-trigger').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      if (bgVideo) bgVideo.pause();
-      isPaused = true;
-      slideBars[currentSlide]?.classList.remove('is-animating');
-      if (autoplayTimer) {
-        clearTimeout(autoplayTimer);
-        autoplayTimer = null;
-      }
-      if (storyDialog) storyDialog.showModal();
+      openStoryModal();
     });
   });
 
-  if (storyCloseBtn && storyDialog) {
-    storyCloseBtn.addEventListener('click', () => {
-      storyDialog.close();
-      if (currentSlide === 0 && bgVideo) {
-        bgVideo.play().catch(() => {});
-      }
-      startAutoplay();
+  if (storyCloseBtn) {
+    storyCloseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeStoryModal();
     });
+  }
 
-    storyDialog.addEventListener('click', (e) => {
-      const rect = storyDialog.getBoundingClientRect();
-      const isInDialog = (
-        rect.top <= e.clientY &&
-        e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX &&
-        e.clientX <= rect.left + rect.width
-      );
-      if (!isInDialog) {
-        storyDialog.close();
-        if (currentSlide === 0 && bgVideo) {
-          bgVideo.play().catch(() => {});
-        }
-        startAutoplay();
-      }
-    });
-
+  if (storyDialog) {
     storyDialog.addEventListener('close', () => {
-      if (currentSlide === 0 && bgVideo) {
-        bgVideo.play().catch(() => {});
+      closeStoryModal();
+    });
+
+    storyDialog.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeStoryModal();
+      } else if (e.key === ' ' || e.key === 'k') {
+        e.preventDefault();
+        if (storyVideo) {
+          if (storyVideo.paused) storyVideo.play();
+          else storyVideo.pause();
+        }
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (storyVideo) storyVideo.currentTime = Math.max(0, storyVideo.currentTime - 10);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (storyVideo) storyVideo.currentTime = Math.min(storyVideo.duration, storyVideo.currentTime + 10);
       }
-      startAutoplay();
+    });
+  }
+
+  // Play / Pause button
+  if (storyPlayBtn && storyVideo) {
+    storyPlayBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (storyVideo.paused) {
+        storyVideo.play();
+      } else {
+        storyVideo.pause();
+      }
+    });
+  }
+
+  // En Başa Sar (Restart)
+  if (storyRestartBtn && storyVideo) {
+    storyRestartBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      storyVideo.currentTime = 0;
+      storyVideo.play();
+    });
+  }
+
+  // 10sn Geri
+  if (storyRewind10Btn && storyVideo) {
+    storyRewind10Btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      storyVideo.currentTime = Math.max(0, storyVideo.currentTime - 10);
+    });
+  }
+
+  // 10sn İleri
+  if (storyForward10Btn && storyVideo) {
+    storyForward10Btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      storyVideo.currentTime = Math.min(storyVideo.duration, storyVideo.currentTime + 10);
+    });
+  }
+
+  if (storyVideo) {
+    storyVideo.addEventListener('play', updateStoryPlayIcons);
+    storyVideo.addEventListener('pause', updateStoryPlayIcons);
+    storyVideo.addEventListener('ended', updateStoryPlayIcons);
+    storyVideo.addEventListener('click', () => {
+      if (storyVideo.paused) storyVideo.play();
+      else storyVideo.pause();
     });
   }
 

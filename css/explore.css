@@ -436,12 +436,23 @@
   }
   .explore-intro {
     grid-column: 1 / -1;
+    width: 100%;
+    max-width: 100%;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
     margin-bottom: 8px;
   }
+  .explore-heading {
+    width: 100%;
+    max-width: 100%;
+  }
+  .explore-heading-line {
+    display: inline;
+  }
   .explore-description {
+    width: 100%;
+    max-width: 100%;
     margin-bottom: 22px;
   }
   .card-marble {
@@ -469,14 +480,23 @@
   }
   .explore-intro {
     grid-column: 1;
+    width: 100%;
+    max-width: 100%;
     margin-bottom: 6px;
   }
   .explore-heading {
+    width: 100%;
+    max-width: 100%;
     font-size: clamp(32px, 8.8vw, 42px);
-    line-height: 1.08;
+    line-height: 1.1;
     margin-bottom: 14px;
   }
+  .explore-heading-line {
+    display: inline;
+  }
   .explore-description {
+    width: 100%;
+    max-width: 100%;
     font-size: 14.5px;
     margin-bottom: 20px;
   }

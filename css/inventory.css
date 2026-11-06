@@ -418,6 +418,22 @@
     padding-bottom: clamp(48px, 6vh, 72px);
   }
   
+  .inventory-header-left {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .inventory-heading {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(32px, 8.5vw, 44px);
+    line-height: 1.1;
+  }
+  
+  .inventory-desc {
+    max-width: 100%;
+  }
+  
   .inventory-card-info {
     padding: 16px 18px;
   }

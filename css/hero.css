@@ -273,13 +273,21 @@
     margin-top: auto;
     padding-top: 96px;
     padding-bottom: 58px;
+    width: 100%;
+    max-width: 100%;
   }
   .hero-text-slider {
     min-height: 320px;
+    width: 100%;
   }
   .hero-title {
     font-size: clamp(45px, 11.5vw, 54px);
     line-height: 1.04;
+    width: 100%;
+    max-width: 100%;
+  }
+  .hero-title-line {
+    display: inline;
   }
   .hero-description {
     font-size: 15.5px;
@@ -287,5 +295,6 @@
     margin-top: 16px;
     margin-bottom: 24px;
     color: rgba(250, 245, 238, 0.95);
+    max-width: 100%;
   }
 }

@@ -428,8 +428,8 @@ function initHeader() {
       });
     });
 
-    // Close when tapping leaf sublinks
-    mobilePanel.querySelectorAll('.mobile-sublink').forEach((link) => {
+    // Close when tapping leaf sublinks or action links
+    mobilePanel.querySelectorAll('.mobile-sublink, .mobile-action-link').forEach((link) => {
       link.addEventListener('click', closeMobileMenu);
     });
 
@@ -795,6 +795,10 @@ function initHero() {
   const storyRestartBtn = document.getElementById('story-restart-btn');
   const storyRewind10Btn = document.getElementById('story-rewind-10-btn');
   const storyForward10Btn = document.getElementById('story-forward-10-btn');
+  const storyVolumeBtn = document.getElementById('story-volume-btn');
+  const storyVolumeSlider = document.getElementById('story-volume-slider');
+
+  let lastStoryVolume = 1;
 
   function updateStoryPlayIcons() {
     if (!storyVideo || !storyPlayBtn) return;
@@ -803,6 +807,27 @@ function initHero() {
     const pauseIcon = storyPlayBtn.querySelector('.icon-pause');
     if (playIcon) playIcon.style.display = isPlaying ? 'none' : 'block';
     if (pauseIcon) pauseIcon.style.display = isPlaying ? 'block' : 'none';
+  }
+
+  function updateStoryVolumeUI() {
+    if (!storyVideo) return;
+    const isMuted = storyVideo.muted || storyVideo.volume === 0;
+    const currentVal = isMuted ? 0 : storyVideo.volume;
+
+    if (storyVolumeSlider) {
+      storyVolumeSlider.value = currentVal;
+      const pct = Math.round(currentVal * 100);
+      storyVolumeSlider.style.background = `linear-gradient(to right, #CBA36E ${pct}%, rgba(255, 255, 255, 0.28) ${pct}%)`;
+    }
+
+    if (storyVolumeBtn) {
+      const volHigh = storyVolumeBtn.querySelector('.icon-volume-high');
+      const volMuted = storyVolumeBtn.querySelector('.icon-volume-muted');
+      if (volHigh) volHigh.style.display = isMuted ? 'none' : 'block';
+      if (volMuted) volMuted.style.display = isMuted ? 'block' : 'none';
+      storyVolumeBtn.setAttribute('aria-label', isMuted ? 'Unmute video' : 'Mute video');
+      storyVolumeBtn.title = isMuted ? 'Sesi Aç' : 'Sesi Kapat';
+    }
   }
 
   function openStoryModal() {
@@ -819,16 +844,19 @@ function initHero() {
       if (storyVideo) {
         storyVideo.currentTime = 0;
         storyVideo.muted = false;
+        storyVideo.volume = lastStoryVolume > 0 ? lastStoryVolume : 1;
         const playPromise = storyVideo.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
             // Autoplay with sound restricted, retry muted
             storyVideo.muted = true;
             storyVideo.play().catch(() => {});
+            updateStoryVolumeUI();
           });
         }
       }
       updateStoryPlayIcons();
+      updateStoryVolumeUI();
     }
   }
 
@@ -922,10 +950,42 @@ function initHero() {
     });
   }
 
+  // Ses Aç / Kapat (Mute / Unmute Toggle)
+  if (storyVolumeBtn && storyVideo) {
+    storyVolumeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (storyVideo.muted || storyVideo.volume === 0) {
+        storyVideo.muted = false;
+        storyVideo.volume = lastStoryVolume > 0 ? lastStoryVolume : 1;
+      } else {
+        lastStoryVolume = storyVideo.volume;
+        storyVideo.muted = true;
+      }
+      updateStoryVolumeUI();
+    });
+  }
+
+  // Ses Seviyesi Slider
+  if (storyVolumeSlider && storyVideo) {
+    storyVolumeSlider.addEventListener('input', (e) => {
+      e.stopPropagation();
+      const val = parseFloat(storyVolumeSlider.value);
+      if (val === 0) {
+        storyVideo.muted = true;
+      } else {
+        storyVideo.muted = false;
+        storyVideo.volume = val;
+        lastStoryVolume = val;
+      }
+      updateStoryVolumeUI();
+    });
+  }
+
   if (storyVideo) {
     storyVideo.addEventListener('play', updateStoryPlayIcons);
     storyVideo.addEventListener('pause', updateStoryPlayIcons);
     storyVideo.addEventListener('ended', updateStoryPlayIcons);
+    storyVideo.addEventListener('volumechange', updateStoryVolumeUI);
     storyVideo.addEventListener('click', () => {
       if (storyVideo.paused) storyVideo.play();
       else storyVideo.pause();
@@ -936,16 +996,130 @@ function initHero() {
   startAutoplay();
 }
 
+  // --- Testimonials Interactive Slider Controller ---
+  function initTestimonials() {
+    const section = document.querySelector('.testimonials-section');
+    if (!section || section.dataset.initialized === 'true') return;
+    section.dataset.initialized = 'true';
+
+    const slides = section.querySelectorAll('.testimonial-slide');
+    const prevBtn = section.querySelector('.testimonials-prev-btn');
+    const nextBtn = section.querySelector('.testimonials-next-btn');
+    const currentCounter = section.querySelector('.current-slide');
+    const totalCounter = section.querySelector('.total-slides');
+    const track = section.querySelector('.testimonials-track');
+
+    if (!slides.length || !prevBtn || !nextBtn) return;
+
+    let currentIdx = 0;
+    const total = slides.length;
+
+    if (totalCounter) {
+      totalCounter.textContent = String(total).padStart(2, '0');
+    }
+
+    function updateSlider(newIdx) {
+      if (newIdx < 0) newIdx = total - 1;
+      if (newIdx >= total) newIdx = 0;
+
+      currentIdx = newIdx;
+
+      slides.forEach((slide, idx) => {
+        const isActive = idx === currentIdx;
+        slide.classList.toggle('is-active', isActive);
+        slide.setAttribute('aria-hidden', (!isActive).toString());
+      });
+
+      if (currentCounter) {
+        currentCounter.textContent = String(currentIdx + 1).padStart(2, '0');
+      }
+
+      if (currentIdx === 0) {
+        prevBtn.classList.remove('is-primary');
+        nextBtn.classList.add('is-primary');
+      } else if (currentIdx === total - 1) {
+        prevBtn.classList.add('is-primary');
+        nextBtn.classList.remove('is-primary');
+      } else {
+        prevBtn.classList.add('is-primary');
+        nextBtn.classList.add('is-primary');
+      }
+    }
+
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      updateSlider(currentIdx - 1);
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      updateSlider(currentIdx + 1);
+    });
+
+    if (track) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchEndX = 0;
+      let touchEndY = 0;
+
+      track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }, { passive: true });
+
+      track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX < 0) {
+            updateSlider(currentIdx + 1);
+          } else {
+            updateSlider(currentIdx - 1);
+          }
+        }
+      }, { passive: true });
+    }
+
+    section.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        updateSlider(currentIdx - 1);
+      } else if (e.key === 'ArrowRight') {
+        updateSlider(currentIdx + 1);
+      }
+    });
+
+    const videoPlayBtn = section.querySelector('.testimonial-video-play-btn');
+    if (videoPlayBtn) {
+      videoPlayBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const storyDialog = document.querySelector('#story-dialog');
+        if (storyDialog) {
+          const storyTrigger = document.querySelector('.btn-watch-story-trigger');
+          if (storyTrigger) {
+            storyTrigger.click();
+          } else {
+            storyDialog.showModal();
+          }
+        }
+      });
+    }
+
+    updateSlider(0);
+  }
 
   // Initialize on DOMContentLoaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initHeader();
       initHero();
+      initTestimonials();
     });
   } else {
     initHeader();
     initHero();
+    initTestimonials();
   }
   // URL Param Test Automation Hook for Visual Verification
   const urlParams = new URLSearchParams(window.location.search);

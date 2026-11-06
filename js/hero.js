@@ -331,6 +331,10 @@ export function initHero() {
   const storyRestartBtn = document.getElementById('story-restart-btn');
   const storyRewind10Btn = document.getElementById('story-rewind-10-btn');
   const storyForward10Btn = document.getElementById('story-forward-10-btn');
+  const storyVolumeBtn = document.getElementById('story-volume-btn');
+  const storyVolumeSlider = document.getElementById('story-volume-slider');
+
+  let lastStoryVolume = 1;
 
   function updateStoryPlayIcons() {
     if (!storyVideo || !storyPlayBtn) return;
@@ -339,6 +343,27 @@ export function initHero() {
     const pauseIcon = storyPlayBtn.querySelector('.icon-pause');
     if (playIcon) playIcon.style.display = isPlaying ? 'none' : 'block';
     if (pauseIcon) pauseIcon.style.display = isPlaying ? 'block' : 'none';
+  }
+
+  function updateStoryVolumeUI() {
+    if (!storyVideo) return;
+    const isMuted = storyVideo.muted || storyVideo.volume === 0;
+    const currentVal = isMuted ? 0 : storyVideo.volume;
+
+    if (storyVolumeSlider) {
+      storyVolumeSlider.value = currentVal;
+      const pct = Math.round(currentVal * 100);
+      storyVolumeSlider.style.background = `linear-gradient(to right, #CBA36E ${pct}%, rgba(255, 255, 255, 0.28) ${pct}%)`;
+    }
+
+    if (storyVolumeBtn) {
+      const volHigh = storyVolumeBtn.querySelector('.icon-volume-high');
+      const volMuted = storyVolumeBtn.querySelector('.icon-volume-muted');
+      if (volHigh) volHigh.style.display = isMuted ? 'none' : 'block';
+      if (volMuted) volMuted.style.display = isMuted ? 'block' : 'none';
+      storyVolumeBtn.setAttribute('aria-label', isMuted ? 'Unmute video' : 'Mute video');
+      storyVolumeBtn.title = isMuted ? 'Sesi Aç' : 'Sesi Kapat';
+    }
   }
 
   function openStoryModal() {
@@ -355,16 +380,19 @@ export function initHero() {
       if (storyVideo) {
         storyVideo.currentTime = 0;
         storyVideo.muted = false;
+        storyVideo.volume = lastStoryVolume > 0 ? lastStoryVolume : 1;
         const playPromise = storyVideo.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
             // Autoplay with sound restricted, retry muted
             storyVideo.muted = true;
             storyVideo.play().catch(() => {});
+            updateStoryVolumeUI();
           });
         }
       }
       updateStoryPlayIcons();
+      updateStoryVolumeUI();
     }
   }
 
@@ -458,10 +486,42 @@ export function initHero() {
     });
   }
 
+  // Ses Aç / Kapat (Mute / Unmute Toggle)
+  if (storyVolumeBtn && storyVideo) {
+    storyVolumeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (storyVideo.muted || storyVideo.volume === 0) {
+        storyVideo.muted = false;
+        storyVideo.volume = lastStoryVolume > 0 ? lastStoryVolume : 1;
+      } else {
+        lastStoryVolume = storyVideo.volume;
+        storyVideo.muted = true;
+      }
+      updateStoryVolumeUI();
+    });
+  }
+
+  // Ses Seviyesi Slider
+  if (storyVolumeSlider && storyVideo) {
+    storyVolumeSlider.addEventListener('input', (e) => {
+      e.stopPropagation();
+      const val = parseFloat(storyVolumeSlider.value);
+      if (val === 0) {
+        storyVideo.muted = true;
+      } else {
+        storyVideo.muted = false;
+        storyVideo.volume = val;
+        lastStoryVolume = val;
+      }
+      updateStoryVolumeUI();
+    });
+  }
+
   if (storyVideo) {
     storyVideo.addEventListener('play', updateStoryPlayIcons);
     storyVideo.addEventListener('pause', updateStoryPlayIcons);
     storyVideo.addEventListener('ended', updateStoryPlayIcons);
+    storyVideo.addEventListener('volumechange', updateStoryVolumeUI);
     storyVideo.addEventListener('click', () => {
       if (storyVideo.paused) storyVideo.play();
       else storyVideo.pause();

@@ -178,8 +178,8 @@ export function initHeader() {
       });
     });
 
-    // Close when tapping leaf sublinks
-    mobilePanel.querySelectorAll('.mobile-sublink').forEach((link) => {
+    // Close when tapping leaf sublinks or action links
+    mobilePanel.querySelectorAll('.mobile-sublink, .mobile-action-link').forEach((link) => {
       link.addEventListener('click', closeMobileMenu);
     });
 

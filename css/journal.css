@@ -1,0 +1,436 @@
+/* ==========================================================================
+   Armina Stone - Journal & Insights Section
+   Architectural 3-Card Editorial Publication Grid
+   ========================================================================== */
+
+.journal-insights-section {
+  position: relative;
+  background-color: #F8F3EB;
+  background-image: 
+    radial-gradient(ellipse 70% 55% at 90% 10%, rgba(224, 204, 180, 0.28) 0%, transparent 68%),
+    radial-gradient(ellipse 60% 50% at 10% 85%, rgba(218, 195, 168, 0.24) 0%, transparent 65%),
+    linear-gradient(180deg, #F8F3EB 0%, #F5EFE7 50%, #F8F3EB 100%);
+  color: #181614;
+  padding-top: clamp(64px, 8vh, 104px);
+  padding-bottom: clamp(64px, 8vh, 104px);
+  padding-left: var(--site-grid-margin);
+  padding-right: var(--site-grid-margin);
+  overflow: hidden;
+}
+
+/* Inner Container following site grid */
+.journal-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  position: relative;
+  z-index: 3;
+}
+
+/* 12-Column Responsive Architectural Grid
+   - Left Intro: 3 cols (span 3 / 1..4)
+   - Center Featured Card: 5 cols (span 5 / 4..9)
+   - Right Stacked Cards: 4 cols (span 4 / 9..13)
+*/
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(20px, 2.2vw, 32px);
+  align-items: stretch;
+}
+
+/* Left Column: Intro & CTA */
+.journal-intro-col {
+  grid-column: 1 / 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 4px;
+  padding-bottom: 8px;
+}
+
+.journal-intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.journal-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7D6652;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.journal-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 3.4vw, 54px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: #14100D;
+  margin: 0 0 20px 0;
+  width: 100%;
+}
+
+.journal-desc {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.58;
+  color: #5A524A;
+  margin: 0 0 28px 0;
+  max-width: 360px;
+}
+
+/* Left CTA Button Area - Placed directly below description */
+.journal-cta-wrap {
+  margin-top: 0;
+}
+
+.btn-journal-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background-color: #1A1613;
+  color: #FAF7F2;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 14px rgba(26, 22, 19, 0.18);
+  transition: background-color var(--transition-fast),
+              transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+.btn-journal-cta:hover {
+  background-color: #2E2721;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(26, 22, 19, 0.28);
+}
+
+.btn-journal-cta:focus-visible {
+  outline: 2px solid #CBA36E;
+  outline-offset: 3px;
+}
+
+.btn-journal-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+}
+
+.btn-journal-arrow svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+}
+
+.btn-journal-cta:hover .btn-journal-arrow {
+  transform: translateX(4px);
+}
+
+/* Base Journal Card */
+.journal-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #FCFBF9;
+  border: 1px solid rgba(215, 203, 190, 0.55);
+  box-shadow: 0 10px 30px rgba(35, 28, 22, 0.06), 0 2px 6px rgba(35, 28, 22, 0.03);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journal-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(197, 168, 128, 0.45);
+  box-shadow: 0 20px 48px rgba(35, 28, 22, 0.12), 0 4px 12px rgba(35, 28, 22, 0.05);
+}
+
+.journal-card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Media Box */
+.journal-card-media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #EBE4DC;
+}
+
+.journal-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journal-card:hover .journal-card-img {
+  transform: scale(1.04);
+}
+
+/* Category Badge (DESIGN GUIDE, MATERIAL INSIGHTS, CARE & MAINTENANCE) */
+.journal-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #181512;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Card Body */
+.journal-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Featured Large Card (Middle Column) */
+.journal-card-featured {
+  grid-column: 4 / 9;
+}
+
+.journal-card-featured .journal-card-media {
+  aspect-ratio: 16 / 9.8;
+}
+
+.journal-card-featured .journal-card-body {
+  padding: clamp(24px, 2.4vw, 36px);
+  justify-content: space-between;
+}
+
+.journal-card-featured .journal-card-title {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 2vw, 31px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #14100D;
+  margin: 0 0 12px 0;
+  transition: color var(--transition-fast);
+}
+
+.journal-card-featured:hover .journal-card-title {
+  color: #7D6652;
+}
+
+.journal-card-excerpt {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: #635B53;
+  margin: 0 0 24px 0;
+}
+
+/* Right Column: Stacked Cards */
+.journal-cards-stack {
+  grid-column: 9 / 13;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.8vw, 24px);
+}
+
+.journal-card-compact {
+  flex: 1;
+}
+
+.journal-card-compact .journal-card-media {
+  aspect-ratio: 16 / 6.8;
+}
+
+.journal-card-compact .journal-card-body {
+  padding: 18px 22px 20px 22px;
+  justify-content: space-between;
+}
+
+.journal-card-compact .journal-card-title {
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 1.4vw, 21.5px);
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+  color: #14100D;
+  margin: 0 0 14px 0;
+  transition: color var(--transition-fast);
+}
+
+.journal-card-compact:hover .journal-card-title {
+  color: #7D6652;
+}
+
+/* Card Footer: Read Time & Action Arrow */
+.journal-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.journal-read-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #7A7066;
+}
+
+.journal-read-time svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.journal-arrow-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #181512;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.journal-arrow-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.journal-card:hover .journal-arrow-btn {
+  transform: translateX(5px);
+  color: #7D6652;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/* Tablet / Medium Desktop (max-width: 1120px) */
+@media (max-width: 1120px) {
+  .journal-grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+  .journal-intro-col {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 8px;
+  }
+  .journal-heading {
+    width: 100%;
+    max-width: 100%;
+  }
+  .journal-desc {
+    max-width: 640px;
+  }
+  .journal-cta-wrap {
+    margin-top: 4px;
+  }
+  .journal-card-featured {
+    grid-column: 1 / 8;
+  }
+  .journal-cards-stack {
+    grid-column: 8 / -1;
+  }
+}
+
+/* Tablet Portrait & Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .journal-insights-section {
+    padding-top: clamp(48px, 6vh, 72px);
+    padding-bottom: clamp(48px, 6vh, 72px);
+  }
+  .journal-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .journal-intro-col,
+  .journal-card-featured,
+  .journal-cards-stack {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 100%;
+  }
+  .journal-heading {
+    font-size: clamp(32px, 8.5vw, 44px);
+    line-height: 1.1;
+    width: 100%;
+    max-width: 100%;
+  }
+  .journal-desc {
+    max-width: 100%;
+    font-size: 15px;
+    margin-bottom: 22px;
+  }
+  .journal-cta-wrap {
+    margin-top: 0;
+    margin-bottom: 6px;
+  }
+  .btn-journal-cta {
+    display: inline-flex;
+    width: auto;
+  }
+  .journal-card-featured .journal-card-media {
+    aspect-ratio: 16 / 10;
+  }
+  .journal-card-compact .journal-card-media {
+    aspect-ratio: 16 / 9;
+  }
+  .journal-card-featured .journal-card-body {
+    padding: 22px 20px;
+  }
+  .journal-card-compact .journal-card-body {
+    padding: 18px 20px;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .journal-heading {
+    font-size: 33px;
+  }
+  .journal-card-featured .journal-card-title {
+    font-size: 22px;
+  }
+  .journal-card-compact .journal-card-title {
+    font-size: 19px;
+  }
+}

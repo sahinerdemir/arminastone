@@ -75,7 +75,7 @@
 .projects-intro-col {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding-top: 6px;
   padding-bottom: 6px;
 }
@@ -123,7 +123,7 @@
 
 /* Left CTA Button Area */
 .projects-cta-wrap {
-  margin-top: clamp(32px, 5vh, 48px);
+  margin-top: 28px;
 }
 
 .btn-projects-cta {
@@ -171,10 +171,13 @@
   gap: 20px;
 }
 
-/* Card 1: Top Hero Wide Card (Hillside Residence) */
+/* Card 1: Top Hero Wide Card (Hillside Residence) - shortened by 96px from left */
 .project-card-wide {
   grid-column: 1 / -1;
   aspect-ratio: 1113 / 380;
+  margin-left: 96px;
+  width: calc(100% - 96px);
+  justify-self: end;
 }
 
 /* Individual Project Card */
@@ -354,12 +357,33 @@
     padding-bottom: clamp(48px, 6vh, 72px);
   }
   
+  .projects-intro-col {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .projects-heading {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(32px, 8.5vw, 42px);
+    line-height: 1.1;
+  }
+  
+  .projects-desc {
+    max-width: 100%;
+  }
+  
   .projects-cards-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
   
-  .project-card-wide,
+  .project-card-wide {
+    margin-left: 0;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+  
   .project-card-half {
     aspect-ratio: 16 / 10;
   }

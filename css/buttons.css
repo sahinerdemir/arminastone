@@ -124,26 +124,140 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
+    max-width: 100%;
   }
   .btn-primary, .btn-secondary {
-    height: 50px;
-    font-size: 15px;
+    height: 42px;
+    font-size: 13.5px;
     font-weight: 500;
-    padding: 0 24px;
+    padding: 0 18px;
+    width: auto;
+    max-width: max-content;
+    flex: 0 0 auto;
+  }
+  .btn-primary .btn-arrow svg {
+    width: 13px;
+    height: 13px;
+  }
+  .btn-secondary {
+    gap: 8px;
+    padding: 0 16px;
+  }
+  .btn-secondary .play-icon-wrap {
+    width: 20px;
+    height: 20px;
+  }
+  .btn-secondary .play-icon-wrap svg {
+    width: 8px;
+    height: 8px;
+    margin-left: 2px;
   }
 }
 
 @media (max-width: 440px) {
   .hero-cta-group {
-    flex-direction: column;
-    align-items: stretch;
-    max-width: 320px;
-    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
   }
   .btn-primary, .btn-secondary {
-    width: 100%;
-    justify-content: center;
+    width: auto;
+    max-width: max-content;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 13px;
+  }
+  .btn-primary {
+    gap: 7px;
+  }
+  .btn-secondary {
+    gap: 7px;
+  }
+}
+
+/* ==========================================================================
+   Back To Top Floating Button
+   ========================================================================== */
+.back-to-top-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(18, 16, 14, 0.88);
+  color: #FAF5EE;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.92);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.back-to-top-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  transition: transform 0.2s ease;
+}
+
+.back-to-top-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top-btn:hover {
+  background: #FAF5EE;
+  color: #141210;
+  border-color: #FAF5EE;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.back-to-top-btn:hover svg {
+  transform: translateY(-2px);
+}
+
+.back-to-top-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.back-to-top-btn:focus-visible {
+  outline: 2px solid #FAF5EE;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .back-to-top-btn {
+    right: 18px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    width: 42px;
+    height: 42px;
+  }
+  .back-to-top-btn svg {
+    width: 17px;
+    height: 17px;
   }
 }

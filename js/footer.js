@@ -45,9 +45,62 @@
     }, { passive: true });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFooterAccordion);
-  } else {
+  function initBackToTop() {
+    let btn = document.getElementById('backToTopBtn');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'backToTopBtn';
+      btn.type = 'button';
+      btn.className = 'back-to-top-btn';
+      btn.setAttribute('aria-label', 'Back to top');
+      btn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="19" x2="12" y2="5"></line>
+          <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+      `;
+      document.body.appendChild(btn);
+    }
+
+    let isVisible = false;
+    let ticking = false;
+
+    function updateVisibility() {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const shouldShow = scrollY > 320;
+      if (shouldShow !== isVisible) {
+        isVisible = shouldShow;
+        btn.classList.toggle('is-visible', isVisible);
+      }
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateVisibility);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateVisibility();
+
+    btn.addEventListener('click', function () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  function initAll() {
     initFooterAccordion();
+    initBackToTop();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
   }
 })();

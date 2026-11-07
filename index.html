@@ -612,10 +612,31 @@
     </ul>
 
     <div class="mobile-footer-actions">
-      <div class="mobile-lang-switch" role="group" aria-label="Language Selector">
-        <button type="button" class="lang-btn is-active" aria-pressed="true" data-lang="en">EN</button>
-        <span class="lang-divider" aria-hidden="true">/</span>
-        <button type="button" class="lang-btn" aria-pressed="false" data-lang="es">ES</button>
+      <div class="nav-lang-dropdown mobile-drawer-lang-dropdown">
+        <button type="button" class="nav-lang-trigger" aria-expanded="false" aria-haspopup="listbox" aria-label="Select Language">
+          <span class="nav-lang-current">EN</span>
+          <svg class="nav-lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <ul class="nav-lang-menu" role="listbox" aria-label="Select Language">
+          <li role="option" aria-selected="true">
+            <button type="button" class="nav-lang-option is-selected" data-lang="en">
+              <span>English (EN)</span>
+              <svg class="nav-lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </li>
+          <li role="option" aria-selected="false">
+            <button type="button" class="nav-lang-option" data-lang="es">
+              <span>Español (ES)</span>
+              <svg class="nav-lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </li>
+        </ul>
       </div>
       <a href="#quote" class="mobile-quote-btn">
         <span>Get a Quote</span>

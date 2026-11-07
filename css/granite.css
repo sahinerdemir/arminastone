@@ -1441,10 +1441,13 @@
   }
 
   .granite-view-btn {
-    flex: 1 1 50%;
+    flex: 1 1 0;
     justify-content: center;
     text-align: center;
-    padding: 9px 12px;
+    padding: 8px 6px;
+    font-size: 11.5px;
+    white-space: nowrap;
+    gap: 4px;
   }
   
   .granite-card-actions {
@@ -1865,6 +1868,31 @@
 }
 
 @media (max-width: 768px) {
+  .granite-gallery-tabs {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    gap: 3px;
+    padding: 3px;
+  }
+
+  .btn-gallery-tab {
+    flex: 1 1 0;
+    justify-content: center;
+    text-align: center;
+    padding: 7px 6px;
+    font-size: 11.5px;
+    white-space: nowrap;
+    gap: 4px;
+  }
+
+  .btn-gallery-tab svg {
+    width: 13px;
+    height: 13px;
+  }
+
   .granite-related-section {
     padding-left: 0;
     padding-right: 0;

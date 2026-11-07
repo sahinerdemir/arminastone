@@ -771,7 +771,7 @@
 @media (max-width: 1060px) {
   :root {
     --glass-nav-pad-left: 10px;
-    --header-padding-x: max(14px, calc(var(--site-grid-margin) - var(--glass-nav-pad-left)));
+    --header-padding-x: max(16px, calc(var(--site-grid-margin) - var(--glass-nav-pad-left)));
   }
   .site-header {
     padding-top: 16px;
@@ -779,7 +779,7 @@
   }
   .glass-nav {
     height: 76px;
-    padding: 0 16px;
+    padding: 0 26px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -855,15 +855,15 @@
 @media (max-width: 600px) {
   :root {
     --glass-nav-pad-left: 8px;
-    --header-padding-x: max(10px, calc(var(--site-grid-margin) - var(--glass-nav-pad-left)));
+    --header-padding-x: max(12px, calc(var(--site-grid-margin) - var(--glass-nav-pad-left)));
   }
   .site-header {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
   .glass-nav {
     height: 72px; /* Increased by exactly 16px from 56px */
-    padding: 0 12px;
+    padding: 0 22px; /* Proportionate with vertical padding ~21.5px */
   }
   .nav-brand {
     order: 1;
@@ -919,19 +919,8 @@
   }
   .nav-logo {
     height: 29px; /* Increased by exactly 4px from 25px */
-    max-width: 180px;
+    max-width: 175px;
     width: auto;
-  }
-  .nav-actions {
-    gap: 6px;
-  }
-  .nav-search-btn {
-    width: 38px;
-    height: 38px;
-  }
-  .nav-search-btn svg {
-    width: 18px;
-    height: 18px;
   }
   .btn-text-full {
     display: none;

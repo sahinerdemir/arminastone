@@ -1566,25 +1566,41 @@
    ========================================================================== */
 
 .granite-detail-section {
-  padding-top: calc(var(--nav-top) + var(--nav-height) + 32px);
+  padding-top: 0;
   padding-bottom: clamp(32px, 4vh, 50px);
-  padding-left: var(--site-grid-margin);
-  padding-right: var(--site-grid-margin);
+  padding-left: 0;
+  padding-right: 0;
   background-color: #ffffff;
 }
 
 .granite-detail-container {
-  max-width: 1360px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Detail Navigation Bar */
+/* Detail Navigation Bar: Hero Header Banner encompassing header, back button & breadcrumbs */
 .granite-detail-nav-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  margin-bottom: clamp(24px, 3vh, 36px);
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: calc(var(--nav-top) + var(--nav-height) + 40px);
+  padding-bottom: 28px;
+  padding-left: max(var(--site-grid-margin), calc((100% - 1360px) / 2 + var(--site-grid-margin)));
+  padding-right: max(var(--site-grid-margin), calc((100% - 1360px) / 2 + var(--site-grid-margin)));
+  margin-bottom: clamp(36px, 4vh, 52px);
+  background-color: #0C0A09;
+  background-image: 
+    radial-gradient(circle at 70% 30%, rgba(22, 19, 17, 0.35) 0%, rgba(12, 10, 9, 0.88) 65%, #0C0A09 100%),
+    url('../assets/images/footer-marble-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   flex-wrap: wrap;
 }
 
@@ -1592,23 +1608,36 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #111111;
-  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FAF5EE;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
-  padding: 8px 16px;
-  background-color: #EFEFEF;
+  padding: 8px 18px;
   border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all 0.2s ease;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-back-catalog:hover {
-  background-color: #E5E5E5;
-  color: #000000;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #FFFFFF;
   transform: translateX(-3px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.btn-back-catalog svg {
+  stroke: #FAF5EE;
+  transition: transform 0.2s ease;
+}
+
+.btn-back-catalog:hover svg {
+  stroke: #FFFFFF;
+  transform: translateX(-2px);
 }
 
 .granite-detail-breadcrumbs {
@@ -1616,18 +1645,28 @@
   align-items: center;
   gap: 8px;
   font-family: var(--font-sans);
-  font-size: 12.5px;
-  color: #766E65;
+  font-size: 13px;
+  color: rgba(250, 245, 238, 0.65);
 }
 
 .granite-detail-breadcrumbs a {
-  color: #766E65;
+  color: rgba(250, 245, 238, 0.7);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .granite-detail-breadcrumbs a:hover {
-  color: #181614;
+  color: #FFFFFF;
+}
+
+.granite-detail-breadcrumbs span {
+  color: #FFFFFF !important;
+  font-weight: 600;
+}
+
+.granite-detail-breadcrumbs span[aria-hidden="true"] {
+  color: rgba(250, 245, 238, 0.4) !important;
+  font-weight: 400;
 }
 
 /* Detail Main Grid */
@@ -1637,6 +1676,12 @@
   gap: clamp(36px, 4vw, 64px);
   align-items: flex-start;
   margin-bottom: clamp(60px, 8vh, 90px);
+  max-width: 1360px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--site-grid-margin);
+  padding-right: var(--site-grid-margin);
+  box-sizing: border-box;
 }
 
 /* Gallery Column */
@@ -2044,6 +2089,7 @@
     padding-left: var(--site-grid-margin);
     padding-right: var(--site-grid-margin);
     margin-bottom: 0;
+    border-bottom: none;
     background-color: #0C0A09;
     background-image: 
       radial-gradient(ellipse at 50% 20%, rgba(22, 19, 17, 0.35) 0%, rgba(12, 10, 9, 0.88) 65%, #0C0A09 100%),
@@ -2105,6 +2151,8 @@
     grid-template-columns: 1fr;
     gap: 0;
     margin-bottom: clamp(40px, 6vh, 60px);
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .granite-detail-gallery {

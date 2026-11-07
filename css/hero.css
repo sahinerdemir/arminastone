@@ -249,12 +249,12 @@
   .hero-content {
     margin-top: auto;
     padding-top: 100px;
-    padding-bottom: 78px;
+    padding-bottom: 38px;
     justify-content: flex-end;
   }
   .hero-text-slider {
     max-width: 100%;
-    min-height: 320px;
+    min-height: auto;
   }
   .hero-title {
     font-size: clamp(46px, 10.2vw, 60px);
@@ -264,7 +264,7 @@
     font-size: 16.5px;
     line-height: 1.5;
     margin-top: 18px;
-    margin-bottom: 26px;
+    margin-bottom: 20px;
   }
 }
 
@@ -272,12 +272,12 @@
   .hero-content {
     margin-top: auto;
     padding-top: 96px;
-    padding-bottom: 68px;
+    padding-bottom: 34px;
     width: 100%;
     max-width: 100%;
   }
   .hero-text-slider {
-    min-height: 320px;
+    min-height: auto;
     width: 100%;
   }
   .hero-title {
@@ -293,7 +293,7 @@
     font-size: 15.5px;
     line-height: 1.5;
     margin-top: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     color: rgba(250, 245, 238, 0.95);
     max-width: 100%;
   }

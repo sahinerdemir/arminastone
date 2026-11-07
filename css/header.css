@@ -774,7 +774,7 @@
     --header-padding-x: max(16px, calc(var(--site-grid-margin) - var(--glass-nav-pad-left)));
   }
   .site-header {
-    padding-top: 16px;
+    padding-top: 26px; /* Increased by 10px for mobile/tablet clearance */
     padding-bottom: 16px;
   }
   .glass-nav {
@@ -858,7 +858,7 @@
     --header-padding-x: max(12px, calc(var(--site-grid-margin) - var(--glass-nav-pad-left)));
   }
   .site-header {
-    padding-top: 14px;
+    padding-top: 24px; /* Increased by 10px from 14px for mobile clearance */
     padding-bottom: 14px;
   }
   .glass-nav {

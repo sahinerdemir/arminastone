@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const cards = Array.from(document.querySelectorAll('.granite-card'));
   const searchInput = document.getElementById('graniteSearchInput');
   const searchClearBtn = document.getElementById('graniteSearchClear');
+  const heroSearchInput = document.getElementById('graniteHeroSearchInput');
+  const heroSearchClearBtn = document.getElementById('graniteHeroSearchClear');
   const countDisplay = document.getElementById('graniteResultCount');
   const emptyState = document.getElementById('graniteEmptyState');
   const activeTagsContainer = document.getElementById('graniteActiveTags');
@@ -210,39 +212,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Unified Search Handler (syncs desktop and mobile inputs)
+  function handleSearchQuery(val) {
+    state.searchQuery = val;
+    if (searchInput && searchInput.value !== val) searchInput.value = val;
+    if (heroSearchInput && heroSearchInput.value !== val) heroSearchInput.value = val;
+
+    const hasText = val.length > 0;
+    if (searchClearBtn) searchClearBtn.classList.toggle('is-visible', hasText);
+    if (heroSearchClearBtn) heroSearchClearBtn.classList.toggle('is-visible', hasText);
+
+    applyFilters();
+  }
+
   // Search input listeners
   if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      state.searchQuery = e.target.value;
-      if (searchClearBtn) {
-        if (state.searchQuery.length > 0) {
-          searchClearBtn.classList.add('is-visible');
-        } else {
-          searchClearBtn.classList.remove('is-visible');
-        }
-      }
-      applyFilters();
-    });
+    searchInput.addEventListener('input', (e) => handleSearchQuery(e.target.value));
+  }
+  if (heroSearchInput) {
+    heroSearchInput.addEventListener('input', (e) => handleSearchQuery(e.target.value));
   }
 
   if (searchClearBtn) {
-    searchClearBtn.addEventListener('click', () => {
-      state.searchQuery = '';
-      if (searchInput) searchInput.value = '';
-      searchClearBtn.classList.remove('is-visible');
-      applyFilters();
-    });
+    searchClearBtn.addEventListener('click', () => handleSearchQuery(''));
+  }
+  if (heroSearchClearBtn) {
+    heroSearchClearBtn.addEventListener('click', () => handleSearchQuery(''));
   }
 
   // Reset all button
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
-      state.searchQuery = '';
       state.selectedFinish = 'all';
       state.selectedThickness = 'all';
       state.selectedOrigin = 'all';
-      if (searchInput) searchInput.value = '';
-      if (searchClearBtn) searchClearBtn.classList.remove('is-visible');
+      handleSearchQuery('');
 
       if (finishSelect) {
         finishSelect.value = 'all';

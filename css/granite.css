@@ -139,6 +139,11 @@
   max-width: 680px;
 }
 
+/* Hero Search Input (Mobile Only - Hidden on Desktop) */
+.granite-hero-search-wrap {
+  display: none;
+}
+
 /* Hero Quick Stats */
 .granite-hero-right {
   display: flex;
@@ -1365,56 +1370,118 @@
   }
 }
 
-@media (max-width: 640px) {
-  .granite-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+@media (max-width: 860px) {
+  /* Clean up excessive empty gaps above and below hero on mobile */
+  .granite-hero {
+    padding-top: 114px; /* Balanced clearance below 72px nav pill (fixed at top: 24px) */
+    padding-bottom: 28px; /* Clean bottom margin under search input without dead void */
   }
-  
-  .granite-stats-card {
-    grid-template-columns: 1fr 1fr;
-    padding: 16px;
-    gap: 14px;
+
+  .granite-breadcrumb {
+    margin-bottom: 12px;
   }
-  
-  .granite-form-row {
-    grid-template-columns: 1fr;
-    gap: 10px;
+
+  .granite-title {
+    font-size: clamp(32px, 8vw, 44px);
+    margin-bottom: 12px;
   }
-  
-  .granite-toolbar-top {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
+
+  .granite-desc {
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin-bottom: 0;
   }
-  
-  .granite-search-box {
+
+  /* Mobile Search Input in Hero (Placed below text on dark bedrock background) */
+  .granite-hero-search-wrap {
+    display: block;
+    margin-top: 18px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .granite-hero-search-box {
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 100%;
-    min-width: 100%;
   }
 
-  .granite-search-icon {
+  .granite-hero-search-icon {
     position: absolute;
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
-    width: 16px;
-    height: 16px;
-    stroke: #766E65;
+    width: 17px;
+    height: 17px;
+    stroke: rgba(230, 216, 195, 0.8);
     pointer-events: none;
     z-index: 2;
   }
 
-  .granite-search-input {
+  .granite-hero-search-input {
     width: 100%;
-    height: 44px;
-    padding: 0 40px 0 44px;
+    height: 48px;
+    padding: 0 42px 0 44px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    font-family: var(--font-sans);
     font-size: 13.5px;
+    color: #FFFFFF;
+    outline: none;
     box-sizing: border-box;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .granite-hero-search-input::placeholder {
+    color: rgba(250, 245, 238, 0.52);
+    font-size: 13px;
+  }
+
+  .granite-hero-search-input:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(230, 216, 195, 0.75);
+    box-shadow: 0 0 0 3px rgba(230, 216, 195, 0.18), 0 6px 20px rgba(0, 0, 0, 0.35);
+  }
+
+  .granite-hero-search-clear {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(250, 245, 238, 0.7);
+    cursor: pointer;
+    padding: 6px;
+    display: none;
+    font-size: 20px;
+    line-height: 1;
+    z-index: 2;
+  }
+
+  .granite-hero-search-clear.is-visible {
+    display: block;
+  }
+
+  /* Hide the toolbar search input on mobile (it is now inside hero) */
+  .granite-toolbar-top .granite-search-box {
+    display: none !important;
+  }
+
+  /* Compact spacing for filter section on mobile */
+  .granite-filter-section {
+    padding: 16px var(--site-grid-margin) 14px;
+  }
+
+  .granite-toolbar-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
   }
 
   .granite-dropdowns-group {
@@ -1431,7 +1498,7 @@
   .granite-select {
     width: 100%;
   }
-  
+
   .granite-view-switcher {
     width: 100%;
     display: flex;
@@ -1449,7 +1516,28 @@
     white-space: nowrap;
     gap: 4px;
   }
-  
+
+  /* Tighter spacing for catalog section on mobile */
+  .granite-catalog-section {
+    padding-top: clamp(20px, 3vh, 28px);
+  }
+
+  .granite-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .granite-stats-card {
+    grid-template-columns: 1fr 1fr;
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .granite-form-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
   .granite-card-actions {
     justify-content: flex-start;
   }

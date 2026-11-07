@@ -1429,7 +1429,7 @@
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 999px;
     font-family: var(--font-sans);
-    font-size: 13px;
+    font-size: 16px; /* 16px prevents iOS Safari focus auto-zoom */
     color: #FFFFFF;
     outline: none;
     box-sizing: border-box;
@@ -1439,7 +1439,7 @@
 
   .granite-hero-search-input::placeholder {
     color: rgba(250, 245, 238, 0.52);
-    font-size: 12.5px;
+    font-size: 14px;
   }
 
   .granite-hero-search-input:focus {
@@ -1503,7 +1503,7 @@
   .granite-select {
     width: 100%;
     height: 42px;
-    font-size: 13px;
+    font-size: 16px; /* 16px prevents iOS Safari focus auto-zoom */
     padding: 0 36px 0 16px;
   }
 

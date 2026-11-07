@@ -11,12 +11,13 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   height: 100%;
+  background-color: #0C0A09;
 }
 
 body {
   font-family: var(--font-sans);
   color: var(--color-warm-white);
-  background-color: var(--color-dark-charcoal);
+  background-color: #0C0A09;
   min-height: 100%;
   overflow-x: hidden;
   line-height: 1.5;

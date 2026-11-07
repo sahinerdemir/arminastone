@@ -1429,8 +1429,73 @@
           <div class="testimonials-showcase reveal-item">
             <div class="testimonials-track">
 
-              <!-- Slide 1: Image Testimonial with Text Overlay (Elena Martinez) -->
-              <article class="testimonial-slide is-active" data-index="0" aria-label="Testimonial 1 of 3: Elena Martinez">
+              <!-- Slide 1: Featured Project Film (Inside a Stunning Penthouse Project by Selux Design) -->
+              <article class="testimonial-slide is-active" data-index="0" aria-label="Testimonial 1 of 3: Penthouse Project by Selux Design">
+                <div class="testimonial-card testimonial-card-video">
+                  <!-- Video Background Frame / Thumbnail -->
+                  <img
+                    src="./assets/images/testimonials-penthouse-selux.jpg"
+                    alt="Inside a Stunning Penthouse Project by Selux Design and Armina Stone"
+                    class="testimonial-card-bg"
+                    loading="eager"
+                    width="1280"
+                    height="720"
+                  >
+                  <!-- Right Dark Obsidian Gradient Overlay -->
+                  <div class="testimonial-card-overlay overlay-right" aria-hidden="true"></div>
+
+                  <!-- Interactive Center Play Button -->
+                  <button
+                    type="button"
+                    class="testimonial-video-play-btn"
+                    aria-label="Play video: Inside a Stunning Penthouse Project by Selux Design"
+                    data-video-id="s1V_N50dyiE"
+                  >
+                    <span class="play-btn-circle">
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <polygon points="8 5 19 12 8 19 8 5"></polygon>
+                      </svg>
+                    </span>
+                  </button>
+
+                  <!-- Card Content Overlay (Right Side) -->
+                  <div class="testimonial-card-content content-right">
+                    <!-- Tag Badge -->
+                    <span class="testimonial-badge">FEATURED PROJECT FILM</span>
+
+                    <!-- Primary Quote -->
+                    <blockquote class="testimonial-quote">
+                      “Every detail was brought to life with Armina Stone’s craftsmanship.”
+                    </blockquote>
+
+                    <!-- Review Paragraph -->
+                    <p class="testimonial-body">
+                      From the bar area to the kitchen, featuring Cristallo, Cristal Noir, Invisible Blue, and Lilac Marble for an extraordinary luxury penthouse.
+                    </p>
+
+                    <!-- Divider -->
+                    <div class="testimonial-divider" aria-hidden="true"></div>
+
+                    <!-- Author Profile with Portrait -->
+                    <div class="testimonial-author">
+                      <img
+                        src="./assets/images/testimonials-yerickson.jpg"
+                        alt="Yerickson Nagy"
+                        class="testimonial-author-avatar"
+                        width="52"
+                        height="52"
+                      >
+                      <div class="testimonial-author-meta">
+                        <span class="testimonial-author-name">Yerickson Nagy</span>
+                        <span class="testimonial-author-role">Selux Design &bull; South Florida</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Slide 2: Image Testimonial with Text Overlay (Elena Martinez) -->
+              <article class="testimonial-slide" data-index="1" aria-label="Testimonial 2 of 3: Elena Martinez">
                 <div class="testimonial-card testimonial-card-image">
                   <!-- Background Image -->
                   <img
@@ -1476,65 +1541,6 @@
                       <div class="testimonial-author-meta">
                         <span class="testimonial-author-name">Elena Martinez</span>
                         <span class="testimonial-author-role">Residential Project &bull; Miami, FL</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <!-- Slide 2: Video Testimonial (Michael Rivera) -->
-              <article class="testimonial-slide" data-index="1" aria-label="Testimonial 2 of 3: Michael Rivera Video Testimonial">
-                <div class="testimonial-card testimonial-card-video">
-                  <!-- Video Background Frame / Thumbnail -->
-                  <img
-                    src="./assets/images/testimonials-slide2-clean.jpg"
-                    alt="Michael Rivera video testimonial in luxury marble kitchen"
-                    class="testimonial-card-bg"
-                    loading="lazy"
-                    width="1800"
-                    height="964"
-                  >
-                  <!-- Right Dark Obsidian Gradient Overlay -->
-                  <div class="testimonial-card-overlay overlay-right" aria-hidden="true"></div>
-
-                  <!-- Interactive Center Play Button -->
-                  <button
-                    type="button"
-                    class="testimonial-video-play-btn btn-watch-story-trigger"
-                    aria-label="Play video testimonial from Michael Rivera"
-                  >
-                    <span class="play-btn-circle">
-                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <polygon points="8 5 19 12 8 19 8 5"></polygon>
-                      </svg>
-                    </span>
-                  </button>
-
-                  <!-- Card Content Overlay (Right Side) -->
-                  <div class="testimonial-card-content content-right">
-                    <!-- Tag Badge -->
-                    <span class="testimonial-badge">VIDEO TESTIMONIAL</span>
-
-                    <!-- Primary Quote -->
-                    <blockquote class="testimonial-quote">
-                      “The quality, attention to detail and the final result were outstanding.”
-                    </blockquote>
-
-                    <!-- Divider -->
-                    <div class="testimonial-divider" aria-hidden="true"></div>
-
-                    <!-- Author Profile with Portrait -->
-                    <div class="testimonial-author">
-                      <img
-                        src="./assets/images/testimonials-michael.jpg"
-                        alt="Michael Rivera"
-                        class="testimonial-author-avatar"
-                        width="52"
-                        height="52"
-                      >
-                      <div class="testimonial-author-meta">
-                        <span class="testimonial-author-name">Michael Rivera</span>
-                        <span class="testimonial-author-role">Residential Project &bull; Coral Gables, FL</span>
                       </div>
                     </div>
                   </div>
@@ -2115,6 +2121,29 @@
           <input type="range" id="story-volume-slider" class="story-volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Ses seviyesi" title="Ses seviyesi">
         </div>
       </div>
+    </div>
+  </dialog>
+
+  <!-- YouTube Project Showcase Lightbox Modal -->
+  <dialog id="youtube-dialog" class="story-dialog" aria-label="Armina Stone Project Video">
+    <!-- Top-Right Close Button -->
+    <button type="button" id="youtube-dialog-close" class="story-dialog-close" aria-label="Close video player">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="youtube-dialog-wrapper">
+      <iframe
+        id="youtube-dialog-iframe"
+        class="youtube-dialog-iframe"
+        src=""
+        title="Inside a Stunning Penthouse Project by Selux Design | Armina Stone"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
     </div>
   </dialog>
 

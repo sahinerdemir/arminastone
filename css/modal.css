@@ -319,3 +319,53 @@
     width: 44px;
   }
 }
+
+/* ==========================================================================
+   YouTube Project Showcase Modal Lightbox
+   ========================================================================== */
+#youtube-dialog {
+  border: none;
+  background: rgba(0, 0, 0, 0.94);
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+#youtube-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+#youtube-dialog[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.youtube-dialog-wrapper {
+  position: relative;
+  width: 90vw;
+  max-width: 1080px;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.youtube-dialog-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}

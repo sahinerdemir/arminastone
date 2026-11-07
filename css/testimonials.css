@@ -479,7 +479,7 @@
     transform: translate(-50%, -50%);
   }
 
-  /* Video Testimonial Mobile Layout: Michael Rivera visible at top, texts firmly anchored at bottom */
+  /* Video Testimonial Mobile Layout: Video frame visible at top, texts firmly anchored at bottom */
   .testimonial-card-video {
     display: flex;
     flex-direction: column;
@@ -488,7 +488,7 @@
   }
 
   .testimonial-card-video .testimonial-card-bg {
-    object-position: 8% top;
+    object-position: center top;
   }
 
   .testimonial-card-video .overlay-right {
@@ -502,8 +502,8 @@
   }
 
   .testimonial-card-video .testimonial-video-play-btn {
-    top: 23%;
-    left: 56%;
+    top: 24%;
+    left: 50%;
     transform: translate(-50%, -50%);
   }
 
@@ -558,8 +558,8 @@
     min-height: 570px;
   }
   .testimonial-card-video .testimonial-video-play-btn {
-    top: 22%;
-    left: 56%;
+    top: 24%;
+    left: 50%;
   }
   .testimonial-card-video .play-btn-circle {
     width: 60px;

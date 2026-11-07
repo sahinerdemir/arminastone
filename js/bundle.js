@@ -1168,18 +1168,41 @@ function initHero() {
       }
     });
 
+    // Interactive Play Button on Video Slide triggers the YouTube cinema player
     const videoPlayBtn = section.querySelector('.testimonial-video-play-btn');
+    const ytDialog = document.querySelector('#youtube-dialog');
+    const ytCloseBtn = document.querySelector('#youtube-dialog-close');
+    const ytIframe = document.querySelector('#youtube-dialog-iframe');
+
+    function closeYouTubeModal() {
+      if (ytIframe) ytIframe.src = '';
+      if (ytDialog && ytDialog.open) ytDialog.close();
+      document.body.style.overflow = '';
+    }
+
+    if (ytCloseBtn) {
+      ytCloseBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeYouTubeModal();
+      });
+    }
+
+    if (ytDialog) {
+      ytDialog.addEventListener('close', closeYouTubeModal);
+      ytDialog.addEventListener('click', (e) => {
+        if (e.target === ytDialog) closeYouTubeModal();
+      });
+    }
+
     if (videoPlayBtn) {
       videoPlayBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const storyDialog = document.querySelector('#story-dialog');
-        if (storyDialog) {
-          const storyTrigger = document.querySelector('.btn-watch-story-trigger');
-          if (storyTrigger) {
-            storyTrigger.click();
-          } else {
-            storyDialog.showModal();
-          }
+        if (ytDialog && ytIframe) {
+          ytIframe.src = 'https://www.youtube-nocookie.com/embed/s1V_N50dyiE?autoplay=1&rel=0';
+          ytDialog.showModal();
+          document.body.style.overflow = 'hidden';
+        } else {
+          window.open('https://www.youtube.com/watch?v=s1V_N50dyiE', '_blank', 'noopener');
         }
       });
     }

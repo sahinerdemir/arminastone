@@ -10,11 +10,13 @@
   display: flex;
   align-items: center;
   padding: 0 16px 0 36px;
+  background: #FFFFFF;
+  border-radius: 999px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 220ms ease, visibility 220ms;
-  z-index: 20;
+  z-index: 25;
 }
 
 .search-bar-content {
@@ -85,14 +87,23 @@
   outline-offset: 2px;
 }
 
-/* When Search is Active: Transform Navigation Pill into White Search Interface */
+/* When Search is Active: Transform Navigation Pill into Solid White Search Interface */
 .site-header.is-search-active .glass-nav {
   background: #FFFFFF !important;
-  border-color: rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38),
-              0 0 0 1px rgba(0, 0, 0, 0.05) !important;
-  backdrop-filter: blur(30px) !important;
-  -webkit-backdrop-filter: blur(30px) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25),
+              0 0 0 1px rgba(0, 0, 0, 0.06) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-header.is-search-active .glass-nav::before {
+  background: #FFFFFF !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
 }
 
 .site-header.is-search-active .nav-brand,

@@ -1119,6 +1119,43 @@ function initHero() {
     initHeader();
     initHero();
     initTestimonials();
+    initScrollAnimations();
+  }
+
+  // --- Scroll Reveal Animations ---
+  function initScrollAnimations() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.reveal-item').forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+
+    const elements = document.querySelectorAll('.reveal-item');
+    if (!elements.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const rect = entry.boundingClientRect;
+        const windowHeight = window.innerHeight;
+
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else {
+          if (rect.top > windowHeight * 0.88) {
+            entry.target.classList.remove('is-visible');
+          }
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    elements.forEach((el) => observer.observe(el));
   }
   // URL Param Test Automation Hook for Visual Verification
   const urlParams = new URLSearchParams(window.location.search);

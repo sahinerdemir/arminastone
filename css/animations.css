@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Armina Stone - Luxury Scroll Reveal Animations
+   High-end editorial motion with staggered cascades and smooth compositor easing
+   (Applied to all content sections, strictly excluding Hero and Footer)
+   ========================================================================== */
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section 2 (Explore Our Materials) Staggered Delays */
+.explore-intro.reveal-item.is-visible { transition-delay: 0ms; }
+.explore-grid .material-card.is-visible:nth-of-type(1) { transition-delay: 70ms; }
+.explore-grid .material-card.is-visible:nth-of-type(2) { transition-delay: 140ms; }
+.explore-grid .material-card.is-visible:nth-of-type(3) { transition-delay: 210ms; }
+.explore-grid .material-card.is-visible:nth-of-type(4) { transition-delay: 280ms; }
+.explore-grid .material-card.is-visible:nth-of-type(5) { transition-delay: 350ms; }
+
+/* Section 3 (Featured Inventory) Staggered Delays */
+.inventory-header.reveal-item.is-visible { transition-delay: 0ms; }
+.inventory-filter-bar.reveal-item.is-visible { transition-delay: 60ms; }
+.inventory-track .inventory-card.is-visible:nth-child(1) { transition-delay: 80ms; }
+.inventory-track .inventory-card.is-visible:nth-child(2) { transition-delay: 150ms; }
+.inventory-track .inventory-card.is-visible:nth-child(3) { transition-delay: 220ms; }
+.inventory-track .inventory-card.is-visible:nth-child(4) { transition-delay: 290ms; }
+.inventory-bottom-controls.reveal-item.is-visible { transition-delay: 120ms; }
+
+/* Section 4 (Selected Projects) Staggered Delays */
+.projects-intro-content.reveal-item.is-visible { transition-delay: 0ms; }
+.projects-cards-grid .project-card.is-visible:nth-child(1) { transition-delay: 80ms; }
+.projects-cards-grid .project-card.is-visible:nth-child(2) { transition-delay: 180ms; }
+.projects-cards-grid .project-card.is-visible:nth-child(3) { transition-delay: 280ms; }
+
+/* Section 5 (Testimonials) Staggered Delays */
+.testimonials-intro.reveal-item.is-visible { transition-delay: 0ms; }
+.testimonials-showcase.reveal-item.is-visible { transition-delay: 100ms; }
+
+/* Section 6 (Journal & Insights) Staggered Delays */
+.journal-intro-content.reveal-item.is-visible { transition-delay: 0ms; }
+.journal-cta-wrap.reveal-item.is-visible { transition-delay: 60ms; }
+.journal-card.is-visible.journal-card-featured { transition-delay: 80ms; }
+.journal-cards-stack .journal-card.is-visible:nth-child(1) { transition-delay: 180ms; }
+.journal-cards-stack .journal-card.is-visible:nth-child(2) { transition-delay: 260ms; }
+
+/* Preserve clean hover lifts when revealed */
+.material-card.reveal-item.is-visible:hover {
+  transform: translateY(-5px);
+}
+.inventory-card.reveal-item.is-visible:hover {
+  transform: translateY(-6px);
+}
+.project-card.reveal-item.is-visible:hover {
+  transform: translateY(-4px);
+}
+.journal-card.reveal-item.is-visible:hover {
+  transform: translateY(-5px);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

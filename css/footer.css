@@ -7,16 +7,26 @@
 .site-footer {
   position: relative;
   background-color: #120F0D;
-  background-image: url('../assets/images/footer-marble-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   color: #FAF5EE;
   padding-left: var(--site-grid-margin);
   padding-right: var(--site-grid-margin);
   padding-top: clamp(64px, 7vw, 96px);
   padding-bottom: clamp(32px, 4vw, 44px);
   overflow: hidden;
+}
+
+/* Marble background layer with 50% opacity */
+.site-footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/footer-marble-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Subtle top edge shadow for depth transition from preceding light section */
@@ -29,6 +39,7 @@
   height: 24px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 100%);
   pointer-events: none;
+  z-index: 3;
 }
 
 /* Master Container */
@@ -544,6 +555,7 @@ a.footer-contact-item:hover .footer-contact-icon {
   .site-footer::after {
     content: '';
     position: absolute;
+    top: auto;
     left: 0;
     right: 0;
     bottom: 0;
@@ -558,6 +570,7 @@ a.footer-contact-item:hover .footer-contact-icon {
     z-index: 1;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 18%, rgba(0, 0, 0, 0.75) 45%, #000 70%, #000 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 18%, rgba(0, 0, 0, 0.75) 45%, #000 70%, #000 100%);
+    opacity: 0.5;
   }
 
   .footer-main-grid {

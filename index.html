@@ -237,31 +237,26 @@
                 <li>
                   <a href="#about" class="mega-about-link">
                     <span class="mega-about-title">About Armina Stone</span>
-                    <span class="mega-about-sub">Pennsylvania's premier natural stone source</span>
                   </a>
                 </li>
                 <li>
                   <a href="#our-process" class="mega-about-link">
                     <span class="mega-about-title">Our Process</span>
-                    <span class="mega-about-sub">From digital laser templating to white-glove install</span>
                   </a>
                 </li>
                 <li>
                   <a href="#craftsmanship" class="mega-about-link">
                     <span class="mega-about-title">Craftsmanship &amp; Tech</span>
-                    <span class="mega-about-sub">Robotic 5-axis waterjets &amp; master hand-finishing</span>
                   </a>
                 </li>
                 <li>
                   <a href="#sustainability" class="mega-about-link">
                     <span class="mega-about-title">Sustainability</span>
-                    <span class="mega-about-sub">Closed-loop water recycling &amp; ethical quarrying</span>
                   </a>
                 </li>
                 <li>
                   <a href="#contact" class="mega-about-link">
                     <span class="mega-about-title">Contact &amp; Careers</span>
-                    <span class="mega-about-sub">Join our team or consult a stone specialist</span>
                   </a>
                 </li>
               </ul>
@@ -279,26 +274,27 @@
               <ul class="mega-about-list">
                 <li>
                   <a href="#showrooms" class="mega-about-link">
+                    <span class="mega-about-title">Armina Luxe Miami</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#showrooms" class="mega-about-link">
                     <span class="mega-about-title">Cheswick Flagship &amp; HQ</span>
-                    <span class="mega-about-sub">1136 Freeport Rd &bull; 50,000 sq ft Slab Gallery</span>
                   </a>
                 </li>
                 <li>
                   <a href="#showrooms" class="mega-about-link">
                     <span class="mega-about-title">Robinson Township</span>
-                    <span class="mega-about-sub">1000 Park Manor Blvd &bull; Design Studio</span>
                   </a>
                 </li>
                 <li>
                   <a href="#showrooms" class="mega-about-link">
                     <span class="mega-about-title">Cranberry Township</span>
-                    <span class="mega-about-sub">20400 Route 19 &bull; Slab Center</span>
                   </a>
                 </li>
                 <li>
                   <a href="#showrooms" class="mega-about-link">
                     <span class="mega-about-title">Schedule a Private Tour</span>
-                    <span class="mega-about-sub">Consult an architectural stone specialist</span>
                   </a>
                 </li>
               </ul>
@@ -309,7 +305,7 @@
 
       <!-- Right Actions: Search Icon & Get a Quote CTA -->
       <div class="nav-actions">
-        <!-- Search Trigger Icon -->
+        <!-- Search Trigger Icon (Slightly Enlarged) -->
         <button class="nav-search-btn" aria-label="Open search interface" aria-expanded="false" aria-controls="header-search-bar">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="7"></circle>
@@ -317,22 +313,33 @@
           </svg>
         </button>
 
-        <!-- Minimal Language Selector (EN / ES) -->
-        <div class="nav-lang-switch" role="group" aria-label="Language Selector">
-          <button type="button" class="lang-btn is-active" aria-pressed="true" data-lang="en">EN</button>
-          <span class="lang-divider" aria-hidden="true">/</span>
-          <button type="button" class="lang-btn" aria-pressed="false" data-lang="es">ES</button>
+        <!-- Luxury Language Selector Dropdown -->
+        <div class="nav-lang-dropdown" id="navLangDropdown">
+          <button type="button" class="nav-lang-trigger" id="navLangTrigger" aria-expanded="false" aria-haspopup="listbox" aria-label="Select Language">
+            <span class="nav-lang-current">EN</span>
+            <svg class="nav-lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <ul class="nav-lang-menu" role="listbox" aria-label="Select Language">
+            <li role="option" aria-selected="true">
+              <button type="button" class="nav-lang-option is-selected" data-lang="en">
+                <span>English (EN)</span>
+                <svg class="nav-lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </li>
+            <li role="option" aria-selected="false">
+              <button type="button" class="nav-lang-option" data-lang="es">
+                <span>Español (ES)</span>
+                <svg class="nav-lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </li>
+          </ul>
         </div>
-
-        <!-- Quote CTA Button -->
-        <a href="#quote" class="nav-quote-btn">
-          <span class="btn-text-full">Get a Quote</span>
-          <span class="btn-text-compact">Quote</span>
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="4" y1="10" x2="15" y2="10"></line>
-            <polyline points="10 5 15 10 10 15"></polyline>
-          </svg>
-        </a>
       </div>
 
       <!-- Search Transformation Interface (Morphs entire header into white search input) -->
@@ -595,38 +602,11 @@
           </svg>
         </button>
         <ul class="mobile-sublinks">
-          <li>
-            <a href="#showrooms" class="mobile-sublink">
-              <div class="mobile-sublink-text">
-                <span class="mobile-sublink-title">Cheswick Flagship &amp; HQ</span>
-                <span class="mobile-sublink-sub">1136 Freeport Rd &bull; 50,000 sq ft Gallery</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#showrooms" class="mobile-sublink">
-              <div class="mobile-sublink-text">
-                <span class="mobile-sublink-title">Robinson Township</span>
-                <span class="mobile-sublink-sub">1000 Park Manor Blvd &bull; Design Studio</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#showrooms" class="mobile-sublink">
-              <div class="mobile-sublink-text">
-                <span class="mobile-sublink-title">Cranberry Township</span>
-                <span class="mobile-sublink-sub">20400 Route 19 &bull; Slab Center</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#showrooms" class="mobile-sublink">
-              <div class="mobile-sublink-text">
-                <span class="mobile-sublink-title">Schedule a Private Tour</span>
-                <span class="mobile-sublink-sub">Consult an architectural stone specialist</span>
-              </div>
-            </a>
-          </li>
+          <li><a href="#showrooms" class="mobile-sublink"><span class="mobile-sublink-title">Armina Luxe Miami</span></a></li>
+          <li><a href="#showrooms" class="mobile-sublink"><span class="mobile-sublink-title">Cheswick Flagship &amp; HQ</span></a></li>
+          <li><a href="#showrooms" class="mobile-sublink"><span class="mobile-sublink-title">Robinson Township</span></a></li>
+          <li><a href="#showrooms" class="mobile-sublink"><span class="mobile-sublink-title">Cranberry Township</span></a></li>
+          <li><a href="#showrooms" class="mobile-sublink"><span class="mobile-sublink-title">Schedule a Private Tour</span></a></li>
         </ul>
       </li>
     </ul>
@@ -850,7 +830,7 @@
             </h1>
 
             <p class="hero-description">
-              Three premier Pennsylvania showrooms featuring over 50,000 square feet of hand-selected exotic stones.
+              Four premier showrooms across Pennsylvania and Miami featuring over 50,000 square feet of hand-selected exotic stones.
             </p>
 
             <div class="hero-cta-group">
@@ -1878,7 +1858,7 @@
         </div>
 
         <!-- Column 5: Showrooms -->
-        <div class="footer-showrooms-col footer-accordion-item">
+        <div class="footer-showrooms-col footer-accordion-item" id="showrooms">
           <button type="button" class="footer-col-title footer-accordion-btn" aria-expanded="false">
             <span>OUR SHOWROOMS</span>
             <svg class="footer-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1887,6 +1867,25 @@
           </button>
           <div class="footer-accordion-panel">
             <div class="footer-showrooms-list">
+              <a href="https://maps.google.com/?q=3635+NE+1st+Avenue,+Suite+115E,+Miami,+FL+33137" target="_blank" rel="noopener noreferrer" class="footer-showroom-item" aria-label="Armina Luxe Miami Showroom directions">
+                <div class="footer-showroom-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="footer-showroom-content">
+                  <div class="footer-showroom-name">Armina Luxe &bull; Miami, FL</div>
+                  <div class="footer-showroom-addr">3635 NE 1st Avenue, Suite 115E, Miami FL 33137</div>
+                </div>
+                <div class="footer-showroom-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </a>
+
               <a href="https://maps.google.com/?q=1136+Freeport+Rd,+Cheswick,+PA+15024" target="_blank" rel="noopener noreferrer" class="footer-showroom-item" aria-label="Cheswick Showroom directions">
                 <div class="footer-showroom-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">

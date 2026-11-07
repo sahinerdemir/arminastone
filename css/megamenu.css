@@ -22,28 +22,7 @@
   pointer-events: auto;
 }
 
-/* Wide Mega Menu Positioning (Products)
-   Anchored relative to .glass-nav to maintain symmetrical centering and eliminate left overflow */
-.nav-item.has-mega-menu.has-mega-menu-wide {
-  position: static;
-}
-
-.nav-item.has-mega-menu-wide .mega-menu {
-  left: 50%;
-  transform: translateX(-50%) translateY(8px);
-}
-
-.nav-item.has-mega-menu-wide:hover .mega-menu,
-.nav-item.has-mega-menu-wide:focus-within .mega-menu,
-.nav-item.has-mega-menu-wide.is-open .mega-menu {
-  transform: translateX(-50%) translateY(0);
-}
-
-.nav-item.has-mega-menu-wide::after {
-  display: none;
-}
-
-/* Mega Menu Floating Window */
+/* Mega Menu Floating Window (Default Centered for Projects, Inspiration, Showrooms) */
 .mega-menu {
   position: absolute;
   top: 100%;
@@ -66,12 +45,44 @@
   transform: translateX(-50%) translateY(0);
 }
 
+/* Products Mega Menu Positioning: Aligned smoothly -100px left from Products link to prevent left overflow */
+.nav-item.has-mega-menu.has-mega-menu-wide {
+  position: relative;
+}
+
+.nav-item.has-mega-menu-wide .mega-menu {
+  left: -100px;
+  transform: translateY(8px);
+}
+
+.nav-item.has-mega-menu-wide:hover .mega-menu,
+.nav-item.has-mega-menu-wide:focus-within .mega-menu,
+.nav-item.has-mega-menu-wide.is-open .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav-item.has-mega-menu-wide::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -100px;
+  right: 0;
+  height: 24px;
+  background: transparent;
+  pointer-events: auto;
+}
+
 .mega-menu-inner {
-  background: rgba(22, 19, 17, 0.96);
+  background: rgba(10, 10, 10, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 24px;
   padding: 24px 28px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55),
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65),
               0 0 0 1px rgba(255, 255, 255, 0.06) inset;
 }
 
@@ -240,13 +251,14 @@
 /* About & Showrooms Dropdown (Classic Editorial Vertical Style) */
 .mega-menu-about,
 .mega-menu-showrooms {
-  width: 320px;
+  width: 250px;
+  padding: 16px 14px;
 }
 
 .mega-about-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -254,9 +266,8 @@
 
 .mega-about-link {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 10px 14px;
+  align-items: center;
+  padding: 9px 14px;
   border-radius: 10px;
   text-decoration: none;
   transition: background-color var(--transition-fast), color var(--transition-fast);
@@ -276,10 +287,7 @@
 }
 
 .mega-about-sub {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 400;
-  color: rgba(250, 245, 238, 0.65);
+  display: none;
 }
 
 /* Bottom Bar inside Mega Menus */

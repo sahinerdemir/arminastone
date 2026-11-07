@@ -62,6 +62,13 @@ const SEARCH_CATALOG = [
     url: '#products'
   },
   {
+    title: 'Armina Luxe Miami Showroom',
+    subtitle: '3635 NE 1st Avenue, Suite 115E, Miami FL 33137 • Design District Studio',
+    category: 'Showroom',
+    thumb: './assets/images/showrooms/armina-luxe-square.jpg',
+    url: '#showrooms'
+  },
+  {
     title: 'Cheswick Flagship Showroom & HQ',
     subtitle: '1136 Freeport Rd, Cheswick PA • 50,000 sq ft Indoor Slab Gallery',
     category: 'Showroom',

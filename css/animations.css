@@ -6,9 +6,9 @@
 
 .reveal-item {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(36px);
+  transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -51,6 +51,23 @@
 .journal-cards-stack .journal-card.is-visible:nth-child(1) { transition-delay: 180ms; }
 .journal-cards-stack .journal-card.is-visible:nth-child(2) { transition-delay: 260ms; }
 
+/* Granite Collection Staggered Delays */
+.granite-toolbar.reveal-item.is-visible { transition-delay: 0ms; }
+.granite-grid .granite-card.is-visible:nth-child(3n + 1) { transition-delay: 0ms; }
+.granite-grid .granite-card.is-visible:nth-child(3n + 2) { transition-delay: 100ms; }
+.granite-grid .granite-card.is-visible:nth-child(3n)     { transition-delay: 200ms; }
+
+@media (max-width: 1080px) and (min-width: 641px) {
+  .granite-grid .granite-card.is-visible:nth-child(2n + 1) { transition-delay: 0ms; }
+  .granite-grid .granite-card.is-visible:nth-child(2n)     { transition-delay: 120ms; }
+}
+
+@media (max-width: 640px) {
+  .granite-grid .granite-card.is-visible { transition-delay: 0ms; }
+}
+
+.granite-warehouse-banner.reveal-item.is-visible { transition-delay: 80ms; }
+
 /* Preserve clean hover lifts when revealed */
 .material-card.reveal-item.is-visible:hover {
   transform: translateY(-5px);
@@ -63,6 +80,9 @@
 }
 .journal-card.reveal-item.is-visible:hover {
   transform: translateY(-5px);
+}
+.granite-card.reveal-item.is-visible:hover {
+  transform: translateY(-6px);
 }
 
 /* Reduced Motion Override */

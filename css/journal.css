@@ -5,11 +5,7 @@
 
 .journal-insights-section {
   position: relative;
-  background-color: #F8F3EB;
-  background-image: 
-    radial-gradient(ellipse 70% 55% at 90% 10%, rgba(224, 204, 180, 0.28) 0%, transparent 68%),
-    radial-gradient(ellipse 60% 50% at 10% 85%, rgba(218, 195, 168, 0.24) 0%, transparent 65%),
-    linear-gradient(180deg, #F8F3EB 0%, #F5EFE7 50%, #F8F3EB 100%);
+  background-color: #ffffff;
   color: #181614;
   padding-top: clamp(64px, 8vh, 104px);
   padding-bottom: clamp(64px, 8vh, 104px);

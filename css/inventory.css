@@ -5,7 +5,7 @@
 
 .featured-inventory-section {
   position: relative;
-  background-color: #F8F1EB; /* Exact match with Section 2 */
+  background-color: #ffffff; /* Exact match with Section 2 */
   color: #181614;
   padding-top: clamp(48px, 6vh, 80px);
   padding-bottom: clamp(64px, 8vh, 100px);

@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const resetBtn = document.getElementById('graniteResetBtn');
   const viewSlabBtn = document.getElementById('viewModeSlab');
   const viewCloseupBtn = document.getElementById('viewModeCloseup');
+  const viewApplicationBtn = document.getElementById('viewModeApplication');
 
   // Dropdown Select Elements
   const finishSelect = document.getElementById('graniteFinishSelect');
@@ -260,23 +261,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // View Mode Switcher (Slab vs Closeup)
+  // View Mode Switcher (Slab vs Closeup vs In Application)
   function setViewMode(mode) {
     state.viewMode = mode;
-    if (mode === 'closeup') {
-      viewCloseupBtn.classList.add('active');
-      viewSlabBtn.classList.remove('active');
-      cards.forEach(c => c.classList.add('force-closeup'));
-    } else {
-      viewSlabBtn.classList.add('active');
-      viewCloseupBtn.classList.remove('active');
-      cards.forEach(c => c.classList.remove('force-closeup'));
+    if (viewSlabBtn) {
+      viewSlabBtn.classList.toggle('active', mode === 'slab');
+      viewSlabBtn.setAttribute('aria-pressed', mode === 'slab');
     }
+    if (viewCloseupBtn) {
+      viewCloseupBtn.classList.toggle('active', mode === 'closeup');
+      viewCloseupBtn.setAttribute('aria-pressed', mode === 'closeup');
+    }
+    if (viewApplicationBtn) {
+      viewApplicationBtn.classList.toggle('active', mode === 'application');
+      viewApplicationBtn.setAttribute('aria-pressed', mode === 'application');
+    }
+
+    cards.forEach(c => {
+      c.classList.toggle('force-closeup', mode === 'closeup');
+      c.classList.toggle('force-application', mode === 'application');
+    });
   }
 
-  if (viewSlabBtn && viewCloseupBtn) {
+  if (viewSlabBtn) {
     viewSlabBtn.addEventListener('click', () => setViewMode('slab'));
+  }
+  if (viewCloseupBtn) {
     viewCloseupBtn.addEventListener('click', () => setViewMode('closeup'));
+  }
+  if (viewApplicationBtn) {
+    viewApplicationBtn.addEventListener('click', () => setViewMode('application'));
   }
 
   // Initialize

@@ -195,17 +195,86 @@ export function initHeader() {
   // 4. Initialize Header Search Transformation
   initSearch();
 
-  // 5. Language Switcher (EN / ES)
-  const langBtns = document.querySelectorAll('.lang-btn');
-  langBtns.forEach((btn) => {
+  // 5. Language Switcher (Dropdown & Mobile Compatibility)
+  const langDropdown = document.getElementById('navLangDropdown');
+  const langTrigger = document.getElementById('navLangTrigger');
+  const langCurrentLabel = document.querySelector('.nav-lang-current');
+  const langOptions = document.querySelectorAll('.nav-lang-option');
+  const mobileLangBtns = document.querySelectorAll('.mobile-lang-switch .lang-btn');
+
+  function setLanguage(targetLang) {
+    const langUpper = targetLang.toUpperCase();
+    if (langCurrentLabel) {
+      langCurrentLabel.textContent = langUpper;
+    }
+
+    // Update dropdown options
+    langOptions.forEach(opt => {
+      const isSelected = opt.getAttribute('data-lang') === targetLang;
+      opt.classList.toggle('is-selected', isSelected);
+      const parentLi = opt.closest('li');
+      if (parentLi) {
+        parentLi.setAttribute('aria-selected', isSelected.toString());
+      }
+    });
+
+    // Update mobile buttons
+    mobileLangBtns.forEach(btn => {
+      const isActive = btn.getAttribute('data-lang') === targetLang;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-pressed', isActive.toString());
+    });
+
+    // Close dropdown
+    if (langDropdown) {
+      langDropdown.classList.remove('is-open');
+    }
+    if (langTrigger) {
+      langTrigger.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  // Toggle Dropdown
+  if (langTrigger && langDropdown) {
+    langTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = langDropdown.classList.toggle('is-open');
+      langTrigger.setAttribute('aria-expanded', isOpen.toString());
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('is-open');
+        langTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && langDropdown.classList.contains('is-open')) {
+        langDropdown.classList.remove('is-open');
+        langTrigger.setAttribute('aria-expanded', 'false');
+        langTrigger.focus();
+      }
+    });
+  }
+
+  // Option Clicks
+  langOptions.forEach(opt => {
+    opt.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetLang = opt.getAttribute('data-lang');
+      if (targetLang) setLanguage(targetLang);
+    });
+  });
+
+  // Mobile drawer clicks
+  mobileLangBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const targetLang = btn.getAttribute('data-lang');
-      langBtns.forEach((b) => {
-        const isActive = b.getAttribute('data-lang') === targetLang;
-        b.classList.toggle('is-active', isActive);
-        b.setAttribute('aria-pressed', isActive.toString());
-      });
+      if (targetLang) setLanguage(targetLang);
     });
   });
 }

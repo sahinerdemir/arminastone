@@ -238,31 +238,26 @@
                 <li>
                   <a href="./index.html#about" class="mega-about-link">
                     <span class="mega-about-title">About Armina Stone</span>
-                    <span class="mega-about-sub">Pennsylvania's premier natural stone source</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#our-process" class="mega-about-link">
+                  <a href="./index.html#our-process" class="mega-about-link">
                     <span class="mega-about-title">Our Process</span>
-                    <span class="mega-about-sub">From digital laser templating to white-glove install</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#craftsmanship" class="mega-about-link">
+                  <a href="./index.html#craftsmanship" class="mega-about-link">
                     <span class="mega-about-title">Craftsmanship &amp; Tech</span>
-                    <span class="mega-about-sub">Robotic 5-axis waterjets &amp; master hand-finishing</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#sustainability" class="mega-about-link">
+                  <a href="./index.html#sustainability" class="mega-about-link">
                     <span class="mega-about-title">Sustainability</span>
-                    <span class="mega-about-sub">Closed-loop water recycling &amp; ethical quarrying</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" class="mega-about-link">
+                  <a href="./index.html#contact" class="mega-about-link">
                     <span class="mega-about-title">Contact &amp; Careers</span>
-                    <span class="mega-about-sub">Join our team or consult a stone specialist</span>
                   </a>
                 </li>
               </ul>
@@ -280,26 +275,27 @@
               <ul class="mega-about-list">
                 <li>
                   <a href="./index.html#showrooms" class="mega-about-link">
+                    <span class="mega-about-title">Armina Luxe Miami</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="./index.html#showrooms" class="mega-about-link">
                     <span class="mega-about-title">Cheswick Flagship &amp; HQ</span>
-                    <span class="mega-about-sub">1136 Freeport Rd &bull; 50,000 sq ft Slab Gallery</span>
                   </a>
                 </li>
                 <li>
                   <a href="./index.html#showrooms" class="mega-about-link">
                     <span class="mega-about-title">Robinson Township</span>
-                    <span class="mega-about-sub">1000 Park Manor Blvd &bull; Design Studio</span>
                   </a>
                 </li>
                 <li>
                   <a href="./index.html#showrooms" class="mega-about-link">
                     <span class="mega-about-title">Cranberry Township</span>
-                    <span class="mega-about-sub">20400 Route 19 &bull; Slab Center</span>
                   </a>
                 </li>
                 <li>
                   <a href="./index.html#showrooms" class="mega-about-link">
                     <span class="mega-about-title">Schedule a Private Tour</span>
-                    <span class="mega-about-sub">Consult an architectural stone specialist</span>
                   </a>
                 </li>
               </ul>
@@ -310,7 +306,7 @@
 
       <!-- Right Actions: Search Icon & Get a Quote CTA -->
       <div class="nav-actions">
-        <!-- Search Trigger Icon -->
+        <!-- Search Trigger Icon (Slightly Enlarged) -->
         <button class="nav-search-btn" aria-label="Open search interface" aria-expanded="false" aria-controls="header-search-bar">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="7"></circle>
@@ -318,22 +314,33 @@
           </svg>
         </button>
 
-        <!-- Minimal Language Selector (EN / ES) -->
-        <div class="nav-lang-switch" role="group" aria-label="Language Selector">
-          <button type="button" class="lang-btn is-active" aria-pressed="true" data-lang="en">EN</button>
-          <span class="lang-divider" aria-hidden="true">/</span>
-          <button type="button" class="lang-btn" aria-pressed="false" data-lang="es">ES</button>
+        <!-- Luxury Language Selector Dropdown -->
+        <div class="nav-lang-dropdown" id="navLangDropdown">
+          <button type="button" class="nav-lang-trigger" id="navLangTrigger" aria-expanded="false" aria-haspopup="listbox" aria-label="Select Language">
+            <span class="nav-lang-current">EN</span>
+            <svg class="nav-lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <ul class="nav-lang-menu" role="listbox" aria-label="Select Language">
+            <li role="option" aria-selected="true">
+              <button type="button" class="nav-lang-option is-selected" data-lang="en">
+                <span>English (EN)</span>
+                <svg class="nav-lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </li>
+            <li role="option" aria-selected="false">
+              <button type="button" class="nav-lang-option" data-lang="es">
+                <span>Español (ES)</span>
+                <svg class="nav-lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </li>
+          </ul>
         </div>
-
-        <!-- Quote CTA Button -->
-        <a href="./index.html#quote" class="nav-quote-btn">
-          <span class="btn-text-full">Get a Quote</span>
-          <span class="btn-text-compact">Quote</span>
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="4" y1="10" x2="15" y2="10"></line>
-            <polyline points="10 5 15 10 10 15"></polyline>
-          </svg>
-        </a>
       </div>
 
       <!-- Search Transformation Interface (Morphs entire header into white search input) -->
@@ -596,38 +603,11 @@
           </svg>
         </button>
         <ul class="mobile-sublinks">
-          <li>
-            <a href="./index.html#showrooms" class="mobile-sublink">
-              <div class="mobile-sublink-text">
-                <span class="mobile-sublink-title">Cheswick Flagship &amp; HQ</span>
-                <span class="mobile-sublink-sub">1136 Freeport Rd &bull; 50,000 sq ft Gallery</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="./index.html#showrooms" class="mobile-sublink">
-              <div class="mobile-sublink-text">
-                <span class="mobile-sublink-title">Robinson Township</span>
-                <span class="mobile-sublink-sub">1000 Park Manor Blvd &bull; Design Studio</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="./index.html#showrooms" class="mobile-sublink">
-              <div class="mobile-sublink-text">
-                <span class="mobile-sublink-title">Cranberry Township</span>
-                <span class="mobile-sublink-sub">20400 Route 19 &bull; Slab Center</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="./index.html#showrooms" class="mobile-sublink">
-              <div class="mobile-sublink-text">
-                <span class="mobile-sublink-title">Schedule a Private Tour</span>
-                <span class="mobile-sublink-sub">Consult an architectural stone specialist</span>
-              </div>
-            </a>
-          </li>
+          <li><a href="./index.html#showrooms" class="mobile-sublink"><span class="mobile-sublink-title">Armina Luxe Miami</span></a></li>
+          <li><a href="./index.html#showrooms" class="mobile-sublink"><span class="mobile-sublink-title">Cheswick Flagship &amp; HQ</span></a></li>
+          <li><a href="./index.html#showrooms" class="mobile-sublink"><span class="mobile-sublink-title">Robinson Township</span></a></li>
+          <li><a href="./index.html#showrooms" class="mobile-sublink"><span class="mobile-sublink-title">Cranberry Township</span></a></li>
+          <li><a href="./index.html#showrooms" class="mobile-sublink"><span class="mobile-sublink-title">Schedule a Private Tour</span></a></li>
         </ul>
       </li>
     </ul>
@@ -707,13 +687,6 @@
         <div class="granite-detail-gallery">
           <div class="granite-detail-viewer" id="galleryViewer">
             <img id="mainDetailImg" src="./assets/images/granite/nero-mist-slab.png" alt="Nero Mist Granite Slab View" class="granite-detail-img" loading="eager">
-            <div class="granite-badge-top-left">
-              <span class="granite-badge granite-badge-finish">Leathered Finish</span>
-              <span class="granite-badge granite-badge-origin">Brazil</span>
-            </div>
-            <div class="granite-badge-top-right">
-              <span class="granite-badge-thickness">3CM</span>
-            </div>
           </div>
 
           <!-- Gallery View Switcher Tabs -->
@@ -725,6 +698,10 @@
             <button type="button" id="btnViewTexture" class="btn-gallery-tab" onclick="switchGalleryView('texture')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line></svg>
               <span>Close-Up Texture</span>
+            </button>
+            <button type="button" id="btnViewApp" class="btn-gallery-tab" onclick="switchGalleryView('application')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              <span>In Application</span>
             </button>
           </div>
         </div>
@@ -838,6 +815,7 @@
     </div>
 
     <!-- Related Granite Slabs Section -->
+    <!-- Related Granite Slabs Section -->
     <section class="granite-related-section" aria-label="More Granite Slabs in Stock">
       <div class="granite-detail-container">
         <div class="granite-related-header">
@@ -845,28 +823,26 @@
             <span class="granite-eyebrow">EXPLORE MORE STONES</span>
             <h2 class="granite-related-title">More Granite Slabs in Stock</h2>
           </div>
-          <a href="./granite.html" class="btn-hero-contact" style="color: #181614; border-color: rgba(24, 22, 20, 0.2); background: #FFFFFF;">
+          <a href="./granite.html" class="btn-hero-contact btn-related-view-all desktop-only" style="color: #181614; border-color: rgba(24, 22, 20, 0.2); background: #FFFFFF;">
             <span>View All 15 Slabs</span>
           </a>
         </div>
+      </div>
 
+      <div class="granite-related-carousel-wrap">
         <div class="granite-grid">
           <article class="granite-card reveal-item">
             <a href="./granite-patagonia.html" class="granite-card-media" aria-label="View Patagonia details">
               <img src="./assets/images/granite/patagonia-slab.jpg" alt="Patagonia Slab" class="granite-card-img granite-img-slab" loading="lazy">
               <img src="./assets/images/granite/patagonia-closeup.jpg" alt="Patagonia Texture" class="granite-card-img granite-img-closeup" loading="lazy">
-              <div class="granite-badge-top-left">
-                <span class="granite-badge granite-badge-finish">Polished</span>
-                <span class="granite-badge granite-badge-origin">Italy</span>
-              </div>
             </a>
             <div class="granite-card-content">
               <div class="granite-card-header">
                 <h3 class="granite-card-title"><a href="./granite-patagonia.html">Patagonia</a></h3>
-                <span class="granite-card-meta">Italy</span>
+                <span class="granite-card-meta">POLISHED &bull; ITALY &bull; 2CM</span>
               </div>
               <div class="granite-card-actions">
-                <a href="./granite-patagonia.html" class="btn-card-details">
+                <a href="./granite-patagonia.html" class="granite-card-link-text" aria-label="View details">
                   <span>View Details</span>
                   <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="10" x2="16" y2="10"></line><polyline points="10 4 16 10 10 16"></polyline></svg>
                 </a>
@@ -877,18 +853,14 @@
             <a href="./granite-titanium.html" class="granite-card-media" aria-label="View Titanium details">
               <img src="./assets/images/granite/titanium-slab.jpg" alt="Titanium Slab" class="granite-card-img granite-img-slab" loading="lazy">
               <img src="./assets/images/granite/titanium-closeup.jpg" alt="Titanium Texture" class="granite-card-img granite-img-closeup" loading="lazy">
-              <div class="granite-badge-top-left">
-                <span class="granite-badge granite-badge-finish">Leathered</span>
-                <span class="granite-badge granite-badge-origin">Brazil</span>
-              </div>
             </a>
             <div class="granite-card-content">
               <div class="granite-card-header">
                 <h3 class="granite-card-title"><a href="./granite-titanium.html">Titanium</a></h3>
-                <span class="granite-card-meta">Brazil</span>
+                <span class="granite-card-meta">LEATHERED &bull; BRAZIL &bull; 3CM</span>
               </div>
               <div class="granite-card-actions">
-                <a href="./granite-titanium.html" class="btn-card-details">
+                <a href="./granite-titanium.html" class="granite-card-link-text" aria-label="View details">
                   <span>View Details</span>
                   <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="10" x2="16" y2="10"></line><polyline points="10 4 16 10 10 16"></polyline></svg>
                 </a>
@@ -899,18 +871,14 @@
             <a href="./granite-via-lactea.html" class="granite-card-media" aria-label="View Via Lactea details">
               <img src="./assets/images/granite/via-lactea-slab.png" alt="Via Lactea Slab" class="granite-card-img granite-img-slab" loading="lazy">
               <img src="./assets/images/granite/via-lactea-closeup.png" alt="Via Lactea Texture" class="granite-card-img granite-img-closeup" loading="lazy">
-              <div class="granite-badge-top-left">
-                <span class="granite-badge granite-badge-finish">Polished</span>
-                <span class="granite-badge granite-badge-origin">Brazil</span>
-              </div>
             </a>
             <div class="granite-card-content">
               <div class="granite-card-header">
                 <h3 class="granite-card-title"><a href="./granite-via-lactea.html">Via Lactea</a></h3>
-                <span class="granite-card-meta">Brazil</span>
+                <span class="granite-card-meta">POLISHED &bull; BRAZIL &bull; 3CM</span>
               </div>
               <div class="granite-card-actions">
-                <a href="./granite-via-lactea.html" class="btn-card-details">
+                <a href="./granite-via-lactea.html" class="granite-card-link-text" aria-label="View details">
                   <span>View Details</span>
                   <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="10" x2="16" y2="10"></line><polyline points="10 4 16 10 10 16"></polyline></svg>
                 </a>
@@ -919,55 +887,34 @@
           </article>
         </div>
       </div>
+
+      <div class="granite-detail-container mobile-only-cta">
+        <div class="granite-related-footer-cta">
+          <a href="./granite.html" class="btn-hero-contact" style="color: #181614; border-color: rgba(24, 22, 20, 0.2); background: #FFFFFF;">
+            <span>View All 15 Slabs</span>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Section: Warehouse Callout Banner -->
-    <section class="granite-warehouse-banner" aria-label="Miami Warehouse Slab Yard">
-      <div class="granite-warehouse-inner">
-        <div class="granite-warehouse-left">
-          <div class="granite-eyebrow">
-            <span class="granite-eyebrow-dot"></span>
-            <span>WHOLESALE SLAB YARD &bull; MIAMI, FL</span>
-          </div>
-          <h2 class="granite-warehouse-title">Experience Over 1,200 Quarried Slabs <span class="serif-italic">in Person</span></h2>
-          <p class="granite-warehouse-text">
-            Every natural stone block is entirely unique. Visit our climate-controlled 50,000 sq ft showroom and slab yard in Miami to inspect full consecutive bundles, evaluate natural lighting reflections, and work directly with our master stone technicians on custom bookmatching and CNC cutting.
-          </p>
-          <div class="granite-warehouse-actions">
-            <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="btn-hero-inquire">
-              <span>Book Showroom Appointment</span>
-              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="10" x2="16" y2="10"></line><polyline points="10 4 16 10 10 16"></polyline></svg>
-            </a>
-            <a href="./granite.html" class="btn-hero-contact">
-              <span>Browse All Granite</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="granite-warehouse-right">
-          <div class="granite-warehouse-card">
-            <div class="granite-wh-item">
-              <svg class="granite-wh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              <div>
-                <div class="granite-wh-heading">Miami Wholesale Slab Yard</div>
-                <div class="granite-wh-sub">7300 NW 77th St, Miami, FL 33166</div>
-              </div>
-            </div>
-
-            <div class="granite-wh-item">
-              <svg class="granite-wh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-              <div>
-                <div class="granite-wh-heading">Operating Hours</div>
-                <div class="granite-wh-sub">Monday &ndash; Saturday: 8:00 AM &ndash; 5:00 PM</div>
-              </div>
-            </div>
-
-            <div class="granite-wh-item">
-              <svg class="granite-wh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              <div>
-                <div class="granite-wh-heading">Direct Slab Inquiries</div>
-                <div class="granite-wh-sub">(305) 555-STONE &bull; sales@armina.com</div>
-              </div>
+    <!-- Section: Warehouse Callout Banner (Radius Box within Site Grid) -->
+    <section class="granite-warehouse-section" aria-label="Miami Warehouse Slab Yard">
+      <div class="granite-container">
+        <div class="granite-warehouse-banner reveal-item">
+          <div class="granite-warehouse-content">
+            <h2 class="granite-warehouse-title">Experience Over 1,200 Quarried Slabs <span class="serif-italic">in Person</span></h2>
+            <p class="granite-warehouse-text">
+              Every natural stone block is entirely unique. Visit our climate-controlled 50,000 sq ft showroom and slab yard in Miami to inspect full consecutive bundles, evaluate natural lighting reflections, and work directly with our master stone technicians on custom bookmatching and precision CNC cutting.
+            </p>
+            <div class="granite-warehouse-actions">
+              <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="btn-hero-inquire">
+                <span>Book Showroom Appointment</span>
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="10" x2="16" y2="10"></line><polyline points="10 4 16 10 10 16"></polyline></svg>
+              </a>
+              <a href="./granite.html" class="btn-hero-contact">
+                <span>Browse All Granite</span>
+              </a>
             </div>
           </div>
         </div>
@@ -1103,7 +1050,7 @@
         </div>
 
         <!-- Column 5: Showrooms -->
-        <div class="footer-showrooms-col footer-accordion-item">
+        <div class="footer-showrooms-col footer-accordion-item" id="showrooms">
           <button type="button" class="footer-col-title footer-accordion-btn" aria-expanded="false">
             <span>OUR SHOWROOMS</span>
             <svg class="footer-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1112,6 +1059,25 @@
           </button>
           <div class="footer-accordion-panel">
             <div class="footer-showrooms-list">
+              <a href="https://maps.google.com/?q=3635+NE+1st+Avenue,+Suite+115E,+Miami,+FL+33137" target="_blank" rel="noopener noreferrer" class="footer-showroom-item" aria-label="Armina Luxe Miami Showroom directions">
+                <div class="footer-showroom-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="footer-showroom-content">
+                  <div class="footer-showroom-name">Armina Luxe &bull; Miami, FL</div>
+                  <div class="footer-showroom-addr">3635 NE 1st Avenue, Suite 115E, Miami FL 33137</div>
+                </div>
+                <div class="footer-showroom-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </a>
+
               <a href="https://maps.google.com/?q=1136+Freeport+Rd,+Cheswick,+PA+15024" target="_blank" rel="noopener noreferrer" class="footer-showroom-item" aria-label="Cheswick Showroom directions">
                 <div class="footer-showroom-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -1249,16 +1215,25 @@
       var img = document.getElementById('mainDetailImg');
       var btnSlab = document.getElementById('btnViewSlab');
       var btnTex = document.getElementById('btnViewTexture');
+      var btnApp = document.getElementById('btnViewApp');
       if (view === 'texture') {
         img.src = './assets/images/granite/nero-mist-closeup.png';
         img.alt = 'Nero Mist Granite High-Res Texture';
         btnTex.classList.add('active');
         btnSlab.classList.remove('active');
+        if (btnApp) btnApp.classList.remove('active');
+      } else if (view === 'application') {
+        img.src = './assets/images/granite/nero-mist-application.jpg';
+        img.alt = 'Nero Mist Granite In Application';
+        if (btnApp) btnApp.classList.add('active');
+        btnSlab.classList.remove('active');
+        btnTex.classList.remove('active');
       } else {
         img.src = './assets/images/granite/nero-mist-slab.png';
         img.alt = 'Nero Mist Granite Full Slab View';
         btnSlab.classList.add('active');
         btnTex.classList.remove('active');
+        if (btnApp) btnApp.classList.remove('active');
       }
     }
   </script>

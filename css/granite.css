@@ -5,7 +5,7 @@
 
 /* Page Background & Base Structure */
 .granite-page {
-  background-color: #F8F1EB;
+  background-color: #ffffff;
   color: #181614;
   min-height: 100vh;
 }
@@ -241,7 +241,7 @@
    -------------------------------------------------------------------------- */
 .granite-filter-section {
   position: relative;
-  background-color: #F8F1EB;
+  background-color: #ffffff;
   border-bottom: 1px solid rgba(24, 22, 20, 0.08);
   padding: clamp(20px, 3vh, 28px) var(--site-grid-margin) 16px;
   transition: background-color 0.25s ease;
@@ -392,11 +392,11 @@
 .granite-view-switcher {
   display: inline-flex;
   align-items: center;
-  background-color: #EDE4DC;
+  background-color: #F0F0F0;
   border-radius: 999px;
   padding: 3px;
   gap: 2px;
-  border: 1px solid rgba(24, 22, 20, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   margin-left: auto;
 }
 
@@ -411,7 +411,7 @@
   font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 500;
-  color: #766E65;
+  color: #555555;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -424,8 +424,8 @@
 
 .granite-view-btn.active {
   background-color: #FFFFFF;
-  color: #181614;
-  box-shadow: 0 2px 6px rgba(24, 22, 20, 0.08);
+  color: #111111;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   font-weight: 600;
 }
 
@@ -453,12 +453,12 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #EDE4DC;
-  border: 1px solid rgba(24, 22, 20, 0.1);
+  background-color: #F0F0F0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 999px;
   padding: 4px 10px 4px 12px;
   font-size: 11.5px;
-  color: #181614;
+  color: #111111;
   font-weight: 500;
 }
 
@@ -552,7 +552,8 @@
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
   display: flex;
   flex-direction: column;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+  transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s ease;
 }
@@ -562,6 +563,9 @@
   box-shadow: 0 20px 40px -6px rgba(24, 22, 20, 0.12),
               0 8px 16px -2px rgba(24, 22, 20, 0.05);
   border-color: rgba(24, 22, 20, 0.18);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
 }
 
 /* Card Media (Dual Slab / Texture Swap) */
@@ -595,14 +599,39 @@
   opacity: 0;
 }
 
-/* On card hover, reveal high-res close-up texture smoothly */
-.granite-card:hover .granite-img-closeup,
-.granite-card.force-closeup .granite-img-closeup {
+.granite-img-application {
+  z-index: 3;
+  opacity: 0;
+}
+
+/* Default / Slab view: hover reveals close-up texture */
+.granite-card:hover .granite-img-closeup {
   opacity: 1;
 }
 
-.granite-card:hover .granite-img-slab,
-.granite-card:hover .granite-img-closeup {
+/* Force Closeup mode */
+.granite-card.force-closeup .granite-img-closeup {
+  opacity: 1;
+  z-index: 2;
+}
+
+.granite-card.force-closeup:hover .granite-img-slab {
+  opacity: 1;
+  z-index: 4;
+}
+
+/* Force Application mode */
+.granite-card.force-application .granite-img-application {
+  opacity: 1;
+  z-index: 3;
+}
+
+.granite-card.force-application:hover .granite-img-slab {
+  opacity: 1;
+  z-index: 4;
+}
+
+.granite-card:hover .granite-card-img {
   transform: scale(1.05);
 }
 
@@ -757,9 +786,41 @@
 .granite-card-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   margin-top: auto;
   padding-top: 14px;
   border-top: 1px solid rgba(24, 22, 20, 0.07);
+}
+
+.granite-card-link-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #181614;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 4px 0;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.granite-card-link-text svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.granite-card-link-text:hover {
+  color: #8C2A1E;
+}
+
+.granite-card-link-text:hover svg {
+  transform: translateX(4px);
 }
 
 .btn-card-details {
@@ -1172,30 +1233,80 @@
 }
 
 /* --------------------------------------------------------------------------
-   Warehouse Visit Callout Section
+   Warehouse Visit Callout Section (Radius Grid Box with Specular Reflected Gradient)
    -------------------------------------------------------------------------- */
-.granite-warehouse-banner {
-  background-color: #12100E;
-  color: #FFFFFF;
-  padding: clamp(60px, 8vh, 100px) var(--site-grid-margin);
-  position: relative;
-  overflow: hidden;
+.granite-warehouse-section {
+  padding: 0 var(--site-grid-margin) clamp(64px, 8vh, 100px);
+  background-color: transparent;
 }
 
-.granite-warehouse-inner {
-  max-width: 1360px;
-  margin: 0 auto;
+.granite-warehouse-banner {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  padding: clamp(52px, 6.5vh, 88px) clamp(36px, 5.5vw, 76px);
+  background: 
+    /* Specular glass reflection diagonal sheen */
+    linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 28%, transparent 55%),
+    /* Warm ambient specular glow top-right */
+    radial-gradient(circle 520px at 92% 18%, rgba(203, 185, 158, 0.22) 0%, rgba(203, 185, 158, 0.08) 45%, transparent 70%),
+    /* Cool slate deep highlight bottom-left */
+    radial-gradient(circle 480px at 8% 88%, rgba(68, 62, 56, 0.45) 0%, transparent 65%),
+    /* Luxury dark titanium base gradient */
+    linear-gradient(115deg, #1C1916 0%, #141210 48%, #0C0A09 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 20px rgba(0, 0, 0, 0.4);
+  transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+.granite-warehouse-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 180%;
+  height: 100%;
+  background: linear-gradient(
+    75deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 38%,
+    rgba(255, 255, 255, 0.12) 48%,
+    rgba(255, 255, 255, 0.02) 58%,
+    transparent 100%
+  );
+  pointer-events: none;
+  transform: translateX(-10%);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.granite-warehouse-banner:hover {
+  border-color: rgba(203, 185, 158, 0.35);
+  box-shadow: 
+    0 32px 75px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 0 24px rgba(0, 0, 0, 0.4);
+}
+
+.granite-warehouse-banner:hover::before {
+  transform: translateX(12%);
+}
+
+.granite-warehouse-content {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 48px;
-  align-items: center;
+  max-width: 680px;
 }
 
 .granite-warehouse-title {
   font-family: var(--font-serif);
-  font-size: clamp(34px, 4vw, 56px);
+  font-size: clamp(34px, 4vw, 54px);
   font-weight: 400;
   line-height: 1.1;
   color: #FFFFFF;
@@ -1209,10 +1320,10 @@
 
 .granite-warehouse-text {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 15.5px;
   line-height: 1.65;
-  color: rgba(250, 245, 238, 0.8);
-  margin: 0 0 28px 0;
+  color: rgba(250, 245, 238, 0.85);
+  margin: 0 0 32px 0;
   max-width: 620px;
 }
 
@@ -1220,47 +1331,6 @@
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-}
-
-.granite-warehouse-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 20px;
-  padding: 30px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.granite-wh-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.granite-wh-icon {
-  width: 22px;
-  height: 22px;
-  color: #CBB99E;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.granite-wh-heading {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 600;
-  color: #FFFFFF;
-  margin-bottom: 2px;
-}
-
-.granite-wh-sub {
-  font-family: var(--font-sans);
-  font-size: 12.5px;
-  color: rgba(250, 245, 238, 0.65);
-  line-height: 1.4;
 }
 
 /* --------------------------------------------------------------------------
@@ -1319,8 +1389,32 @@
   }
   
   .granite-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
     max-width: 100%;
     min-width: 100%;
+  }
+
+  .granite-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    stroke: #766E65;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .granite-search-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 40px 0 44px;
+    font-size: 13.5px;
+    box-sizing: border-box;
   }
 
   .granite-dropdowns-group {
@@ -1339,11 +1433,22 @@
   }
   
   .granite-view-switcher {
-    align-self: flex-start;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    margin-left: 0;
+    align-self: stretch;
+  }
+
+  .granite-view-btn {
+    flex: 1 1 50%;
+    justify-content: center;
+    text-align: center;
+    padding: 9px 12px;
   }
   
   .granite-card-actions {
-    grid-template-columns: 1fr;
+    justify-content: flex-start;
   }
 }
 
@@ -1354,10 +1459,10 @@
 
 .granite-detail-section {
   padding-top: calc(var(--nav-top) + var(--nav-height) + 32px);
-  padding-bottom: clamp(64px, 8vh, 100px);
+  padding-bottom: clamp(32px, 4vh, 50px);
   padding-left: var(--site-grid-margin);
   padding-right: var(--site-grid-margin);
-  background-color: #F8F1EB;
+  background-color: #ffffff;
 }
 
 .granite-detail-container {
@@ -1379,22 +1484,23 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #181614;
+  color: #111111;
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
   padding: 8px 16px;
-  background-color: #EDE4DC;
+  background-color: #EFEFEF;
   border-radius: 999px;
-  border: 1px solid rgba(24, 22, 20, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   transition: all 0.2s ease;
 }
 
 .btn-back-catalog:hover {
-  background-color: #FFFFFF;
+  background-color: #E5E5E5;
+  color: #000000;
   transform: translateX(-3px);
-  box-shadow: 0 2px 8px rgba(24, 22, 20, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .granite-detail-breadcrumbs {
@@ -1436,12 +1542,12 @@
 
 .granite-detail-viewer {
   position: relative;
-  background-color: #141210;
+  background-color: transparent;
   border-radius: 24px;
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  border: 1px solid rgba(24, 22, 20, 0.1);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  border: none;
+  box-shadow: none;
 }
 
 .granite-detail-img {
@@ -1465,11 +1571,11 @@
   display: inline-flex;
   align-items: center;
   align-self: center;
-  background-color: #EDE4DC;
+  background-color: #EFEFEF;
   border-radius: 999px;
   padding: 4px;
   gap: 4px;
-  border: 1px solid rgba(24, 22, 20, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .btn-gallery-tab {
@@ -1483,7 +1589,7 @@
   font-family: var(--font-sans);
   font-size: 12.5px;
   font-weight: 500;
-  color: #766E65;
+  color: #555555;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -1496,9 +1602,9 @@
 
 .btn-gallery-tab.active {
   background-color: #FFFFFF;
-  color: #181614;
+  color: #111111;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(24, 22, 20, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Information Column */
@@ -1706,11 +1812,11 @@
   font-weight: 500;
 }
 
-/* Related Slabs Section */
+/* Related Slabs Section - Seamless Integration without extra background or divider line */
 .granite-related-section {
-  padding: clamp(60px, 8vh, 90px) var(--site-grid-margin);
-  background-color: #FAF5EE;
-  border-top: 1px solid rgba(24, 22, 20, 0.08);
+  padding: 0 var(--site-grid-margin) clamp(64px, 8vh, 100px);
+  background-color: transparent;
+  border-top: none;
 }
 
 .granite-related-header {
@@ -1721,6 +1827,10 @@
   margin: 0 auto clamp(28px, 4vh, 40px);
 }
 
+.granite-related-header .granite-eyebrow {
+  color: #111111;
+}
+
 .granite-related-title {
   font-family: var(--font-serif);
   font-size: clamp(30px, 3.5vw, 44px);
@@ -1729,11 +1839,91 @@
   margin: 0;
 }
 
+.granite-related-carousel-wrap {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.mobile-only-cta {
+  display: none;
+}
+
+.granite-related-footer-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
 @media (max-width: 1024px) {
   .granite-detail-main-grid {
     grid-template-columns: 1fr;
   }
   .granite-detail-gallery {
     position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .granite-related-section {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: clamp(48px, 6vh, 72px);
+    overflow: hidden;
+  }
+
+  .granite-related-section .granite-detail-container {
+    padding-left: var(--site-grid-margin);
+    padding-right: var(--site-grid-margin);
+  }
+
+  .granite-related-header .btn-related-view-all.desktop-only {
+    display: none;
+  }
+
+  .mobile-only-cta {
+    display: block;
+  }
+
+  .granite-related-carousel-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    padding-left: var(--site-grid-margin);
+    padding-right: var(--site-grid-margin);
+    box-sizing: border-box;
+  }
+
+  .granite-related-carousel-wrap::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  .granite-related-carousel-wrap .granite-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    width: max-content;
+    padding-bottom: 8px;
+  }
+
+  .granite-related-carousel-wrap .granite-card {
+    flex: 0 0 280px;
+    width: 280px;
+    max-width: 80vw;
+    scroll-snap-align: start;
+  }
+
+  .granite-related-footer-cta {
+    margin-top: 20px;
+  }
+
+  .granite-related-footer-cta .btn-hero-contact {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 }

@@ -707,11 +707,22 @@
         <!-- Gallery Column -->
         <div class="granite-detail-gallery">
           <div class="granite-detail-viewer" id="galleryViewer">
-            <img id="mainDetailImg" src="./assets/images/granite/eclipse-slab.png" alt="Eclipse Granite Slab View" class="granite-detail-img" loading="eager">
+            <div class="granite-viewer-track" id="galleryTrack">
+              <div class="granite-viewer-slide" data-view="slab">
+                <img id="mainDetailImg" src="./assets/images/granite/eclipse-slab.png" alt="Eclipse Granite Full Slab View" class="granite-detail-img" loading="eager">
+              </div>
+              <div class="granite-viewer-slide" data-view="texture">
+                <img src="./assets/images/granite/eclipse-closeup.png" alt="Eclipse Granite High-Res Texture" class="granite-detail-img" loading="lazy">
+              </div>
+              <div class="granite-viewer-slide" data-view="application">
+                <img src="./assets/images/granite/eclipse-application.jpg" alt="Eclipse Granite In Application" class="granite-detail-img" loading="lazy">
+              </div>
+            </div>
           </div>
 
           <!-- Gallery View Switcher Tabs -->
           <div class="granite-gallery-tabs" role="group" aria-label="Image View Switcher">
+            <span class="granite-gallery-glider" aria-hidden="true"></span>
             <button type="button" id="btnViewSlab" class="btn-gallery-tab active" onclick="switchGalleryView('slab')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
               <span>Slab View</span>
@@ -1230,33 +1241,88 @@
     </div>
   </footer>
 
-  <!-- Gallery Image Switching Script -->
+    <!-- Gallery Image Switching & Smooth Sliding Script -->
   <script>
+    function updateGlider(activeBtn) {
+      var tabs = document.querySelector('.granite-gallery-tabs');
+      var glider = tabs ? tabs.querySelector('.granite-gallery-glider') : null;
+      if (!tabs || !glider) return;
+      if (!activeBtn) activeBtn = tabs.querySelector('.btn-gallery-tab.active') || tabs.querySelector('.btn-gallery-tab');
+      if (!activeBtn) return;
+      var tabsRect = tabs.getBoundingClientRect();
+      var btnRect = activeBtn.getBoundingClientRect();
+      var left = btnRect.left - tabsRect.left;
+      glider.style.width = btnRect.width + 'px';
+      glider.style.transform = 'translate3d(' + left + 'px, 0, 0)';
+    }
+
     function switchGalleryView(view) {
-      var img = document.getElementById('mainDetailImg');
+      var track = document.getElementById('galleryTrack');
       var btnSlab = document.getElementById('btnViewSlab');
       var btnTex = document.getElementById('btnViewTexture');
       var btnApp = document.getElementById('btnViewApp');
+      var activeBtn = btnSlab;
+
       if (view === 'texture') {
-        img.src = './assets/images/granite/eclipse-closeup.png';
-        img.alt = 'Eclipse Granite High-Res Texture';
-        btnTex.classList.add('active');
-        btnSlab.classList.remove('active');
+        if (track) track.style.transform = 'translate3d(-100%, 0, 0)';
+        if (btnTex) btnTex.classList.add('active');
+        if (btnSlab) btnSlab.classList.remove('active');
         if (btnApp) btnApp.classList.remove('active');
+        activeBtn = btnTex;
       } else if (view === 'application') {
-        img.src = './assets/images/granite/eclipse-application.jpg';
-        img.alt = 'Eclipse Granite In Application';
+        if (track) track.style.transform = 'translate3d(-200%, 0, 0)';
         if (btnApp) btnApp.classList.add('active');
-        btnSlab.classList.remove('active');
-        btnTex.classList.remove('active');
+        if (btnSlab) btnSlab.classList.remove('active');
+        if (btnTex) btnTex.classList.remove('active');
+        activeBtn = btnApp;
       } else {
-        img.src = './assets/images/granite/eclipse-slab.png';
-        img.alt = 'Eclipse Granite Full Slab View';
-        btnSlab.classList.add('active');
-        btnTex.classList.remove('active');
+        if (track) track.style.transform = 'translate3d(0%, 0, 0)';
+        if (btnSlab) btnSlab.classList.add('active');
+        if (btnTex) btnTex.classList.remove('active');
         if (btnApp) btnApp.classList.remove('active');
+        activeBtn = btnSlab;
       }
+      updateGlider(activeBtn);
     }
+
+    // Initialize Glider & Touch Swipe Gestures
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() { updateGlider(); }, 50);
+      window.addEventListener('resize', function() { updateGlider(); });
+
+      var viewer = document.getElementById('galleryViewer');
+      if (!viewer) return;
+      var startX = 0, startY = 0;
+      var views = ['slab', 'texture', 'application'];
+
+      viewer.addEventListener('touchstart', function(e) {
+        if (e.touches.length === 1) {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      viewer.addEventListener('touchend', function(e) {
+        if (!startX) return;
+        var diffX = e.changedTouches[0].clientX - startX;
+        var diffY = e.changedTouches[0].clientY - startY;
+        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+          var btnTex = document.getElementById('btnViewTexture');
+          var btnApp = document.getElementById('btnViewApp');
+          var currentIdx = 0;
+          if (btnApp && btnApp.classList.contains('active')) currentIdx = 2;
+          else if (btnTex && btnTex.classList.contains('active')) currentIdx = 1;
+
+          if (diffX < 0 && currentIdx < 2) {
+            switchGalleryView(views[currentIdx + 1]);
+          } else if (diffX > 0 && currentIdx > 0) {
+            switchGalleryView(views[currentIdx - 1]);
+          }
+        }
+        startX = 0;
+        startY = 0;
+      }, { passive: true });
+    });
   </script>
 
 </body>

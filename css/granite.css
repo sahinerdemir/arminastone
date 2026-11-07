@@ -1657,15 +1657,33 @@
   aspect-ratio: 4 / 3;
   border: none;
   box-shadow: none;
+  touch-action: pan-y pinch-zoom;
 }
 
+/* Sliding Viewer Track for Smooth 60fps Carousel Transition */
+.granite-viewer-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.35, 1);
+  will-change: transform;
+}
+
+.granite-viewer-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.granite-viewer-slide .granite-detail-img,
 .granite-detail-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: opacity 0.35s ease, transform 0.5s ease;
 }
 
 .granite-detail-img.is-hidden {
@@ -1675,32 +1693,56 @@
   inset: 0;
 }
 
-/* Gallery View Switcher Tabs */
+/* Gallery View Switcher Tabs with Animated Sliding Pill Glider */
 .granite-gallery-tabs {
+  position: relative;
   display: inline-flex;
   align-items: center;
   align-self: center;
   background-color: #EFEFEF;
   border-radius: 999px;
   padding: 4px;
-  gap: 4px;
+  gap: 0;
   border: 1px solid rgba(0, 0, 0, 0.06);
+  isolation: isolate;
+}
+
+.granite-gallery-glider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 0;
+  background-color: #FFFFFF;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09), 0 1px 2px rgba(0, 0, 0, 0.05);
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.36s cubic-bezier(0.25, 1, 0.3, 1),
+              width 0.36s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
 .btn-gallery-tab {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: transparent;
+  background: transparent !important;
   border: none;
   padding: 8px 18px;
   border-radius: 999px;
   font-family: var(--font-sans);
   font-size: 12.5px;
   font-weight: 500;
-  color: #555555;
+  color: #666666;
   cursor: pointer;
-  transition: all 0.2s ease;
+  box-shadow: none !important;
+  transition: color 0.25s ease;
+}
+
+.btn-gallery-tab:hover {
+  color: #111111;
 }
 
 .btn-gallery-tab svg {
@@ -1710,10 +1752,8 @@
 }
 
 .btn-gallery-tab.active {
-  background-color: #FFFFFF;
   color: #111111;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Information Column */
@@ -2110,12 +2150,19 @@
     max-width: 360px;
     display: flex;
     box-sizing: border-box;
-    justify-content: center;
-    gap: 3px;
+    justify-content: space-between;
+    gap: 0;
     padding: 3px;
     background-color: #F0ECE6;
     border: 1px solid rgba(24, 22, 20, 0.08);
     border-radius: 999px;
+    position: relative;
+    isolation: isolate;
+  }
+
+  .granite-gallery-glider {
+    top: 3px;
+    bottom: 3px;
   }
 
   .btn-gallery-tab {
@@ -2126,6 +2173,8 @@
     font-size: 11.5px;
     white-space: nowrap;
     gap: 4px;
+    background: transparent !important;
+    box-shadow: none !important;
   }
 
   .btn-gallery-tab svg {

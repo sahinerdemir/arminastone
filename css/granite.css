@@ -15,7 +15,7 @@
    -------------------------------------------------------------------------- */
 .granite-hero {
   position: relative;
-  background-color: #12100E;
+  background-color: #0C0A09;
   color: #FFFFFF;
   padding-top: calc(var(--nav-top) + var(--nav-height) + 40px);
   padding-bottom: clamp(56px, 7vh, 88px);
@@ -31,8 +31,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.18;
-  filter: contrast(1.15) brightness(0.85);
+  opacity: 0.32;
+  filter: contrast(1.12) brightness(0.9);
   pointer-events: none;
   z-index: 1;
 }
@@ -40,7 +40,7 @@
 .granite-hero-gradient {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 75% 30%, rgba(35, 30, 26, 0.6) 0%, rgba(18, 16, 14, 0.95) 70%, #12100E 100%);
+  background: radial-gradient(circle at 70% 30%, rgba(22, 19, 17, 0.35) 0%, rgba(12, 10, 9, 0.88) 65%, #0C0A09 100%);
   pointer-events: none;
   z-index: 2;
 }
@@ -2034,7 +2034,7 @@
     padding: 0;
   }
 
-  /* Dark brown subtle marble hero area holding breadcrumbs & back button */
+  /* Dark black subtle marble hero area holding breadcrumbs & back button */
   .granite-detail-nav-row {
     display: flex;
     flex-direction: column;
@@ -2045,9 +2045,9 @@
     padding-left: var(--site-grid-margin);
     padding-right: var(--site-grid-margin);
     margin-bottom: 0;
-    background-color: #1A1412;
+    background-color: #0C0A09;
     background-image: 
-      radial-gradient(ellipse at 50% 20%, rgba(55, 42, 34, 0.45) 0%, rgba(26, 20, 18, 0.88) 65%, #15100E 100%),
+      radial-gradient(ellipse at 50% 20%, rgba(22, 19, 17, 0.35) 0%, rgba(12, 10, 9, 0.88) 65%, #0C0A09 100%),
       url('../assets/images/footer-marble-bg.jpg');
     background-size: cover;
     background-position: center top;
@@ -2125,9 +2125,9 @@
     aspect-ratio: 4 / 3;
     overflow: hidden;
     margin: 0;
-    background-color: #1A1412;
+    background-color: #0C0A09;
     background-image: 
-      radial-gradient(ellipse at 50% 20%, rgba(55, 42, 34, 0.45) 0%, rgba(26, 20, 18, 0.88) 65%, #15100E 100%),
+      radial-gradient(ellipse at 50% 20%, rgba(22, 19, 17, 0.35) 0%, rgba(12, 10, 9, 0.88) 65%, #0C0A09 100%),
       url('../assets/images/footer-marble-bg.jpg');
     background-size: cover;
     background-position: center center;

@@ -592,6 +592,9 @@
   object-position: center;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
   display: block;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .granite-img-slab {
@@ -609,31 +612,27 @@
   opacity: 0;
 }
 
-/* Default / Slab view: hover reveals close-up texture */
-.granite-card:hover .granite-img-closeup {
+/* Default / Slab view: hover smoothly reveals close-up texture */
+.granite-card:not(.force-closeup):not(.force-application):hover .granite-img-closeup {
   opacity: 1;
 }
 
-/* Force Closeup mode */
+/* Force Closeup mode: resting shows close-up texture; hover smoothly crossfades back to slab */
 .granite-card.force-closeup .granite-img-closeup {
   opacity: 1;
-  z-index: 2;
 }
 
-.granite-card.force-closeup:hover .granite-img-slab {
-  opacity: 1;
-  z-index: 4;
+.granite-card.force-closeup:hover .granite-img-closeup {
+  opacity: 0;
 }
 
-/* Force Application mode */
+/* Force Application mode: resting shows application scene; hover smoothly crossfades back to slab */
 .granite-card.force-application .granite-img-application {
   opacity: 1;
-  z-index: 3;
 }
 
-.granite-card.force-application:hover .granite-img-slab {
-  opacity: 1;
-  z-index: 4;
+.granite-card.force-application:hover .granite-img-application {
+  opacity: 0;
 }
 
 .granite-card:hover .granite-card-img {

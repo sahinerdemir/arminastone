@@ -534,6 +534,32 @@ a.footer-contact-item:hover .footer-contact-icon {
    - Brand logos left-aligned
    ========================================================================== */
 @media (max-width: 860px) {
+  /* Prevent marble background from over-stretching on tall mobile footer;
+     anchor crisp marble to bottom and smoothly fade into solid noir/black at the top */
+  .site-footer {
+    background-image: none;
+    background-color: #120F0D;
+  }
+
+  .site-footer::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: clamp(550px, 65vh, 760px);
+    background-image:
+      linear-gradient(to bottom, #120F0D 0%, rgba(18, 15, 13, 0.82) 20%, rgba(18, 15, 13, 0.25) 50%, transparent 80%),
+      url('../assets/images/footer-marble-bg.jpg');
+    background-size: 100% 100%, cover;
+    background-position: center top, center bottom;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 18%, rgba(0, 0, 0, 0.75) 45%, #000 70%, #000 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 18%, rgba(0, 0, 0, 0.75) 45%, #000 70%, #000 100%);
+  }
+
   .footer-main-grid {
     display: flex;
     flex-direction: column;

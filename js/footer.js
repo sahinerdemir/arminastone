@@ -86,6 +86,7 @@
     updateVisibility();
 
     btn.addEventListener('click', function () {
+      btn.blur();
       window.scrollTo({
         top: 0,
         behavior: 'smooth'

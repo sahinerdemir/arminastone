@@ -1592,7 +1592,7 @@
   padding-bottom: 28px;
   padding-left: max(var(--site-grid-margin), calc((100% - 1360px) / 2 + var(--site-grid-margin)));
   padding-right: max(var(--site-grid-margin), calc((100% - 1360px) / 2 + var(--site-grid-margin)));
-  margin-bottom: clamp(36px, 4vh, 52px);
+  margin-bottom: clamp(66px, calc(4vh + 30px), 82px);
   background-color: #0C0A09;
   background-image: 
     radial-gradient(circle at 70% 30%, rgba(22, 19, 17, 0.35) 0%, rgba(12, 10, 9, 0.88) 65%, #0C0A09 100%),
@@ -1687,7 +1687,7 @@
 /* Gallery Column */
 .granite-detail-gallery {
   position: sticky;
-  top: 100px;
+  top: 130px;
   display: flex;
   flex-direction: column;
   gap: 16px;

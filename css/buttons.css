@@ -204,6 +204,9 @@
   visibility: hidden;
   pointer-events: none;
   transform: translateY(12px) scale(0.92);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -228,20 +231,24 @@
   transform: translateY(0) scale(1);
 }
 
-.back-to-top-btn:hover {
-  background: #FAF5EE;
-  color: #141210;
-  border-color: #FAF5EE;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
-  transform: translateY(-2px) scale(1.04);
-}
+/* Hover only on devices supporting genuine mouse hover */
+@media (hover: hover) and (pointer: fine) {
+  .back-to-top-btn:hover {
+    background: #FAF5EE;
+    color: #141210;
+    border-color: #FAF5EE;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    transform: translateY(-2px) scale(1.04);
+  }
 
-.back-to-top-btn:hover svg {
-  transform: translateY(-2px);
+  .back-to-top-btn:hover svg {
+    transform: translateY(-2px);
+  }
 }
 
 .back-to-top-btn:active {
-  transform: translateY(0) scale(0.96);
+  transform: translateY(0) scale(0.92);
+  background: rgba(32, 28, 24, 0.95);
 }
 
 .back-to-top-btn:focus-visible {
@@ -255,6 +262,16 @@
     bottom: calc(18px + env(safe-area-inset-bottom, 0px));
     width: 42px;
     height: 42px;
+  }
+  .back-to-top-btn:hover {
+    background: rgba(18, 16, 14, 0.88);
+    color: #FAF5EE;
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    transform: translateY(0) scale(1);
+  }
+  .back-to-top-btn:active {
+    transform: translateY(0) scale(0.92);
   }
   .back-to-top-btn svg {
     width: 17px;

@@ -2035,10 +2035,118 @@
   margin: 0;
 }
 
+.granite-related-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.granite-related-arrows {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.granite-related-arrow-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(24, 22, 20, 0.16);
+  background-color: #FFFFFF;
+  color: #181614;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.granite-related-arrow-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.granite-related-arrow-btn:hover:not(:disabled) {
+  background-color: #181614;
+  color: #FFFFFF;
+  border-color: #181614;
+  box-shadow: 0 4px 14px rgba(24, 22, 20, 0.15);
+  transform: translateY(-1px);
+}
+
+.granite-related-arrow-btn.prev:hover:not(:disabled) svg {
+  transform: translateX(-2px);
+}
+
+.granite-related-arrow-btn.next:hover:not(:disabled) svg {
+  transform: translateX(2px);
+}
+
+.granite-related-arrow-btn:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Related Carousel Wrap - Slides on both Desktop & Mobile */
 .granite-related-carousel-wrap {
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 0 24px;
+  box-sizing: border-box;
+  cursor: grab;
+}
+
+.granite-related-carousel-wrap.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+  scroll-behavior: auto;
+}
+
+.granite-related-carousel-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.granite-related-carousel-wrap .granite-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 28px;
+  width: max-content;
+  align-items: stretch;
+  padding: 0;
+  margin: 0;
+}
+
+.granite-related-carousel-wrap .granite-card {
+  flex: 0 0 434px;
+  width: 434px;
+  scroll-snap-align: start;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+@media (max-width: 1400px) and (min-width: 1101px) {
+  .granite-related-carousel-wrap .granite-card {
+    flex: 0 0 calc((100vw - 2 * var(--site-grid-margin) - 2 * 28px) / 3);
+    width: calc((100vw - 2 * var(--site-grid-margin) - 2 * 28px) / 3);
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 861px) {
+  .granite-related-carousel-wrap .granite-card {
+    flex: 0 0 calc((100vw - 2 * var(--site-grid-margin) - 24px) / 2.2);
+    width: calc((100vw - 2 * var(--site-grid-margin) - 24px) / 2.2);
+    gap: 24px;
+  }
 }
 
 .mobile-only-cta {
@@ -2315,6 +2423,10 @@
   }
 
   .granite-related-header .btn-related-view-all.desktop-only {
+    display: none;
+  }
+
+  .granite-related-arrows {
     display: none;
   }
 

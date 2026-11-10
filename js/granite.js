@@ -297,6 +297,93 @@ document.addEventListener('DOMContentLoaded', () => {
     viewApplicationBtn.addEventListener('click', () => setViewMode('application'));
   }
 
+  // Related Products Slider Controller (More Granite Slabs in Stock)
+  function initRelatedCarousel() {
+    const carouselWrap = document.getElementById('relatedCarouselWrap');
+    if (!carouselWrap) return;
+
+    const prevBtn = document.getElementById('relatedPrevBtn');
+    const nextBtn = document.getElementById('relatedNextBtn');
+
+    function updateArrowStates() {
+      if (!prevBtn || !nextBtn) return;
+      const scrollLeft = carouselWrap.scrollLeft;
+      const maxScroll = carouselWrap.scrollWidth - carouselWrap.clientWidth - 8;
+
+      prevBtn.disabled = scrollLeft <= 8;
+      nextBtn.disabled = scrollLeft >= maxScroll;
+    }
+
+    function scrollCarousel(direction) {
+      const firstCard = carouselWrap.querySelector('.granite-card');
+      const cardWidth = firstCard ? firstCard.offsetWidth + 28 : 420;
+      carouselWrap.scrollBy({
+        left: direction * cardWidth,
+        behavior: 'smooth'
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollCarousel(-1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollCarousel(1);
+      });
+    }
+
+    carouselWrap.addEventListener('scroll', updateArrowStates, { passive: true });
+    window.addEventListener('resize', updateArrowStates, { passive: true });
+
+    // Initial state after layout settles
+    setTimeout(updateArrowStates, 150);
+
+    // Mouse drag-to-scroll for desktop
+    let isDown = false;
+    let startX = 0;
+    let scrollLeftPos = 0;
+    let hasMoved = false;
+
+    carouselWrap.addEventListener('mousedown', (e) => {
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      isDown = true;
+      hasMoved = false;
+      carouselWrap.classList.add('is-dragging');
+      startX = e.pageX - carouselWrap.offsetLeft;
+      scrollLeftPos = carouselWrap.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDown) return;
+      isDown = false;
+      carouselWrap.classList.remove('is-dragging');
+    });
+
+    carouselWrap.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carouselWrap.offsetLeft;
+      const walk = (x - startX) * 1.4;
+      if (Math.abs(walk) > 4) hasMoved = true;
+      carouselWrap.scrollLeft = scrollLeftPos - walk;
+    });
+
+    // Prevent accidental click navigation if user dragged
+    carouselWrap.addEventListener('click', (e) => {
+      if (hasMoved) {
+        e.preventDefault();
+        e.stopPropagation();
+        hasMoved = false;
+      }
+    }, true);
+  }
+
   // Initialize
   applyFilters();
+  initRelatedCarousel();
 });

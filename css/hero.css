@@ -243,7 +243,7 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 100svh;
+    min-height: clamp(560px, 82svh, 660px);
     justify-content: flex-end;
   }
   .hero-content {
@@ -269,10 +269,13 @@
 }
 
 @media (max-width: 600px) {
+  .hero-section {
+    min-height: clamp(550px, 82svh, 660px);
+  }
   .hero-content {
     margin-top: auto;
-    padding-top: 96px;
-    padding-bottom: 84px;
+    padding-top: 60px;
+    padding-bottom: 58px;
     width: 100%;
     max-width: 100%;
   }

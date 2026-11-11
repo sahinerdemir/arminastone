@@ -517,6 +517,8 @@
   left: 0;
   right: 0;
   bottom: 0;
+  height: 100vh;
+  height: 100dvh;
   background: rgba(10, 10, 10, 0.96);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
@@ -529,6 +531,9 @@
   visibility: hidden;
   transition: opacity 300ms ease, visibility 300ms;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 
 .mobile-nav-panel.is-open {

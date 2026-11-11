@@ -391,6 +391,7 @@ function initHeader() {
       if (header) header.classList.add('mobile-nav-active');
       mobileToggle.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
+      if (window.pauseSmoothScroll) window.pauseSmoothScroll();
     }
 
     function closeMobileMenu() {
@@ -399,6 +400,8 @@ function initHeader() {
       if (header) header.classList.remove('mobile-nav-active');
       mobileToggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      document.documentElement.classList.remove('lenis-stopped');
+      if (window.resumeSmoothScroll) window.resumeSmoothScroll();
     }
 
     mobileToggle.addEventListener('click', (e) => {

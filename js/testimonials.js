@@ -208,6 +208,27 @@
       });
     }
 
+    function repositionNav() {
+      const isMobile = window.innerWidth <= 1060;
+      const nav = section.querySelector('.testimonials-nav');
+      const actionsRow = section.querySelector('.testimonials-actions-row');
+      const showcase = section.querySelector('.testimonials-showcase');
+
+      if (!nav || !actionsRow || !showcase) return;
+
+      if (isMobile) {
+        if (nav.parentElement !== showcase) {
+          showcase.appendChild(nav);
+        }
+      } else {
+        if (nav.parentElement !== actionsRow) {
+          actionsRow.appendChild(nav);
+        }
+      }
+    }
+
+    window.addEventListener('resize', repositionNav);
+    repositionNav();
     updateStackState();
   }
 

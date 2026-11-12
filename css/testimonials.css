@@ -35,11 +35,11 @@
 
 /* Left Column: Intro & Navigation */
 .testimonials-intro {
-  grid-column: 1 / 5;
+  grid-column: 1 / 6;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-right: clamp(12px, 2vw, 32px);
+  padding-right: 24px;
 }
 
 .testimonials-label {
@@ -82,9 +82,18 @@
   margin: 0 0 28px 0;
 }
 
-/* All Testimonials CTA Action Button */
+/* All Testimonials CTA + Slider Controls Row */
+.testimonials-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: nowrap;
+  margin-top: 6px;
+}
+
 .testimonials-cta-wrap {
-  margin: 0 0 8px 0;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 .btn-all-testimonials {
@@ -92,7 +101,7 @@
   align-items: center;
   gap: 12px;
   height: 50px;
-  padding: 0 28px;
+  padding: 0 24px;
   border-radius: 999px;
   background-color: #181614;
   color: #FAF7F2;
@@ -108,6 +117,7 @@
               transform var(--transition-fast),
               box-shadow var(--transition-fast);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .btn-all-testimonials:hover {
@@ -139,14 +149,25 @@
   outline-offset: 3px;
 }
 
-/* Navigation Controls (Arrows + Counter) - Positioned Below Showcase Cards */
+/* Navigation Controls (Arrows + Counter) */
 .testimonials-nav {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-top: 46px;
+  gap: 10px;
   position: relative;
   z-index: 20;
+  flex-shrink: 0;
+}
+
+/* On Web/Desktop: Positioned directly to the right of All Testimonials button */
+.testimonials-actions-row .testimonials-nav {
+  margin-top: 0;
+}
+
+/* On Mobile: Positioned below showcase cards */
+.testimonials-showcase .testimonials-nav {
+  margin-top: 44px;
+  gap: 14px;
 }
 
 .testimonials-nav-btn {
@@ -213,7 +234,7 @@
 
 /* Right Column: Showcase Card Slider */
 .testimonials-showcase {
-  grid-column: 5 / 13;
+  grid-column: 6 / 13;
   position: relative;
   width: 100%;
   overflow: visible;

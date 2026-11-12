@@ -79,14 +79,74 @@
   line-height: 1.55;
   color: rgba(24, 22, 20, 0.72);
   max-width: 380px;
-  margin: 0 0 36px 0;
+  margin: 0 0 28px 0;
 }
 
-/* Navigation Controls (Arrows + Counter) */
+/* All Testimonials CTA Action Button */
+.testimonials-cta-wrap {
+  margin: 0 0 8px 0;
+}
+
+.btn-all-testimonials {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background-color: #181614;
+  color: #FAF7F2;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 14px rgba(24, 22, 20, 0.16);
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+  cursor: pointer;
+}
+
+.btn-all-testimonials:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.btn-all-testimonials .btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+}
+
+.btn-all-testimonials .btn-arrow svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+}
+
+.btn-all-testimonials:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.btn-all-testimonials:focus-visible {
+  outline: 2px solid #181614;
+  outline-offset: 3px;
+}
+
+/* Navigation Controls (Arrows + Counter) - Positioned Below Showcase Cards */
 .testimonials-nav {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  margin-top: 46px;
+  position: relative;
+  z-index: 20;
 }
 
 .testimonials-nav-btn {
@@ -156,46 +216,96 @@
   grid-column: 5 / 13;
   position: relative;
   width: 100%;
+  overflow: visible;
 }
 
 .testimonials-track {
   position: relative;
   width: 100%;
+  height: 520px;
   min-height: 520px;
+  overflow: visible;
 }
 
+/* Stacked Deck Testimonial Slide Structure */
 .testimonial-slide {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  transform-origin: center bottom;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(12px) scale(0.99);
-  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 600ms cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 600ms;
   pointer-events: none;
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
+              filter 480ms cubic-bezier(0.22, 1, 0.36, 1),
+              visibility 480ms;
+  will-change: transform, opacity;
 }
 
+/* 1. Active Front Card */
 .testimonial-slide.is-active {
-  position: relative;
   opacity: 1;
   visibility: visible;
-  transform: translateY(0) scale(1);
   pointer-events: auto;
+  z-index: 10;
+  transform: translateY(0) scale(1);
+  filter: brightness(1);
+}
+
+/* 2. Middle Layer Card (peeking out from bottom by ~16px) */
+.testimonial-slide.is-next {
+  opacity: 0.78;
+  visibility: visible;
+  pointer-events: none;
+  z-index: 5;
+  transform: translateY(16px) scale(0.96);
+  filter: brightness(0.82);
+}
+
+/* 3. Bottom Layer Card (peeking out further by ~30px) */
+.testimonial-slide.is-behind {
+  opacity: 0.45;
+  visibility: visible;
+  pointer-events: none;
+  z-index: 2;
+  transform: translateY(30px) scale(0.92);
+  filter: brightness(0.68);
+}
+
+/* Slide Forward Animation: Current active card slides 20px up while fading out */
+.testimonial-slide.is-exiting {
+  opacity: 0 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  z-index: 12 !important;
+  transform: translateY(-20px) scale(0.98) !important;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 320ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Slide Backward Animation: Inbound previous card drops in from top */
+.testimonial-slide.is-entering-prev {
+  opacity: 0 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  z-index: 12 !important;
+  transform: translateY(-20px) scale(0.98) !important;
+  transition: none !important;
 }
 
 /* Testimonial Card Frame */
 .testimonial-card {
   position: relative;
   width: 100%;
+  height: 100%;
   min-height: 520px;
   border-radius: 32px;
   overflow: hidden;
   background-color: #1A1613;
-  box-shadow: 0 24px 60px -8px rgba(24, 22, 20, 0.18),
-              0 0 0 1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 24px 60px -8px rgba(24, 22, 20, 0.22),
+              0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .testimonial-card-bg {
@@ -418,8 +528,13 @@
   .testimonials-showcase {
     grid-column: 1 / -1;
   }
+  .testimonials-track {
+    height: 480px;
+    min-height: 480px;
+  }
   .testimonial-card {
     min-height: 480px;
+    height: 100%;
   }
   .testimonial-video-play-btn {
     left: 24%;
@@ -438,14 +553,35 @@
   .testimonials-title-line {
     display: inline;
   }
+  .testimonials-cta-wrap {
+    margin-top: 4px;
+    margin-bottom: 24px;
+  }
+  .btn-all-testimonials {
+    height: 46px;
+    padding: 0 24px;
+    font-size: 13.5px;
+  }
   .testimonials-track {
     min-height: 570px;
+    height: 570px;
   }
   .testimonial-card {
     min-height: 570px;
+    height: 100%;
     border-radius: 24px;
     display: flex;
     flex-direction: column;
+  }
+  .testimonial-slide.is-next {
+    transform: translateY(14px) scale(0.96);
+  }
+  .testimonial-slide.is-behind {
+    transform: translateY(26px) scale(0.92);
+  }
+  .testimonials-nav {
+    margin-top: 42px;
+    justify-content: flex-start;
   }
   .testimonial-card-content {
     padding: 36px 28px;
@@ -544,10 +680,15 @@
     font-size: 22px;
   }
   .testimonials-track {
+    height: 570px;
     min-height: 570px;
   }
   .testimonial-card {
+    height: 100%;
     min-height: 570px;
+  }
+  .testimonials-nav {
+    margin-top: 40px;
   }
   .testimonial-card-image .testimonial-card-content {
     min-height: 570px;

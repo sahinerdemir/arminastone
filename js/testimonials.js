@@ -21,47 +21,116 @@
 
     let currentIdx = 0;
     const total = slides.length;
+    let isAnimating = false;
 
     if (totalCounter) {
       totalCounter.textContent = String(total).padStart(2, '0');
     }
 
-    function updateSlider(newIdx) {
-      if (newIdx < 0) newIdx = total - 1;
-      if (newIdx >= total) newIdx = 0;
-
-      currentIdx = newIdx;
-
-      slides.forEach((slide, idx) => {
-        const isActive = idx === currentIdx;
-        slide.classList.toggle('is-active', isActive);
-        slide.setAttribute('aria-hidden', (!isActive).toString());
-      });
-
+    function updateCounter() {
       if (currentCounter) {
         currentCounter.textContent = String(currentIdx + 1).padStart(2, '0');
       }
+    }
 
-      if (currentIdx === 0) {
-        prevBtn.classList.remove('is-primary');
-        nextBtn.classList.add('is-primary');
-      } else if (currentIdx === total - 1) {
-        prevBtn.classList.add('is-primary');
-        nextBtn.classList.remove('is-primary');
-      } else {
-        prevBtn.classList.add('is-primary');
-        nextBtn.classList.add('is-primary');
-      }
+    function updateStackState() {
+      slides.forEach((slide, idx) => {
+        slide.classList.remove('is-active', 'is-next', 'is-behind', 'is-exiting', 'is-entering-prev');
+        if (idx === currentIdx) {
+          slide.classList.add('is-active');
+          slide.setAttribute('aria-hidden', 'false');
+        } else if (idx === (currentIdx + 1) % total) {
+          slide.classList.add('is-next');
+          slide.setAttribute('aria-hidden', 'true');
+        } else {
+          slide.classList.add('is-behind');
+          slide.setAttribute('aria-hidden', 'true');
+        }
+      });
+      updateCounter();
+    }
+
+    function goToNext() {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      const currentSlide = slides[currentIdx];
+      const nextIdx = (currentIdx + 1) % total;
+      const behindIdx = (currentIdx + 2) % total;
+
+      // 1. Current active slide slides 20px up while fading out
+      currentSlide.classList.remove('is-active');
+      currentSlide.classList.add('is-exiting');
+
+      // 2. Next card moves up to active position (Y: 0, scale: 1)
+      slides[nextIdx].classList.remove('is-next', 'is-behind');
+      slides[nextIdx].classList.add('is-active');
+      slides[nextIdx].setAttribute('aria-hidden', 'false');
+
+      // 3. Behind card moves up to next position (Y: 16px, scale: 0.96)
+      slides[behindIdx].classList.remove('is-behind');
+      slides[behindIdx].classList.add('is-next');
+      slides[behindIdx].setAttribute('aria-hidden', 'true');
+
+      currentIdx = nextIdx;
+      updateCounter();
+
+      // 4. Once exit animation completes, move dismissed card to behind position at bottom of stack
+      setTimeout(() => {
+        currentSlide.classList.remove('is-exiting');
+        currentSlide.classList.add('is-behind');
+        currentSlide.setAttribute('aria-hidden', 'true');
+        isAnimating = false;
+      }, 420);
+    }
+
+    function goToPrev() {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      const prevIdx = (currentIdx - 1 + total) % total;
+      const targetSlide = slides[prevIdx];
+      const currentSlide = slides[currentIdx];
+      const nextSlideEl = slides[(currentIdx + 1) % total];
+
+      // 1. Target slide was behind; prepare it above with entering class
+      targetSlide.classList.remove('is-behind', 'is-next');
+      targetSlide.classList.add('is-entering-prev');
+
+      // Force DOM reflow so transition executes
+      void targetSlide.offsetHeight;
+
+      // 2. Animate target down to active position
+      targetSlide.classList.remove('is-entering-prev');
+      targetSlide.classList.add('is-active');
+      targetSlide.setAttribute('aria-hidden', 'false');
+
+      // 3. Current active slides down to next position
+      currentSlide.classList.remove('is-active');
+      currentSlide.classList.add('is-next');
+      currentSlide.setAttribute('aria-hidden', 'true');
+
+      // 4. Next slide moves to behind position
+      nextSlideEl.classList.remove('is-next');
+      nextSlideEl.classList.add('is-behind');
+      nextSlideEl.setAttribute('aria-hidden', 'true');
+
+      currentIdx = prevIdx;
+      updateCounter();
+
+      setTimeout(() => {
+        isAnimating = false;
+      }, 450);
     }
 
     prevBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      updateSlider(currentIdx - 1);
+      goToPrev();
     });
 
     nextBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      updateSlider(currentIdx + 1);
+      goToNext();
     });
 
     // Touch Swipe on mobile
@@ -83,9 +152,9 @@
         const diffY = touchEndY - touchStartY;
         if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
           if (diffX < 0) {
-            updateSlider(currentIdx + 1);
+            goToNext();
           } else {
-            updateSlider(currentIdx - 1);
+            goToPrev();
           }
         }
       }, { passive: true });
@@ -94,9 +163,9 @@
     // Keyboard Navigation when section in view or focused
     section.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') {
-        updateSlider(currentIdx - 1);
+        goToPrev();
       } else if (e.key === 'ArrowRight') {
-        updateSlider(currentIdx + 1);
+        goToNext();
       }
     });
 
@@ -139,7 +208,7 @@
       });
     }
 
-    updateSlider(0);
+    updateStackState();
   }
 
   if (typeof window !== 'undefined') {

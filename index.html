@@ -1397,7 +1397,7 @@
     <section id="testimonials" class="testimonials-section" aria-label="Client Testimonials and Reviews">
       <div class="testimonials-container">
         <div class="testimonials-grid">
-          <!-- Left Column: Introduction & Controls -->
+          <!-- Left Column: Introduction & All Testimonials CTA -->
           <div class="testimonials-intro reveal-item">
             <span class="testimonials-label">TESTIMONIALS</span>
             <h2 class="testimonials-title">
@@ -1410,25 +1410,17 @@
               See what our clients say about working with Armina Stone, from first selection to final installation.
             </p>
 
-            <!-- Slider Navigation Controls -->
-            <div class="testimonials-nav" role="toolbar" aria-label="Testimonial Navigation">
-              <button type="button" class="testimonials-nav-btn testimonials-prev-btn" aria-label="Previous testimonial">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="19" y1="12" x2="5" y2="12"></line>
-                  <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-              </button>
-              <button type="button" class="testimonials-nav-btn testimonials-next-btn is-primary" aria-label="Next testimonial">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </button>
-              <div class="testimonials-counter" aria-live="polite">
-                <span class="current-slide">01</span>
-                <span class="counter-sep">/</span>
-                <span class="total-slides">03</span>
-              </div>
+            <!-- All Testimonials Action Button -->
+            <div class="testimonials-cta-wrap">
+              <a href="#testimonials" class="btn-all-testimonials" aria-label="View all client testimonials">
+                <span>All Testimonials</span>
+                <span class="btn-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="10" x2="15" y2="10"></line>
+                    <polyline points="10 5 15 10 10 15"></polyline>
+                  </svg>
+                </span>
+              </a>
             </div>
           </div>
 
@@ -1599,6 +1591,27 @@
                 </div>
               </article>
 
+            </div>
+
+            <!-- Slider Navigation Controls (Positioned Below the Testimonial Cards) -->
+            <div class="testimonials-nav" role="toolbar" aria-label="Testimonial Navigation">
+              <button type="button" class="testimonials-nav-btn testimonials-prev-btn" aria-label="Previous testimonial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+              </button>
+              <button type="button" class="testimonials-nav-btn testimonials-next-btn is-primary" aria-label="Next testimonial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+              <div class="testimonials-counter" aria-live="polite">
+                <span class="current-slide">01</span>
+                <span class="counter-sep">/</span>
+                <span class="total-slides">03</span>
+              </div>
             </div>
           </div>
         </div>

@@ -724,8 +724,8 @@
     <!-- Section: Interactive Search & FAQ Category Filters (Same Toolbar Architecture as Granite) -->
     <section class="granite-filter-section" aria-label="FAQ Search and Filters">
       <div class="granite-toolbar reveal-item">
-        <!-- Row 1: Search Input + Category Filters + Expand/Collapse All -->
-        <div class="granite-toolbar-top">
+        <!-- Row 1: Search Input + Expand/Collapse All -->
+        <div class="faq-toolbar-row-1">
           <!-- Search Box -->
           <div class="granite-search-box">
             <svg class="granite-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -736,6 +736,15 @@
             <button type="button" id="faqSearchClear" class="granite-search-clear" aria-label="Clear search">&times;</button>
           </div>
 
+          <!-- Expand / Collapse All Toggle -->
+          <button type="button" id="faqExpandAllBtn" class="faq-expand-btn" aria-expanded="false">
+            <span class="faq-expand-label">Expand all</span>
+            <span class="faq-collapse-label">Collapse all</span>
+          </button>
+        </div>
+
+        <!-- Row 2: Topic Filter Pills + Product Category Dropdown -->
+        <div class="faq-toolbar-row-2">
           <!-- FAQ Topic Filter Pills -->
           <div class="faq-filter-pills" role="group" aria-label="Filter FAQs by topic">
             <button type="button" class="faq-filter-btn active" data-category="all" aria-pressed="true">All Topics</button>
@@ -745,21 +754,22 @@
             <button type="button" class="faq-filter-btn" data-category="care" aria-pressed="false">Care &amp; Maintenance</button>
           </div>
 
-          <!-- Expand / Collapse All Toggle -->
-          <button type="button" id="faqExpandAllBtn" class="faq-expand-btn" aria-expanded="false">
-            <span class="faq-expand-label">Expand all</span>
-            <span class="faq-collapse-label">Collapse all</span>
-          </button>
-        </div>
-
-        <!-- Row 2: Status & Results Count Bar -->
-        <div class="granite-status-bar">
-          <div class="granite-active-tags" id="faqActiveTags">
-            <!-- Injected by faq.js -->
-          </div>
-          <div class="granite-count-wrap" style="display: flex; align-items: center; gap: 14px;">
-            <span id="faqResultCount">Showing 14 of 14 questions</span>
-            <button type="button" id="faqResetBtn" class="granite-reset-btn" style="display: none;">Reset all</button>
+          <!-- Product Category Dropdown -->
+          <div class="faq-product-filter-wrap">
+            <div class="granite-select-wrap">
+              <select id="faqProductSelect" class="granite-select" aria-label="Filter FAQs by product category">
+                <option value="all">All Product Categories</option>
+                <option value="granite">Granite</option>
+                <option value="marble">Marble</option>
+                <option value="quartzite">Quartzite</option>
+                <option value="quartz">Quartz</option>
+                <option value="onyx">Onyx</option>
+                <option value="porcelain">Porcelain</option>
+              </select>
+              <svg class="granite-select-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -832,7 +842,7 @@
           </details>
 
           <!-- Product Detail Page FAQs (6) -->
-          <details class="faq-item" data-category="products" data-keywords="durability hardness mohs scratch heat kitchen countertops granite">
+          <details class="faq-item" data-category="products" data-product="granite" data-keywords="durability hardness mohs scratch heat kitchen countertops granite">
             <summary class="faq-question">
               <span class="faq-question-text">How durable is natural granite for high-traffic kitchen countertops?</span>
               <span class="faq-category-tag">Products &amp; Materials</span>
@@ -842,7 +852,7 @@
             </div>
           </details>
 
-          <details class="faq-item" data-category="care" data-keywords="seal sealer sealing maintenance stain oil water">
+          <details class="faq-item" data-category="care" data-product="granite,marble,quartzite,onyx" data-keywords="seal sealer sealing maintenance stain oil water">
             <summary class="faq-question">
               <span class="faq-question-text">Does natural granite need to be sealed, and how often?</span>
               <span class="faq-category-tag">Care &amp; Maintenance</span>
@@ -852,7 +862,7 @@
             </div>
           </details>
 
-          <details class="faq-item" data-category="products" data-keywords="polished honed leathered finish texture matte gloss">
+          <details class="faq-item" data-category="products" data-product="granite,marble,quartzite" data-keywords="polished honed leathered finish texture matte gloss">
             <summary class="faq-question">
               <span class="faq-question-text">What is the difference between Polished, Honed, and Leathered finishes?</span>
               <span class="faq-category-tag">Products &amp; Materials</span>
@@ -862,7 +872,7 @@
             </div>
           </details>
 
-          <details class="faq-item" data-category="products" data-keywords="2cm 3cm thickness slab countertop backsplash mitered">
+          <details class="faq-item" data-category="products" data-product="granite,marble,quartzite,quartz,onyx" data-keywords="2cm 3cm thickness slab countertop backsplash mitered">
             <summary class="faq-question">
               <span class="faq-question-text">Should I choose 2cm or 3cm slab thickness for my project?</span>
               <span class="faq-category-tag">Products &amp; Materials</span>
@@ -872,7 +882,7 @@
             </div>
           </details>
 
-          <details class="faq-item" data-category="fabrication" data-keywords="bookmatching veining consecutive slabs waterfall feature wall">
+          <details class="faq-item" data-category="fabrication" data-product="granite,marble,quartzite,onyx" data-keywords="bookmatching veining consecutive slabs waterfall feature wall">
             <summary class="faq-question">
               <span class="faq-question-text">Is bookmatching available for slabs with dramatic veining?</span>
               <span class="faq-category-tag">Fabrication &amp; Install</span>
@@ -882,7 +892,7 @@
             </div>
           </details>
 
-          <details class="faq-item" data-category="products" data-keywords="outdoor summer kitchen bbq patio uv sunlight freeze">
+          <details class="faq-item" data-category="products" data-product="granite,quartzite,porcelain" data-keywords="outdoor summer kitchen bbq patio uv sunlight freeze">
             <summary class="faq-question">
               <span class="faq-question-text">Can natural granite slabs be used outdoors for summer kitchens and bars?</span>
               <span class="faq-category-tag">Products &amp; Materials</span>
@@ -892,8 +902,38 @@
             </div>
           </details>
 
-          <!-- Additional Helpful Care & Fabrication FAQs (2) -->
-          <details class="faq-item" data-category="care" data-keywords="clean cleaning daily soap ph neutral vinegar bleach">
+          <!-- Additional Helpful Care, Fabrication & Stone Category FAQs (5) -->
+          <details class="faq-item" data-category="products" data-product="quartzite,marble,quartz" data-keywords="quartzite marble quartz comparison engineered natural hardness etching">
+            <summary class="faq-question">
+              <span class="faq-question-text">How does Quartzite compare to Marble and Quartz for kitchen countertops?</span>
+              <span class="faq-category-tag">Products &amp; Materials</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Natural Quartzite offers the organic, marble-like veining homeowners love with superior hardness—even harder than granite—making it resistant to etching and scratching. Marble provides timeless classical luxury with softer patina over time, while engineered Quartz offers uniform patterns and non-porous, zero-sealing convenience.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-category="care" data-product="marble,onyx" data-keywords="marble onyx care etching acidic backlit translucent">
+            <summary class="faq-question">
+              <span class="faq-question-text">What special care does Marble or Onyx require compared to Granite?</span>
+              <span class="faq-category-tag">Care &amp; Maintenance</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Because Marble and Onyx are calcium-based natural stones, they are more sensitive to acidic liquids (like citrus, wine, or vinegar) which can cause surface etching. We recommend prompt wiping of spills, using cutting boards and coasters, and sealing every 6 to 12 months with a breathable penetrating sealer.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-category="products" data-product="porcelain" data-keywords="porcelain large format sintered stone shower fireplace facade thin">
+            <summary class="faq-question">
+              <span class="faq-question-text">Why choose Porcelain slabs for large-format walls, showers, or outdoor facades?</span>
+              <span class="faq-category-tag">Products &amp; Materials</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Large-format Porcelain slabs are ultra-compact, virtually non-porous, UV-proof, and heat-resistant. Available in sleek slim profiles, they allow seamless floor-to-ceiling fireplace surrounds, zero-grout shower walls, and exterior architectural cladding with minimal structural weight.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-category="care" data-product="granite,marble,quartzite,quartz,onyx,porcelain" data-keywords="clean cleaning daily soap ph neutral vinegar bleach">
             <summary class="faq-question">
               <span class="faq-question-text">What cleaning products are safe for daily natural stone care?</span>
               <span class="faq-category-tag">Care &amp; Maintenance</span>
@@ -903,7 +943,7 @@
             </div>
           </details>
 
-          <details class="faq-item" data-category="fabrication" data-keywords="edge profile eased bevel bullnose ogee mitered waterfall">
+          <details class="faq-item" data-category="fabrication" data-product="granite,marble,quartzite,quartz,porcelain" data-keywords="edge profile eased bevel bullnose ogee mitered waterfall">
             <summary class="faq-question">
               <span class="faq-question-text">Which countertop edge profiles do you offer?</span>
               <span class="faq-category-tag">Fabrication &amp; Install</span>

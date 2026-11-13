@@ -1567,7 +1567,7 @@
 
 .granite-detail-section {
   padding-top: 0;
-  padding-bottom: clamp(32px, 4vh, 50px);
+  padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
   background-color: #ffffff;

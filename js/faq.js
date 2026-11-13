@@ -1,7 +1,7 @@
 /**
  * Armina Stone - FAQs Directory Controller
- * Handles category filtering, live search (desktop + mobile hero search),
- * active filter chips, result counter, and Expand/Collapse All accordion controls.
+ * Handles topic pill filtering, product category dropdown filtering, live search
+ * (desktop + mobile hero search), exclusive click accordion behavior, and Expand/Collapse All.
  */
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
@@ -15,24 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroSearchInput = document.getElementById('faqHeroSearchInput');
   const heroSearchClearBtn = document.getElementById('faqHeroSearchClear');
   const filterButtons = Array.from(document.querySelectorAll('.faq-filter-btn'));
-  const activeTagsContainer = document.getElementById('faqActiveTags');
-  const countDisplay = document.getElementById('faqResultCount');
-  const resetBtn = document.getElementById('faqResetBtn');
+  const productSelect = document.getElementById('faqProductSelect');
   const emptyResetBtn = document.getElementById('faqEmptyResetBtn');
   const emptyState = document.getElementById('faqEmptyState');
   const expandAllBtn = document.getElementById('faqExpandAllBtn');
 
-  const CATEGORY_LABELS = {
-    all: 'All Topics',
-    company: 'Company & Showrooms',
-    products: 'Products & Materials',
-    fabrication: 'Fabrication & Install',
-    care: 'Care & Maintenance'
-  };
-
   const state = {
     searchQuery: '',
-    category: 'all'
+    category: 'all',
+    product: 'all'
   };
 
   function getVisibleItems() {
@@ -65,58 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function resetAll() {
     state.searchQuery = '';
+    state.product = 'all';
     syncSearchInputs('');
+    if (productSelect) productSelect.value = 'all';
     setCategory('all');
-  }
-
-  function renderActiveTags() {
-    if (!activeTagsContainer) return;
-    activeTagsContainer.innerHTML = '';
-
-    const tags = [{ label: 'Knowledge Base: FAQs', removable: false }];
-
-    if (state.category !== 'all') {
-      tags.push({
-        label: 'Topic: ' + (CATEGORY_LABELS[state.category] || state.category),
-        removable: true,
-        onRemove: () => setCategory('all')
-      });
-    }
-
-    if (state.searchQuery) {
-      tags.push({
-        label: 'Search: "' + state.searchQuery + '"',
-        removable: true,
-        onRemove: () => {
-          state.searchQuery = '';
-          syncSearchInputs('');
-          applyFilters();
-        }
-      });
-    }
-
-    tags.forEach(tag => {
-      const chip = document.createElement('span');
-      chip.className = 'granite-tag-chip';
-      chip.textContent = tag.label;
-
-      if (tag.removable) {
-        const removeBtn = document.createElement('button');
-        removeBtn.type = 'button';
-        removeBtn.className = 'granite-tag-remove';
-        removeBtn.setAttribute('aria-label', 'Remove ' + tag.label);
-        removeBtn.innerHTML = '&times;';
-        removeBtn.addEventListener('click', tag.onRemove);
-        chip.appendChild(removeBtn);
-      }
-
-      activeTagsContainer.appendChild(chip);
-    });
-
-    if (resetBtn) {
-      const hasActiveFilters = state.category !== 'all' || state.searchQuery.length > 0;
-      resetBtn.style.display = hasActiveFilters ? 'inline-block' : 'none';
-    }
   }
 
   function applyFilters() {
@@ -125,18 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     items.forEach(item => {
       const category = (item.dataset.category || '').toLowerCase();
+      const products = (item.dataset.product || '').toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
       const question = (item.querySelector('.faq-question-text')?.textContent || '').toLowerCase();
       const answer = (item.querySelector('.faq-answer')?.textContent || '').toLowerCase();
       const keywords = (item.dataset.keywords || '').toLowerCase();
 
       const matchesCategory = state.category === 'all' || category === state.category;
+      const matchesProduct = state.product === 'all' || products.includes(state.product);
       const matchesSearch =
         !query ||
         question.includes(query) ||
         answer.includes(query) ||
         keywords.includes(query);
 
-      if (matchesCategory && matchesSearch) {
+      if (matchesCategory && matchesProduct && matchesSearch) {
         item.style.display = '';
         visibleCount++;
       } else {
@@ -144,19 +89,31 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    if (countDisplay) {
-      countDisplay.textContent = 'Showing ' + visibleCount + ' of ' + items.length + ' questions';
-    }
-
     if (emptyState) {
       emptyState.classList.toggle('is-visible', visibleCount === 0);
     }
 
-    renderActiveTags();
     syncExpandButtonState();
   }
 
-  // Event Listeners: Search inputs
+  // Exclusive accordion behavior on individual item click (closes previously open item)
+  directoryAccordion.addEventListener('click', (e) => {
+    const summary = e.target.closest('.faq-question');
+    if (!summary) return;
+    const clickedItem = summary.parentElement;
+    if (!clickedItem || !clickedItem.classList.contains('faq-item')) return;
+
+    // If it's currently closed, browser will open it -> close all other open items
+    if (!clickedItem.open) {
+      items.forEach(item => {
+        if (item !== clickedItem && item.open) {
+          item.open = false;
+        }
+      });
+    }
+  });
+
+  // Search inputs (desktop toolbar + mobile hero)
   [searchInput, heroSearchInput].forEach(input => {
     if (!input) return;
     input.addEventListener('input', (e) => {
@@ -177,18 +134,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Event Listeners: Category Filter Buttons
+  // Topic Filter Buttons
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       setCategory(btn.dataset.category || 'all');
     });
   });
 
-  // Event Listeners: Reset
-  if (resetBtn) resetBtn.addEventListener('click', resetAll);
+  // Product Category Dropdown
+  if (productSelect) {
+    productSelect.addEventListener('change', (e) => {
+      state.product = (e.target.value || 'all').toLowerCase();
+      applyFilters();
+    });
+  }
+
+  // Empty State Reset
   if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAll);
 
-  // Event Listener: Expand / Collapse All
+  // Expand / Collapse All
   if (expandAllBtn) {
     expandAllBtn.addEventListener('click', () => {
       const shouldExpand = expandAllBtn.getAttribute('aria-expanded') !== 'true';
